@@ -68,11 +68,13 @@ public class TelaLogin extends JFrame {
 		panel.add(lblSenha);
 		
 		txtUsuario = new JTextField();
+		txtUsuario.setFont(new Font("Calisto MT", Font.PLAIN, 15));
 		txtUsuario.setBounds(197, 36, 261, 29);
 		panel.add(txtUsuario);
 		txtUsuario.setColumns(10);
 		
 		txtSenha = new JTextField();
+		txtSenha.setFont(new Font("Wingdings", Font.PLAIN, 15));
 		txtSenha.setColumns(10);
 		txtSenha.setBounds(197, 76, 261, 29);
 		panel.add(txtSenha);
