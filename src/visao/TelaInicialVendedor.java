@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
+import javax.swing.border.LineBorder;
 
 public class TelaInicialVendedor extends JFrame {
 
@@ -50,12 +51,16 @@ public class TelaInicialVendedor extends JFrame {
 		contentPane.setLayout(null);
 		
 		JPanel panel = new JPanel();
+		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel.setBackground(new Color(102, 153, 255));
 		panel.setBounds(0, 0, 937, 105);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		txtPesquisarProduto = new JTextField();
+		txtPesquisarProduto.setForeground(Color.BLACK);
+		txtPesquisarProduto.setBackground(Color.WHITE);
+		txtPesquisarProduto.setFont(new Font("Calisto MT", Font.PLAIN, 15));
 		txtPesquisarProduto.setBounds(295, 27, 291, 27);
 		panel.add(txtPesquisarProduto);
 		txtPesquisarProduto.setColumns(10);
@@ -64,17 +69,18 @@ public class TelaInicialVendedor extends JFrame {
 		mnNewMenu.setBounds(285, 32, 107, 22);
 		panel.add(mnNewMenu);
 		
-		JButton btnNovaVenda = new JButton("+ Nova Venda");
-		btnNovaVenda.setBackground(new Color(102, 204, 255));
-		btnNovaVenda.setBounds(642, 65, 151, 40);
-		panel.add(btnNovaVenda);
-		btnNovaVenda.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
-		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_1.setBackground(new Color(255, 250, 250));
 		panel_1.setBounds(0, 104, 188, 460);
 		contentPane.add(panel_1);
 		panel_1.setLayout(new GridLayout(6, 2, 0, 0));
+		
+		JButton btnNovaVenda = new JButton("+ Nova Venda");
+		btnNovaVenda.setBounds(324, 130, 151, 40);
+		contentPane.add(btnNovaVenda);
+		btnNovaVenda.setBackground(Color.BLACK);
+		btnNovaVenda.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
 		btnNovaVenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
