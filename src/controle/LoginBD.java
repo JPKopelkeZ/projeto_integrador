@@ -5,7 +5,7 @@ import modelo.Usuario;
 public class LoginBD {
 
 	// public boolean efetuarLogin(String usuario, String senha)
-	public boolean efetuarLogin(Usuario funcionario) {
+	public boolean efetuarLogin(Usuario usuario) {
 
 		return false;
 	}
