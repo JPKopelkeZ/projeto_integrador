@@ -1,24 +1,50 @@
 package modelo;
 
 public class Funcionario {
-
-	private String email;
-	private String senha;
-
-	public String getEmail() {
-		return email;
+	private int codigo;
+	private String nome;
+	private String cpf;
+	private float salario;
+	private String funcao;
+	private Telefone telefone;
+	
+	public int getCodigo() {
+		return codigo;
 	}
-
-	public void setEmail(String email) {
-		this.email = email;
+	public void setCodigo(int codigo) {
+		this.codigo = codigo;
 	}
-
-	public String getSenha() {
-		return senha;
+	public String getNome() {
+		return nome;
 	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
+	public String getCpf() {
+		return cpf;
+	}
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+	public float getSalario() {
+		return salario;
+	}
+	public void setSalario(float salario) {
+		this.salario = salario;
+	}
+	public String getFuncao() {
+		return funcao;
+	}
+	public void setFuncao(String funcao) {
+		this.funcao = funcao;
+	}
+	public Telefone getTelefone() {
+		return telefone;
+	}
+	public void setTelefone(Telefone telefone) {
+		this.telefone = telefone;
+	}
+	
+	
 
 }
