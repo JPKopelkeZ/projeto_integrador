@@ -1,0 +1,15 @@
+insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (1, '7/6/2022', '$286.43', '$235.93', 5, 1);
+insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (2, '4/15/2022', '$156.30', '$295.98', 17, 2);
+insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (3, '1/6/2021', '$49.70', '$44.87', 18, 3);
+insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (4, '8/8/2021', '$189.46', '$108.97', 1, 4);
+insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (5, '2/27/2022', '$85.96', '$118.92', 7, 1);
+insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (6, '4/25/2022', '$296.51', '$257.07', 18, 2);
+insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (7, '12/7/2021', '$50.20', '$224.46', 13, 3);
+insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (8, '6/2/2021', '$88.90', '$84.10', 9, 4);
+insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (9, '9/12/2021', '$231.29', '$28.52', 1, 1);
+insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (10, '6/6/2021', '$245.83', '$37.37', 5, 2);
+insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (11, '3/18/2022', '$283.59', '$12.81', 17, 3);
+insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (12, '7/26/2022', '$191.31', '$119.52', 3, 4);
+insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (13, '8/14/2022', '$278.43', '$248.33', 8, 1);
+insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (14, '3/27/2022', '$15.21', '$55.70', 6, 2);
+insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (15, '9/6/2021', '$213.63', '$105.96', 11, 3);

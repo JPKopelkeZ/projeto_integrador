@@ -1,0 +1,10 @@
+insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (1, 1, 1);
+insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (2, 2, 2);
+insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (3, 3, 3);
+insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (4, 4, 4);
+insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (5, 5, 1);
+insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (6, 6, 2);
+insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (7, 7, 3);
+insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (8, 8, 4);
+insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (9, 9, 1);
+insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (10, 10, 2);

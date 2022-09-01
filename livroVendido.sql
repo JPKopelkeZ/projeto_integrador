@@ -1,0 +1,10 @@
+insert into livroVendido (idlivroVendido, quantidade, precoAtual, livro_idlivro, venda_idvenda) values (1, 23, '$143.56', 16, 1);
+insert into livroVendido (idlivroVendido, quantidade, precoAtual, livro_idlivro, venda_idvenda) values (2, 47, '$31.03', 5, 2);
+insert into livroVendido (idlivroVendido, quantidade, precoAtual, livro_idlivro, venda_idvenda) values (3, 99, '$158.87', 5, 3);
+insert into livroVendido (idlivroVendido, quantidade, precoAtual, livro_idlivro, venda_idvenda) values (4, 66, '$57.06', 18, 4);
+insert into livroVendido (idlivroVendido, quantidade, precoAtual, livro_idlivro, venda_idvenda) values (5, 3, '$162.23', 3, 5);
+insert into livroVendido (idlivroVendido, quantidade, precoAtual, livro_idlivro, venda_idvenda) values (6, 24, '$113.09', 2, 6);
+insert into livroVendido (idlivroVendido, quantidade, precoAtual, livro_idlivro, venda_idvenda) values (7, 89, '$49.01', 19, 7);
+insert into livroVendido (idlivroVendido, quantidade, precoAtual, livro_idlivro, venda_idvenda) values (8, 100, '$70.53', 6, 8);
+insert into livroVendido (idlivroVendido, quantidade, precoAtual, livro_idlivro, venda_idvenda) values (9, 8, '$130.90', 9, 9);
+insert into livroVendido (idlivroVendido, quantidade, precoAtual, livro_idlivro, venda_idvenda) values (10, 71, '$222.20', 1, 10);

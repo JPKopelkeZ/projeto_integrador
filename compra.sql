@@ -1,0 +1,10 @@
+insert into compra (idcompra, quantidade, funcionario_idfunconario) values (1, 11, 1);
+insert into compra (idcompra, quantidade, funcionario_idfunconario) values (2, 22, 2);
+insert into compra (idcompra, quantidade, funcionario_idfunconario) values (3, 30, 3);
+insert into compra (idcompra, quantidade, funcionario_idfunconario) values (4, 83, 4);
+insert into compra (idcompra, quantidade, funcionario_idfunconario) values (5, 37, 1);
+insert into compra (idcompra, quantidade, funcionario_idfunconario) values (6, 40, 2);
+insert into compra (idcompra, quantidade, funcionario_idfunconario) values (7, 77, 3);
+insert into compra (idcompra, quantidade, funcionario_idfunconario) values (8, 40, 4);
+insert into compra (idcompra, quantidade, funcionario_idfunconario) values (9, 16, 1);
+insert into compra (idcompra, quantidade, funcionario_idfunconario) values (10, 12, 2);
