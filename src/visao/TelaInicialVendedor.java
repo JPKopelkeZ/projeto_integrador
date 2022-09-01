@@ -19,6 +19,9 @@ import javax.swing.border.LineBorder;
 import javax.swing.JScrollPane;
 import java.awt.SystemColor;
 import javax.swing.SwingConstants;
+import javax.swing.JMenuItem;
+import javax.swing.JMenuBar;
+import javax.swing.ButtonGroup;
 
 public class TelaInicialVendedor extends JFrame {
 
@@ -28,6 +31,7 @@ public class TelaInicialVendedor extends JFrame {
 	private JTextField txtAutor;
 	private JTextField txtAno;
 	private JTextField txtEditora;
+	private final ButtonGroup buttonGroup = new ButtonGroup();
 
 	/**
 	 * Launch the application.
@@ -85,7 +89,7 @@ public class TelaInicialVendedor extends JFrame {
 		
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
-		lblNome.setBounds(10, 43, 46, 14);
+		lblNome.setBounds(17, 43, 46, 14);
 		panel.add(lblNome);
 		
 		JLabel lblNomeFunc = new JLabel("-");
@@ -95,14 +99,8 @@ public class TelaInicialVendedor extends JFrame {
 		
 		JLabel lblFuncVendedor = new JLabel("Função: Vendedor");
 		lblFuncVendedor.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
-		lblFuncVendedor.setBounds(10, 60, 180, 19);
+		lblFuncVendedor.setBounds(17, 54, 180, 19);
 		panel.add(lblFuncVendedor);
-		
-		JButton btnSair = new JButton("Sair");
-		btnSair.setBackground(new Color(0, 0, 0));
-		btnSair.setFont(new Font("Bookman Old Style", Font.PLAIN, 12));
-		btnSair.setBounds(10, 79, 80, 14);
-		panel.add(btnSair);
 		btnNovaVenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
@@ -126,7 +124,7 @@ public class TelaInicialVendedor extends JFrame {
 		lblGenero.setBounds(10, 41, 178, 20);
 		panel_1.add(lblGenero);
 		
-		JLabel lblAutor = new JLabel("Autor");
+		JLabel lblAutor = new JLabel("Autor(a)");
 		lblAutor.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
 		lblAutor.setBounds(10, 95, 178, 20);
 		panel_1.add(lblAutor);
@@ -142,29 +140,39 @@ public class TelaInicialVendedor extends JFrame {
 		panel_1.add(lblEditora);
 		
 		txtGenero = new JTextField();
+		txtGenero.setFont(new Font("Calisto MT", Font.PLAIN, 11));
 		txtGenero.setBounds(10, 64, 168, 20);
 		panel_1.add(txtGenero);
 		txtGenero.setColumns(10);
 		
 		txtAutor = new JTextField();
+		txtAutor.setFont(new Font("Calisto MT", Font.PLAIN, 11));
 		txtAutor.setBounds(10, 115, 168, 20);
 		panel_1.add(txtAutor);
 		txtAutor.setColumns(10);
 		
 		txtAno = new JTextField();
+		txtAno.setFont(new Font("Calisto MT", Font.PLAIN, 11));
 		txtAno.setBounds(10, 170, 168, 20);
 		panel_1.add(txtAno);
 		txtAno.setColumns(10);
 		
 		txtEditora = new JTextField();
+		txtEditora.setFont(new Font("Calisto MT", Font.PLAIN, 11));
 		txtEditora.setBounds(10, 226, 168, 20);
 		panel_1.add(txtEditora);
 		txtEditora.setColumns(10);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBorder(new LineBorder(new Color(0, 0, 0)));
-		scrollPane.setBackground(new Color(153, 204, 255));
-		scrollPane.setBounds(218, 133, 694, 401);
-		contentPane.add(scrollPane);
+		JScrollPane scrollPainelResultado = new JScrollPane();
+		scrollPainelResultado.setBorder(new LineBorder(new Color(0, 0, 0)));
+		scrollPainelResultado.setBackground(new Color(153, 204, 255));
+		scrollPainelResultado.setBounds(218, 133, 694, 401);
+		contentPane.add(scrollPainelResultado);
+		
+		JButton btnSair = new JButton("Sair");
+		btnSair.setBounds(836, 545, 80, 14);
+		contentPane.add(btnSair);
+		btnSair.setBackground(new Color(0, 0, 0));
+		btnSair.setFont(new Font("Bookman Old Style", Font.PLAIN, 11));
 	}
 }
