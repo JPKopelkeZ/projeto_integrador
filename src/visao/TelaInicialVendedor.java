@@ -55,6 +55,17 @@ public class TelaInicialVendedor extends JFrame {
 	public TelaInicialVendedor() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 953, 603);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnNewMenu = new JMenu("+ Nova");
+		mnNewMenu.setFont(new Font("Bookman Old Style", Font.BOLD, 13));
+		menuBar.add(mnNewMenu);
+		
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Venda");
+		mntmNewMenuItem_1.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mnNewMenu.add(mntmNewMenuItem_1);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(153, 204, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -76,12 +87,6 @@ public class TelaInicialVendedor extends JFrame {
 		panel.add(txtPesquisarProduto);
 		txtPesquisarProduto.setColumns(10);
 		
-		JButton btnNovaVenda = new JButton("+ Nova Venda");
-		btnNovaVenda.setBounds(785, 65, 152, 40);
-		panel.add(btnNovaVenda);
-		btnNovaVenda.setBackground(Color.BLACK);
-		btnNovaVenda.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
-		
 		JLabel lblNomeEmpresa = new JLabel("LIFELONG BOOKS ");
 		lblNomeEmpresa.setFont(new Font("Copperplate Gothic Light", Font.ITALIC, 20));
 		lblNomeEmpresa.setBounds(26, 11, 223, 32);
@@ -101,10 +106,12 @@ public class TelaInicialVendedor extends JFrame {
 		lblFuncVendedor.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
 		lblFuncVendedor.setBounds(17, 54, 180, 19);
 		panel.add(lblFuncVendedor);
-		btnNovaVenda.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
+		
+		JButton btnSair_1 = new JButton("Sair");
+		btnSair_1.setFont(new Font("Bookman Old Style", Font.PLAIN, 12));
+		btnSair_1.setBackground(Color.BLACK);
+		btnSair_1.setBounds(838, 71, 89, 23);
+		panel.add(btnSair_1);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
