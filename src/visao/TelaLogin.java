@@ -94,7 +94,7 @@ public class TelaLogin extends JFrame {
 							login, senha
 							);
 					if (usuario != null) {
-						TelaInicial telaInicial = new TelaInicial();
+						TelaInicialSupervisor telaInicial = new TelaInicialSupervisor();
 						telaInicial.setVisible(true);
 						frame.dispose();
 					} else {
