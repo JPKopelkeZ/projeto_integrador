@@ -419,48 +419,6 @@ insert into autor (idautor, nome) values (3, 'Garwin Curr');
 insert into autor (idautor, nome) values (4, 'Roarke Purches');
 insert into autor (idautor, nome) values (5, 'Sibelle Gytesham');
 
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (1, 1);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (2, 2);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (3, 3);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (4, 4);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (5, 5);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (1, 6);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (2, 7);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (3, 8);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (4, 9);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (5, 10);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (1, 11);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (2, 12);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (3, 13);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (4, 14);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (5, 15);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (1, 16);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (2, 17);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (3, 18);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (4, 19);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (5, 20);
-
-insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco) values (1, 'Ruttger Merrell', '359.160.607-84', 1);
-insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco) values (2, 'Cinda O'' Bee', '348.309.438-20', 2);
-insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco) values (3, 'Tate Laurentin', '774.923.462-96', 3);
-insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco) values (4, 'Son Kubatsch', '783.043.777-64', 4);
-insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco) values (5, 'Gil Barnhill', '275.930.614-12', 5);
-insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco) values (6, 'Elwira Fishby', '177.517.927-82', 6);
-insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco) values (7, 'Kingsly Grainger', '346.527.179-54', 7);
-insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco) values (8, 'Linea Estoile', '327.217.811-79', 8);
-insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco) values (9, 'Michel Traice', '834.996.099-02', 9);
-insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco) values (10, 'Beatrisa Kyle', '097.049.446-75', 10);
-
-insert into compra (idcompra, quantidade, funcionario_idfuncionario) values (1, 11, 1);
-insert into compra (idcompra, quantidade, funcionario_idfuncionario) values (2, 22, 2);
-insert into compra (idcompra, quantidade, funcionario_idfuncionario) values (3, 30, 3);
-insert into compra (idcompra, quantidade, funcionario_idfuncionario) values (4, 83, 4);
-insert into compra (idcompra, quantidade, funcionario_idfuncionario) values (5, 37, 1);
-insert into compra (idcompra, quantidade, funcionario_idfuncionario) values (6, 40, 2);
-insert into compra (idcompra, quantidade, funcionario_idfuncionario) values (7, 77, 3);
-insert into compra (idcompra, quantidade, funcionario_idfuncionario) values (8, 40, 4);
-insert into compra (idcompra, quantidade, funcionario_idfuncionario) values (9, 16, 1);
-insert into compra (idcompra, quantidade, funcionario_idfuncionario) values (10, 12, 2);
 
 insert into endereco (idendereco, rua, bairro, cidade, estado) values (1, '497 Hoffman Plaza', 'Guatemalan', 'Huntsville', 'Alabama');
 insert into endereco (idendereco, rua, bairro, cidade, estado) values (2, '4051 Grayhawk Drive', 'Creek', 'Amarillo', 'Texas');
@@ -473,6 +431,18 @@ insert into endereco (idendereco, rua, bairro, cidade, estado) values (8, '91 Gi
 insert into endereco (idendereco, rua, bairro, cidade, estado) values (9, '9 Derek Circle', 'Alaskan Athabascan', 'Saint Petersburg', 'Florida');
 insert into endereco (idendereco, rua, bairro, cidade, estado) values (10, '1304 Morningstar Alley', 'Asian Indian', 'Round Rock', 'Texas');
 
+
+insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco) values (1, 'Ruttger Merrell', '359.160.607-84', 1);
+insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco) values (2, 'Cinda O'' Bee', '348.309.438-20', 2);
+insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco) values (3, 'Tate Laurentin', '774.923.462-96', 3);
+insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco) values (4, 'Son Kubatsch', '783.043.777-64', 4);
+insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco) values (5, 'Gil Barnhill', '275.930.614-12', 5);
+insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco) values (6, 'Elwira Fishby', '177.517.927-82', 6);
+insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco) values (7, 'Kingsly Grainger', '346.527.179-54', 7);
+insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco) values (8, 'Linea Estoile', '327.217.811-79', 8);
+insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco) values (9, 'Michel Traice', '834.996.099-02', 9);
+insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco) values (10, 'Beatrisa Kyle', '097.049.446-75', 10);
+
 insert into fornecedor (idfornecedor, nomeFornecedor, endereco_idendereco) values (1, 'Skinder', 1);
 insert into fornecedor (idfornecedor, nomeFornecedor, endereco_idendereco) values (2, 'Bubblemix', 2);
 insert into fornecedor (idfornecedor, nomeFornecedor, endereco_idendereco) values (3, 'Quamba', 3);
@@ -484,6 +454,23 @@ insert into fornecedor (idfornecedor, nomeFornecedor, endereco_idendereco) value
 insert into fornecedor (idfornecedor, nomeFornecedor, endereco_idendereco) values (9, 'Youopia', 9);
 insert into fornecedor (idfornecedor, nomeFornecedor, endereco_idendereco) values (10, 'Agivu', 10);
 
+insert into funcionario (idfuncionario, nomefuncionario, funcao, cpf, salario) values (1, 'Norton Rysdale', 'Vendedor', '415.769.890-89', '4810.46');
+insert into funcionario (idfuncionario, nomefuncionario, funcao, cpf, salario) values (2, 'Rickard Locker', 'Vendedor', '643.421.040-08', '3068.26');
+insert into funcionario (idfuncionario, nomefuncionario, funcao, cpf, salario) values (3, 'Godiva Cursons', 'Supervisor', '984.927.440-90', '4988.99');
+insert into funcionario (idfuncionario, nomefuncionario, funcao, cpf, salario) values (4, 'Ebony Pannett', 'Vendedor', '354.535.930-16', '4437.39');
+
+insert into compra (idcompra, quantidade, funcionario_idfuncionario) values (1, 11, 1);
+insert into compra (idcompra, quantidade, funcionario_idfuncionario) values (2, 22, 2);
+insert into compra (idcompra, quantidade, funcionario_idfuncionario) values (3, 30, 3);
+insert into compra (idcompra, quantidade, funcionario_idfuncionario) values (4, 83, 4);
+insert into compra (idcompra, quantidade, funcionario_idfuncionario) values (5, 37, 1);
+insert into compra (idcompra, quantidade, funcionario_idfuncionario) values (6, 40, 2);
+insert into compra (idcompra, quantidade, funcionario_idfuncionario) values (7, 77, 3);
+insert into compra (idcompra, quantidade, funcionario_idfuncionario) values (8, 40, 4);
+insert into compra (idcompra, quantidade, funcionario_idfuncionario) values (9, 16, 1);
+insert into compra (idcompra, quantidade, funcionario_idfuncionario) values (10, 12, 2);
+
+
 insert into fornecedor_has_compra (fornecedor_idfornecedor, compra_idcompra) values (3, 1);
 insert into fornecedor_has_compra (fornecedor_idfornecedor, compra_idcompra) values (1, 2);
 insert into fornecedor_has_compra (fornecedor_idfornecedor, compra_idcompra) values (4, 3);
@@ -494,27 +481,6 @@ insert into fornecedor_has_compra (fornecedor_idfornecedor, compra_idcompra) val
 insert into fornecedor_has_compra (fornecedor_idfornecedor, compra_idcompra) values (4, 8);
 insert into fornecedor_has_compra (fornecedor_idfornecedor, compra_idcompra) values (1, 9);
 insert into fornecedor_has_compra (fornecedor_idfornecedor, compra_idcompra) values (2, 10);
-
-insert into funcionario (idfuncionario, nomefuncionario, funcao, cpf, salario) values (1, 'Norton Rysdale', 'Vendedor', '415.769.890-89', '4810.46');
-insert into funcionario (idfuncionario, nomefuncionario, funcao, cpf, salario) values (2, 'Rickard Locker', 'Vendedor', '643.421.040-08', '3068.26');
-insert into funcionario (idfuncionario, nomefuncionario, funcao, cpf, salario) values (3, 'Godiva Cursons', 'Supervisor', '984.927.440-90', '4988.99');
-insert into funcionario (idfuncionario, nomefuncionario, funcao, cpf, salario) values (4, 'Ebony Pannett', 'Vendedor', '354.535.930-16', '4437.39');
-
-insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (1, '7/6/2022', '286.43', '235.93', 5, 1);
-insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (2, '4/15/2022', '156.30', '295.98', 17, 2);
-insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (3, '1/6/2021', '49.70', '44.87', 18, 3);
-insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (4, '8/8/2021', '189.46', '108.97', 1, 4);
-insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (5, '2/27/2022', '85.96', '118.92', 7, 1);
-insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (6, '4/25/2022', '296.51', '257.07', 18, 2);
-insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (7, '12/7/2021', '50.20', '224.46', 13, 3);
-insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (8, '6/2/2021', '88.90', '84.10', 9, 4);
-insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (9, '9/12/2021', '231.29', '28.52', 1, 1);
-insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (10, '6/6/2021', '245.83', '37.37', 5, 2);
-insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (11, '3/18/2022', '283.59', '12.81', 17, 3);
-insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (12, '7/26/2022', '191.31', '119.52', 3, 4);
-insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (13, '8/14/2022', '278.43', '248.33', 8, 1);
-insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (14, '3/27/2022', '15.21', '55.70', 6, 2);
-insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (15, '9/6/2021', '213.63', '105.96', 11, 3);
 
 insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas) values (1, 'Brain Dead', '104.36', 'Oyondu', 'Hungarian', 'Horror|Sci-Fi', 1995, 990);
 insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas) values (2, 'In a Town This Size', '213.40', 'Rooxo', 'Polish', 'Documentary', 2007, 601);
@@ -536,6 +502,56 @@ insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroP
 insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas) values (18, 'Wrong Is Right (a.k.a. The Man With the Deadly Lens)', '131.03', 'Skynoodle', 'Lao', 'Drama|Thriller', 1996, 906);
 insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas) values (19, 'Target', '105.08', 'Tagopia', 'Azeri', 'Action|Drama|Thriller', 1994, 632);
 insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas) values (20, 'Stewart Lee: If You Prefer a Milder Comedian, Please Ask for One', '181.38', 'Jabbersphere', 'West Frisian', 'Comedy', 1997, 699);
+
+insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (1, '7/6/2022', '286.43', '235.93', 5, 1);
+insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (2, '4/15/2022', '156.30', '295.98', 17, 2);
+insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (3, '1/6/2021', '49.70', '44.87', 18, 3);
+insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (4, '8/8/2021', '189.46', '108.97', 1, 4);
+insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (5, '2/27/2022', '85.96', '118.92', 7, 1);
+insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (6, '4/25/2022', '296.51', '257.07', 18, 2);
+insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (7, '12/7/2021', '50.20', '224.46', 13, 3);
+insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (8, '6/2/2021', '88.90', '84.10', 9, 4);
+insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (9, '9/12/2021', '231.29', '28.52', 1, 1);
+insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (10, '6/6/2021', '245.83', '37.37', 5, 2);
+insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (11, '3/18/2022', '283.59', '12.81', 17, 3);
+insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (12, '7/26/2022', '191.31', '119.52', 3, 4);
+insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (13, '8/14/2022', '278.43', '248.33', 8, 1);
+insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (14, '3/27/2022', '15.21', '55.70', 6, 2);
+insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (15, '9/6/2021', '213.63', '105.96', 11, 3);
+
+
+
+insert into autor_has_livro (autor_idautor, livro_idlivro) values (1, 1);
+insert into autor_has_livro (autor_idautor, livro_idlivro) values (2, 2);
+insert into autor_has_livro (autor_idautor, livro_idlivro) values (3, 3);
+insert into autor_has_livro (autor_idautor, livro_idlivro) values (4, 4);
+insert into autor_has_livro (autor_idautor, livro_idlivro) values (5, 5);
+insert into autor_has_livro (autor_idautor, livro_idlivro) values (1, 6);
+insert into autor_has_livro (autor_idautor, livro_idlivro) values (2, 7);
+insert into autor_has_livro (autor_idautor, livro_idlivro) values (3, 8);
+insert into autor_has_livro (autor_idautor, livro_idlivro) values (4, 9);
+insert into autor_has_livro (autor_idautor, livro_idlivro) values (5, 10);
+insert into autor_has_livro (autor_idautor, livro_idlivro) values (1, 11);
+insert into autor_has_livro (autor_idautor, livro_idlivro) values (2, 12);
+insert into autor_has_livro (autor_idautor, livro_idlivro) values (3, 13);
+insert into autor_has_livro (autor_idautor, livro_idlivro) values (4, 14);
+insert into autor_has_livro (autor_idautor, livro_idlivro) values (5, 15);
+insert into autor_has_livro (autor_idautor, livro_idlivro) values (1, 16);
+insert into autor_has_livro (autor_idautor, livro_idlivro) values (2, 17);
+insert into autor_has_livro (autor_idautor, livro_idlivro) values (3, 18);
+insert into autor_has_livro (autor_idautor, livro_idlivro) values (4, 19);
+insert into autor_has_livro (autor_idautor, livro_idlivro) values (5, 20);
+
+insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (1, 1, 1);
+insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (2, 2, 2);
+insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (3, 3, 3);
+insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (4, 4, 4);
+insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (5, 5, 1);
+insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (6, 6, 2);
+insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (7, 7, 3);
+insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (8, 8, 4);
+insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (9, 9, 1);
+insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (10, 10, 2);
 
 insert into livroVendido (idlivroVendido, quantidade, precoAtual, livro_idlivro, venda_idvenda) values (1, 23, '143.56', 16, 1);
 insert into livroVendido (idlivroVendido, quantidade, precoAtual, livro_idlivro, venda_idvenda) values (2, 47, '31.03', 5, 2);
@@ -568,6 +584,7 @@ insert into usuario (idusuario, nomeusuario, senha, tipofuncionario, funcionario
 insert into usuario (idusuario, nomeusuario, senha, tipofuncionario, funcionario_idfuncionario) values (3, 'igarshore2', '3lnQazZH4cSm', 'S', 3);
 insert into usuario (idusuario, nomeusuario, senha, tipofuncionario, funcionario_idfuncionario) values (4, 'esilliman3', 'wE8bsw', 'V', 4);
 
+<<<<<<< HEAD
 insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (1, 1, 1);
 insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (2, 2, 2);
 insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (3, 3, 3);
@@ -578,4 +595,7 @@ insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values
 insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (8, 8, 4);
 insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (9, 9, 1);
 insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (10, 10, 2);
+>>>>>>> joao
+=======
+
 >>>>>>> joao
