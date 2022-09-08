@@ -57,33 +57,40 @@ public class TelaInicialSupervisor extends JFrame {
 		menuBar.setForeground(SystemColor.menu);
 		setJMenuBar(menuBar);
 		
-		JMenu mnNewMenu = new JMenu("+ Cadastro");
-		mnNewMenu.setFont(new Font("Bookman Old Style", Font.BOLD, 13));
-		menuBar.add(mnNewMenu);
+		JMenu mnCadastro = new JMenu("+ Cadastro");
+		mnCadastro.setFont(new Font("Bookman Old Style", Font.BOLD, 13));
+		menuBar.add(mnCadastro);
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Cliente");
-		mntmNewMenuItem.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
-		mnNewMenu.add(mntmNewMenuItem);
+		JMenuItem mnCadastroCliente = new JMenuItem("Cliente");
+		mnCadastroCliente.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mnCadastro.add(mnCadastroCliente);
 		
-		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Fornecedor");
-		mntmNewMenuItem_2.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
-		mnNewMenu.add(mntmNewMenuItem_2);
+		JMenuItem mnCadastroFornecedor = new JMenuItem("Fornecedor");
+		mnCadastroFornecedor.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mnCadastro.add(mnCadastroFornecedor);
 		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Funcionário");
-		mntmNewMenuItem_1.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
-		mnNewMenu.add(mntmNewMenuItem_1);
+		JMenuItem mnCadastroFuncionario = new JMenuItem("Funcionário");
+		mnCadastroFuncionario.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mnCadastro.add(mnCadastroFuncionario);
 		
-		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Livro");
-		mntmNewMenuItem_3.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
-		mnNewMenu.add(mntmNewMenuItem_3);
+		JMenuItem mnCadastroLivro = new JMenuItem("Livro");
+		mnCadastroLivro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				TelaCadastroLivro cadastroLivro = new TelaCadastroLivro();
+				cadastroLivro.setVisible(true);
+			}
+		});
+		mnCadastroLivro.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mnCadastro.add(mnCadastroLivro);
 		
-		JMenu mnNewMenu_1 = new JMenu("+ Nova");
-		mnNewMenu_1.setFont(new Font("Bookman Old Style", Font.BOLD, 13));
-		menuBar.add(mnNewMenu_1);
+		JMenu mnNova = new JMenu("+ Nova");
+		mnNova.setFont(new Font("Bookman Old Style", Font.BOLD, 13));
+		menuBar.add(mnNova);
 		
-		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Venda");
-		mntmNewMenuItem_4.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
-		mnNewMenu_1.add(mntmNewMenuItem_4);
+		JMenuItem mnNovaVenda = new JMenuItem("Venda");
+		mnNovaVenda.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mnNova.add(mnNovaVenda);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(153, 204, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -109,10 +116,10 @@ public class TelaInicialSupervisor extends JFrame {
 		panel.add(txtPesquisarProdutos);
 		txtPesquisarProdutos.setColumns(10);
 		
-		JLabel lblNomedoSupervisor = new JLabel("Nome:        -");
-		lblNomedoSupervisor.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
-		lblNomedoSupervisor.setBounds(20, 53, 94, 14);
-		panel.add(lblNomedoSupervisor);
+		JLabel lblNome = new JLabel("Nome:");
+		lblNome.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		lblNome.setBounds(20, 53, 57, 14);
+		panel.add(lblNome);
 		
 		JLabel lblFuncao = new JLabel("Função: Supervisor ");
 		lblFuncao.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
@@ -120,10 +127,22 @@ public class TelaInicialSupervisor extends JFrame {
 		panel.add(lblFuncao);
 		
 		JButton btnSair = new JButton("Sair");
-		btnSair.setBackground(Color.BLACK);
+		btnSair.setForeground(Color.BLACK);
+		btnSair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				TelaLogin telaLogin = new TelaLogin();
+				telaLogin.setVisible(true);
+			}
+		});
+		btnSair.setBackground(SystemColor.menu);
 		btnSair.setFont(new Font("Bookman Old Style", Font.PLAIN, 12));
 		btnSair.setBounds(838, 71, 89, 23);
 		panel.add(btnSair);
+		
+		JLabel lblNomeFunc = new JLabel("-");
+		lblNomeFunc.setBounds(87, 54, 46, 14);
+		panel.add(lblNomeFunc);
 		
 		JPanel txtPesquisaEditora = new JPanel();
 		txtPesquisaEditora.setBackground(SystemColor.menu);
@@ -144,7 +163,8 @@ public class TelaInicialSupervisor extends JFrame {
 		txtPesquisaEditora.add(lblGenero);
 		
 		txtPesquisaGenero = new JTextField();
-		txtPesquisaGenero.setBounds(10, 64, 168, 20);
+		txtPesquisaGenero.setFont(new Font("Calisto MT", Font.PLAIN, 12));
+		txtPesquisaGenero.setBounds(10, 64, 168, 26);
 		txtPesquisaEditora.add(txtPesquisaGenero);
 		txtPesquisaGenero.setColumns(10);
 		
@@ -154,7 +174,8 @@ public class TelaInicialSupervisor extends JFrame {
 		txtPesquisaEditora.add(lblAutor);
 		
 		txtPesquisaAutor = new JTextField();
-		txtPesquisaAutor.setBounds(10, 121, 168, 20);
+		txtPesquisaAutor.setFont(new Font("Calisto MT", Font.PLAIN, 12));
+		txtPesquisaAutor.setBounds(10, 121, 168, 26);
 		txtPesquisaEditora.add(txtPesquisaAutor);
 		txtPesquisaAutor.setColumns(10);
 		
@@ -169,18 +190,21 @@ public class TelaInicialSupervisor extends JFrame {
 		txtPesquisaEditora.add(lblAno);
 		
 		txtPesquisaAno = new JTextField();
-		txtPesquisaAno.setBounds(10, 179, 168, 20);
+		txtPesquisaAno.setFont(new Font("Calisto MT", Font.PLAIN, 12));
+		txtPesquisaAno.setBounds(10, 179, 168, 26);
 		txtPesquisaEditora.add(txtPesquisaAno);
 		txtPesquisaAno.setColumns(10);
 		
 		textField_4 = new JTextField();
-		textField_4.setBounds(10, 233, 168, 20);
+		textField_4.setFont(new Font("Calisto MT", Font.PLAIN, 12));
+		textField_4.setBounds(10, 233, 168, 26);
 		txtPesquisaEditora.add(textField_4);
 		textField_4.setColumns(10);
 		
 		JScrollPane scrollPainelResultado = new JScrollPane();
 		scrollPainelResultado.setViewportBorder(new LineBorder(new Color(0, 0, 0)));
-		scrollPainelResultado.setBounds(215, 133, 694, 403);
+		scrollPainelResultado.setBounds(217, 128, 694, 403);
 		contentPane.add(scrollPainelResultado);
 	}
+	
 }

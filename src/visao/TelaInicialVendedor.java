@@ -59,13 +59,17 @@ public class TelaInicialVendedor extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		JMenu mnNewMenu = new JMenu("+ Nova");
-		mnNewMenu.setFont(new Font("Bookman Old Style", Font.BOLD, 13));
-		menuBar.add(mnNewMenu);
+		JMenu mnNova = new JMenu("+ Nova");
+		mnNova.setFont(new Font("Bookman Old Style", Font.BOLD, 13));
+		menuBar.add(mnNova);
 		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Venda");
-		mntmNewMenuItem_1.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
-		mnNewMenu.add(mntmNewMenuItem_1);
+		JMenuItem mnNovaVenda = new JMenuItem("Venda");
+		mnNovaVenda.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		mnNovaVenda.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mnNova.add(mnNovaVenda);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(153, 204, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -108,8 +112,15 @@ public class TelaInicialVendedor extends JFrame {
 		panel.add(lblFuncVendedor);
 		
 		JButton btnSair_1 = new JButton("Sair");
+		btnSair_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				TelaLogin telaLogin = new TelaLogin();
+				telaLogin.setVisible(true);
+			}
+		});
 		btnSair_1.setFont(new Font("Bookman Old Style", Font.PLAIN, 12));
-		btnSair_1.setBackground(Color.BLACK);
+		btnSair_1.setBackground(SystemColor.menu);
 		btnSair_1.setBounds(838, 71, 89, 23);
 		panel.add(btnSair_1);
 		
@@ -147,26 +158,26 @@ public class TelaInicialVendedor extends JFrame {
 		panel_1.add(lblEditora);
 		
 		txtGenero = new JTextField();
-		txtGenero.setFont(new Font("Calisto MT", Font.PLAIN, 11));
-		txtGenero.setBounds(10, 64, 168, 20);
+		txtGenero.setFont(new Font("Calisto MT", Font.PLAIN, 12));
+		txtGenero.setBounds(10, 64, 168, 25);
 		panel_1.add(txtGenero);
 		txtGenero.setColumns(10);
 		
 		txtAutor = new JTextField();
-		txtAutor.setFont(new Font("Calisto MT", Font.PLAIN, 11));
-		txtAutor.setBounds(10, 115, 168, 20);
+		txtAutor.setFont(new Font("Calisto MT", Font.PLAIN, 12));
+		txtAutor.setBounds(10, 115, 168, 25);
 		panel_1.add(txtAutor);
 		txtAutor.setColumns(10);
 		
 		txtAno = new JTextField();
-		txtAno.setFont(new Font("Calisto MT", Font.PLAIN, 11));
-		txtAno.setBounds(10, 170, 168, 20);
+		txtAno.setFont(new Font("Calisto MT", Font.PLAIN, 12));
+		txtAno.setBounds(10, 170, 168, 26);
 		panel_1.add(txtAno);
 		txtAno.setColumns(10);
 		
 		txtEditora = new JTextField();
-		txtEditora.setFont(new Font("Calisto MT", Font.PLAIN, 11));
-		txtEditora.setBounds(10, 226, 168, 20);
+		txtEditora.setFont(new Font("Calisto MT", Font.PLAIN, 12));
+		txtEditora.setBounds(10, 226, 168, 25);
 		panel_1.add(txtEditora);
 		txtEditora.setColumns(10);
 		
