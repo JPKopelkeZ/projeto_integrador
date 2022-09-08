@@ -6,6 +6,7 @@ public class Usuario {
 	private String email;
 	private String senha;
 	private char tipoUsuario;
+	private int id_funcionario;
 
 	public Usuario() {
 		
@@ -14,6 +15,16 @@ public class Usuario {
 	public Usuario(String email, String senha) {
 		this.email = email;
 		this.senha = senha;
+	}
+
+	
+	
+	public int getId_funcionario() {
+		return id_funcionario;
+	}
+
+	public void setId_funcionario(int id_funcionario) {
+		this.id_funcionario = id_funcionario;
 	}
 
 	public int getId() {

@@ -2,18 +2,19 @@ package controle;
 import java.sql.*;
 
 public class ConnectionBD {
+	private static Connection con;
 	public static void main(String[] args)
 	{
 		try
 		{
 			// Parte 1 - Conectando
-			// Estabelecendo a conex�o
-			Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/tabelasbd", "root", "aluno");
-			System.out.println("Conectado � base de dados com sucesso.");
+			// Estabelecendo a conexao
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "aluno");
+			System.out.println("Conectado a base de dados com sucesso.");
 	        
 		} catch (SQLException e)
 		{
-			System.out.println("Erro ao conectar � base de dados.");
+			System.out.println("Erro ao conectar a base de dados.");
 		}
 	}
 

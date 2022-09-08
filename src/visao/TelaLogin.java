@@ -85,15 +85,20 @@ public class TelaLogin extends JFrame {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String login = txtUsuario.getText();
-				String senha = txtUsuario.getText();
+				String senha = txtSenha.getText();
 
 				if (!login.isEmpty() && !senha.isEmpty()) {
 					LoginBD bd = new LoginBD();
-					Usuario usuario = bd.efetuarLogin(new Usuario(login, senha));
+					Usuario usuario = bd.efetuarLogin(
+							//new Usuario(login, senha)
+							login, senha
+							);
 					if (usuario != null) {
 						TelaInicial telaInicial = new TelaInicial();
 						telaInicial.setVisible(true);
 						frame.dispose();
+					} else {
+						System.out.println("Usuario não encontrado");
 					}
 
 				}
