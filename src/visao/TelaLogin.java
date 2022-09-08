@@ -94,9 +94,17 @@ public class TelaLogin extends JFrame {
 							login, senha
 							);
 					if (usuario != null) {
+						char tipo = usuario.getTipoUsuario();
+						if(tipo == 'V') {
+						TelaInicialVendedor telaInicial = new TelaInicialVendedor();
+						telaInicial.setVisible(true);
+						frame.dispose();
+						}
+						if(tipo == 'S') {
 						TelaInicialSupervisor telaInicial = new TelaInicialSupervisor();
 						telaInicial.setVisible(true);
 						frame.dispose();
+						}
 					} else {
 						System.out.println("Usuario não encontrado");
 					}
