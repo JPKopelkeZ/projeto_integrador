@@ -23,23 +23,15 @@ USE `mydb` ;
 DROP TABLE IF EXISTS `mydb`.`funcionario` ;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`funcionario` (
-<<<<<<< HEAD
-  `idfuncionario` INT NULL AUTO_INCREMENT,
-=======
   `idfuncionario` INT NOT NULL AUTO_INCREMENT,
->>>>>>> joao
   `nomefuncionario` VARCHAR(45) NULL,
   `funcao` VARCHAR(45) NULL,
   `cpf` CHAR(14) NOT NULL,
   `salario` FLOAT NULL,
   PRIMARY KEY (`idfuncionario`),
-<<<<<<< HEAD
-  UNIQUE INDEX `idfuncionario_UNIQUE` (`idfuncionario` ASC) VISIBLE,
-  UNIQUE INDEX `cpf_UNIQUE` (`cpf` ASC) VISIBLE)
-=======
-  UNIQUE INDEX `idfuncionario_UNIQUE` (`idfuncionario` ASC) ,
-  UNIQUE INDEX `cpf_UNIQUE` (`cpf` ASC) )
->>>>>>> joao
+  UNIQUE INDEX `idfuncionario_UNIQUE` (`idfuncionario` ASC),
+  UNIQUE INDEX `cpf_UNIQUE` (`cpf` ASC))
+
 ENGINE = InnoDB;
 
 
@@ -52,18 +44,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`usuario` (
   `idusuario` INT NOT NULL AUTO_INCREMENT,
   `nomeusuario` VARCHAR(45) NULL,
   `senha` VARCHAR(45) NOT NULL,
-<<<<<<< HEAD
   `funcionario_idfuncionario` INT NOT NULL,
-  PRIMARY KEY (`idusuario`),
-  UNIQUE INDEX `idusuario_UNIQUE` (`idusuario` ASC) VISIBLE,
-  INDEX `fk_usuario_funcionario_idx` (`funcionario_idfuncionario` ASC) VISIBLE,
-=======
   `tipoFuncionario` CHAR(1) NOT NULL,
-  `funcionario_idfuncionario` INT NOT NULL,
   PRIMARY KEY (`idusuario`),
   UNIQUE INDEX `idusuario_UNIQUE` (`idusuario` ASC) ,
   INDEX `fk_usuario_funcionario_idx` (`funcionario_idfuncionario` ASC) ,
->>>>>>> joao
+
   CONSTRAINT `fk_usuario_funcionario`
     FOREIGN KEY (`funcionario_idfuncionario`)
     REFERENCES `mydb`.`funcionario` (`idfuncionario`)
@@ -84,11 +70,8 @@ CREATE TABLE IF NOT EXISTS `mydb`.`endereco` (
   `cidade` VARCHAR(45) NULL,
   `estado` VARCHAR(45) NULL,
   PRIMARY KEY (`idendereco`),
-<<<<<<< HEAD
-  UNIQUE INDEX `idendereco_UNIQUE` (`idendereco` ASC) VISIBLE)
-=======
   UNIQUE INDEX `idendereco_UNIQUE` (`idendereco` ASC) )
->>>>>>> joao
+
 ENGINE = InnoDB;
 
 
@@ -98,20 +81,12 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `mydb`.`cliente` ;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`cliente` (
-<<<<<<< HEAD
-  `idcliente` INT UNSIGNED NULL AUTO_INCREMENT,
-=======
   `idcliente` INT NOT NULL AUTO_INCREMENT,
->>>>>>> joao
   `nomeCliente` VARCHAR(45) NULL,
   `cpf` VARCHAR(45) NULL,
   `endereco_idendereco` INT NOT NULL,
   PRIMARY KEY (`idcliente`),
-<<<<<<< HEAD
-  INDEX `fk_cliente_endereco1_idx` (`endereco_idendereco` ASC) VISIBLE,
-=======
-  INDEX `fk_cliente_endereco1_idx` (`endereco_idendereco` ASC) ,
->>>>>>> joao
+  INDEX `fk_cliente_endereco1_idx` (`endereco_idendereco` ASC),
   CONSTRAINT `fk_cliente_endereco1`
     FOREIGN KEY (`endereco_idendereco`)
     REFERENCES `mydb`.`endereco` (`idendereco`)
@@ -130,17 +105,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`telefone` (
   `tipo` VARCHAR(45) NULL,
   `numero` VARCHAR(30) NULL,
   `funcionario_idfuncionario` INT NOT NULL,
-<<<<<<< HEAD
-  `cliente_idcliente` INT UNSIGNED NOT NULL,
-  PRIMARY KEY (`idtelefone`),
-  INDEX `fk_telefone_funcionario1_idx` (`funcionario_idfuncionario` ASC) VISIBLE,
-  INDEX `fk_telefone_cliente1_idx` (`cliente_idcliente` ASC) VISIBLE,
-=======
+
   `cliente_idcliente` INT NOT NULL,
   PRIMARY KEY (`idtelefone`),
   INDEX `fk_telefone_funcionario1_idx` (`funcionario_idfuncionario` ASC) ,
   INDEX `fk_telefone_cliente1_idx` (`cliente_idcliente` ASC) ,
->>>>>>> joao
+
   CONSTRAINT `fk_telefone_funcionario1`
     FOREIGN KEY (`funcionario_idfuncionario`)
     REFERENCES `mydb`.`funcionario` (`idfuncionario`)
@@ -161,17 +131,6 @@ DROP TABLE IF EXISTS `mydb`.`livro` ;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`livro` (
   `idlivro` INT NOT NULL AUTO_INCREMENT,
-<<<<<<< HEAD
-  `titulo` VARCHAR(45) NULL,
-  `preco` FLOAT NULL,
-  `editora` VARCHAR(45) NULL,
-  `idioma` VARCHAR(45) NULL,
-  `genero` VARCHAR(45) NULL,
-  `ano` INT NULL,
-  `numeroPaginas` INT NULL,
-  PRIMARY KEY (`idlivro`),
-  UNIQUE INDEX `idlivro_UNIQUE` (`idlivro` ASC) VISIBLE)
-=======
   `titulo` VARCHAR(100) NULL,
   `preco` FLOAT NULL,
   `editora` VARCHAR(100) NULL,
@@ -181,7 +140,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`livro` (
   `numeroPaginas` INT NULL,
   PRIMARY KEY (`idlivro`),
   UNIQUE INDEX `idlivro_UNIQUE` (`idlivro` ASC) )
->>>>>>> joao
+
 ENGINE = InnoDB;
 
 
@@ -192,19 +151,12 @@ DROP TABLE IF EXISTS `mydb`.`venda` ;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`venda` (
   `idvenda` INT NOT NULL AUTO_INCREMENT,
-<<<<<<< HEAD
-  `cliente_idcliente` INT UNSIGNED NOT NULL,
-  `funcionario_idfuncionario` INT NOT NULL,
-  PRIMARY KEY (`idvenda`),
-  INDEX `fk_venda_cliente1_idx` (`cliente_idcliente` ASC) VISIBLE,
-  INDEX `fk_venda_funcionario1_idx` (`funcionario_idfuncionario` ASC) VISIBLE,
-=======
   `cliente_idcliente` INT NOT NULL,
   `funcionario_idfuncionario` INT NOT NULL,
   PRIMARY KEY (`idvenda`),
   INDEX `fk_venda_cliente1_idx` (`cliente_idcliente` ASC) ,
   INDEX `fk_venda_funcionario1_idx` (`funcionario_idfuncionario` ASC) ,
->>>>>>> joao
+
   CONSTRAINT `fk_venda_cliente1`
     FOREIGN KEY (`cliente_idcliente`)
     REFERENCES `mydb`.`cliente` (`idcliente`)
@@ -230,15 +182,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`livroVendido` (
   `livro_idlivro` INT NOT NULL,
   `venda_idvenda` INT NOT NULL,
   PRIMARY KEY (`idlivroVendido`),
-<<<<<<< HEAD
-  UNIQUE INDEX `idlivroVendido_UNIQUE` (`idlivroVendido` ASC) VISIBLE,
-  INDEX `fk_livroVendido_livro1_idx` (`livro_idlivro` ASC) VISIBLE,
-  INDEX `fk_livroVendido_venda1_idx` (`venda_idvenda` ASC) VISIBLE,
-=======
+
+
   UNIQUE INDEX `idlivroVendido_UNIQUE` (`idlivroVendido` ASC) ,
   INDEX `fk_livroVendido_livro1_idx` (`livro_idlivro` ASC) ,
   INDEX `fk_livroVendido_venda1_idx` (`venda_idvenda` ASC) ,
->>>>>>> joao
+
   CONSTRAINT `fk_livroVendido_livro1`
     FOREIGN KEY (`livro_idlivro`)
     REFERENCES `mydb`.`livro` (`idlivro`)
@@ -265,15 +214,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`historicoPrecos` (
   `livro_idlivro` INT NOT NULL,
   `funcionario_idfuncionario` INT NOT NULL,
   PRIMARY KEY (`idhistoricoPrecos`),
-<<<<<<< HEAD
-  UNIQUE INDEX `idhistoricoPrecos_UNIQUE` (`idhistoricoPrecos` ASC) VISIBLE,
-  INDEX `fk_historicoPrecos_livro1_idx` (`livro_idlivro` ASC) VISIBLE,
-  INDEX `fk_historicoPrecos_funcionario1_idx` (`funcionario_idfuncionario` ASC) VISIBLE,
-=======
-  UNIQUE INDEX `idhistoricoPrecos_UNIQUE` (`idhistoricoPrecos` ASC) ,
-  INDEX `fk_historicoPrecos_livro1_idx` (`livro_idlivro` ASC) ,
-  INDEX `fk_historicoPrecos_funcionario1_idx` (`funcionario_idfuncionario` ASC) ,
->>>>>>> joao
+
+  UNIQUE INDEX `idhistoricoPrecos_UNIQUE` (`idhistoricoPrecos` ASC),
+  INDEX `fk_historicoPrecos_livro1_idx` (`livro_idlivro` ASC),
+  INDEX `fk_historicoPrecos_funcionario1_idx` (`funcionario_idfuncionario` ASC),
+
+
   CONSTRAINT `fk_historicoPrecos_livro1`
     FOREIGN KEY (`livro_idlivro`)
     REFERENCES `mydb`.`livro` (`idlivro`)
@@ -297,13 +243,10 @@ CREATE TABLE IF NOT EXISTS `mydb`.`fornecedor` (
   `nomeFornecedor` VARCHAR(45) NULL,
   `endereco_idendereco` INT NOT NULL,
   PRIMARY KEY (`idfornecedor`),
-<<<<<<< HEAD
-  UNIQUE INDEX `idfornecedor_UNIQUE` (`idfornecedor` ASC) VISIBLE,
-  INDEX `fk_fornecedor_endereco1_idx` (`endereco_idendereco` ASC) VISIBLE,
-=======
+
   UNIQUE INDEX `idfornecedor_UNIQUE` (`idfornecedor` ASC) ,
   INDEX `fk_fornecedor_endereco1_idx` (`endereco_idendereco` ASC) ,
->>>>>>> joao
+
   CONSTRAINT `fk_fornecedor_endereco1`
     FOREIGN KEY (`endereco_idendereco`)
     REFERENCES `mydb`.`endereco` (`idendereco`)
@@ -322,13 +265,10 @@ CREATE TABLE IF NOT EXISTS `mydb`.`compra` (
   `quantidade` INT NULL,
   `funcionario_idfuncionario` INT NOT NULL,
   PRIMARY KEY (`idcompra`),
-<<<<<<< HEAD
-  UNIQUE INDEX `idcompra_UNIQUE` (`idcompra` ASC) VISIBLE,
-  INDEX `fk_compra_funcionario1_idx` (`funcionario_idfuncionario` ASC) VISIBLE,
-=======
+
   UNIQUE INDEX `idcompra_UNIQUE` (`idcompra` ASC) ,
   INDEX `fk_compra_funcionario1_idx` (`funcionario_idfuncionario` ASC) ,
->>>>>>> joao
+
   CONSTRAINT `fk_compra_funcionario1`
     FOREIGN KEY (`funcionario_idfuncionario`)
     REFERENCES `mydb`.`funcionario` (`idfuncionario`)
@@ -358,13 +298,10 @@ CREATE TABLE IF NOT EXISTS `mydb`.`fornecedor_has_compra` (
   `fornecedor_idfornecedor` INT NOT NULL,
   `compra_idcompra` INT NOT NULL,
   PRIMARY KEY (`fornecedor_idfornecedor`, `compra_idcompra`),
-<<<<<<< HEAD
-  INDEX `fk_fornecedor_has_compra_compra1_idx` (`compra_idcompra` ASC) VISIBLE,
-  INDEX `fk_fornecedor_has_compra_fornecedor1_idx` (`fornecedor_idfornecedor` ASC) VISIBLE,
-=======
+
   INDEX `fk_fornecedor_has_compra_compra1_idx` (`compra_idcompra` ASC) ,
   INDEX `fk_fornecedor_has_compra_fornecedor1_idx` (`fornecedor_idfornecedor` ASC) ,
->>>>>>> joao
+
   CONSTRAINT `fk_fornecedor_has_compra_fornecedor1`
     FOREIGN KEY (`fornecedor_idfornecedor`)
     REFERENCES `mydb`.`fornecedor` (`idfornecedor`)
@@ -387,13 +324,10 @@ CREATE TABLE IF NOT EXISTS `mydb`.`autor_has_livro` (
   `autor_idautor` INT UNSIGNED NOT NULL,
   `livro_idlivro` INT NOT NULL,
   PRIMARY KEY (`autor_idautor`, `livro_idlivro`),
-<<<<<<< HEAD
-  INDEX `fk_autor_has_livro_livro1_idx` (`livro_idlivro` ASC) VISIBLE,
-  INDEX `fk_autor_has_livro_autor1_idx` (`autor_idautor` ASC) VISIBLE,
-=======
+
   INDEX `fk_autor_has_livro_livro1_idx` (`livro_idlivro` ASC) ,
   INDEX `fk_autor_has_livro_autor1_idx` (`autor_idautor` ASC) ,
->>>>>>> joao
+
   CONSTRAINT `fk_autor_has_livro_autor1`
     FOREIGN KEY (`autor_idautor`)
     REFERENCES `mydb`.`autor` (`idautor`)
@@ -410,8 +344,7 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-<<<<<<< HEAD
-=======
+
 
 insert into autor (idautor, nome) values (1, 'Nealy Ledley');
 insert into autor (idautor, nome) values (2, 'Wendeline Annott');
@@ -584,18 +517,3 @@ insert into usuario (idusuario, nomeusuario, senha, tipofuncionario, funcionario
 insert into usuario (idusuario, nomeusuario, senha, tipofuncionario, funcionario_idfuncionario) values (3, 'igarshore2', '3lnQazZH4cSm', 'S', 3);
 insert into usuario (idusuario, nomeusuario, senha, tipofuncionario, funcionario_idfuncionario) values (4, 'esilliman3', 'wE8bsw', 'V', 4);
 
-<<<<<<< HEAD
-insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (1, 1, 1);
-insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (2, 2, 2);
-insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (3, 3, 3);
-insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (4, 4, 4);
-insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (5, 5, 1);
-insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (6, 6, 2);
-insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (7, 7, 3);
-insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (8, 8, 4);
-insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (9, 9, 1);
-insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (10, 10, 2);
->>>>>>> joao
-=======
-
->>>>>>> joao
