@@ -62,6 +62,13 @@ public class TelaInicialSupervisor extends JFrame {
 		menuBar.add(mnCadastro);
 		
 		JMenuItem mnCadastroCliente = new JMenuItem("Cliente");
+		mnCadastroCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				TelaCadastroCliente cadastroCliente = new TelaCadastroCliente();
+				cadastroCliente.setVisible(true);
+			}
+		});
 		mnCadastroCliente.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
 		mnCadastro.add(mnCadastroCliente);
 		
