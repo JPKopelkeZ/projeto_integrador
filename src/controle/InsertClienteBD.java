@@ -9,11 +9,11 @@ import java.sql.SQLException;
 public class InsertClienteBD {
 	public void cadastrarCliente (String nome, String cpf, String rua, String bairro, String cidade, String estado, String tipo, String numero) {
 		try {
-			Connection con = DriverManager.getConnection ("jdbc:mysql://localhost:3306/mydb","root", "aluno");
+			Connection bd = ConnectionBD.conectar();
 			String ps1 = "INSERT INTO cliente (nomeCliente, cpf) VALUES ("+nome+","+ cpf +")";
 			String ps2 = "INSERT INTO endereco (rua, bairro, cidade, estado) VALUES ("+rua+","+bairro+","+cidade+","+estado+")";
 			String ps3 = "INSERT INTO telefone (tipo, numero) VALUES ("+tipo+","+numero+")";
-			PreparedStatement psa = con.prepareStatement(ps1 + ps2 + ps3);
+			PreparedStatement psa = bd.prepareStatement(ps1 + ps2 + ps3);
 			ResultSet r = psa.executeQuery();
 			
 			while(r.next()) {
@@ -23,7 +23,7 @@ public class InsertClienteBD {
 				
 				String ps4 = "UPDATE cliente SET endereco_idendereco = "+idEndereco+" where id = "+idCliente+"";
 				String ps5 = "UPDATE telefone SET cliente_idcliente = "+idCliente+" WHERE id = "+idTelefone+"";
-				PreparedStatement p = con.prepareStatement(ps4 + ps5);
+				PreparedStatement p = bd.prepareStatement(ps4 + ps5);
 				p.execute();
 			}
 			
@@ -62,7 +62,7 @@ public class InsertClienteBD {
 			//	psf.setString(1, idcli);
 			//	psf.setString(2, foneid);
 			//}
-			
+			ConnectionBD.fechar();
 		}
 		catch(SQLException e)
 		{

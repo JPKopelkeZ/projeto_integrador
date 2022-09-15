@@ -14,9 +14,12 @@ public class LoginBD {
 	public Usuario efetuarLogin(String usuario, String senha) {
 		try
 		{
-			Connection con = DriverManager.getConnection ("jdbc:mysql://localhost:3306/mydb","root", "aluno");
 			
-			PreparedStatement ps = con.prepareStatement("SELECT * FROM usuario WHERE nomeusuario = ? ");
+			Connection bd = ConnectionBD.conectar();
+			//Connection con = DriverManager.getConnection ("jdbc:mysql://localhost:3306/mydb","root", "aluno");
+			
+			
+			PreparedStatement ps = bd.prepareStatement("SELECT * FROM usuario WHERE nomeusuario = ? ");
 			ps.setString(1, usuario);
 			ResultSet rs = ps.executeQuery();
 			
@@ -45,7 +48,7 @@ public class LoginBD {
 				//}
 			//}
 			
-			
+			ConnectionBD.fechar();
 			
 	}
 		catch(SQLException e)
@@ -62,6 +65,7 @@ public class LoginBD {
 		//return user;
 	//}
 		return null;
+
 
 
 }}

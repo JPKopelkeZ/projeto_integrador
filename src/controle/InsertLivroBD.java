@@ -5,9 +5,9 @@ import java.sql.*;
 public class InsertLivroBD {
 	public void cadastrarLivro(String titulo, String ano, String editora, String genero, String idioma, String numeroPag, String autor) {
 		try {
-		Connection con = DriverManager.getConnection ("jdbc:mysql://localhost:3306/mydb","root", "aluno");
+		Connection bd = ConnectionBD.conectar();
 		
-		PreparedStatement ps = con.prepareStatement("INSERT INTO livro (titulo, ano, editora, genero, idioma, numeroPaginas) VALUES (?, ?, ?, ?, ?, ?)");
+		PreparedStatement ps = bd.prepareStatement("INSERT INTO livro (titulo, ano, editora, genero, idioma, numeroPaginas) VALUES (?, ?, ?, ?, ?, ?)");
 		ps.setString(1, titulo);
 		ps.setString(2, ano);
 		ps.setString(3, editora);
@@ -16,7 +16,7 @@ public class InsertLivroBD {
 		ps.setString(6, numeroPag);
 		ps.execute();
 		
-		PreparedStatement ps2 = con.prepareStatement("SELECT * FROM autor WHERE nome = ? ");
+		PreparedStatement ps2 = bd.prepareStatement("SELECT * FROM autor WHERE nome = ? ");
 		ps2.setString(1, autor);
 		boolean check = ps2.execute();
 			if (check == true) {
@@ -29,6 +29,7 @@ public class InsertLivroBD {
 						
 					}
 		}
+			ConnectionBD.fechar();
 		} 
 		
 		catch(SQLException e) {
