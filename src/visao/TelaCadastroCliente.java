@@ -7,6 +7,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
+
+import controle.*;
+import modelo.*;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -162,8 +166,37 @@ public class TelaCadastroCliente extends JFrame {
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
-				limparCampos();
+				String nome = textNome.getText();
+				String telefone = textTelefone.getText();
+				String cpf = textCPF.getText();
+				String rua = textRua.getText();
+				String bairro = textBairro.getText();
+				String cidade = textCidade.getText();
+				String estado = textEstado.getText();
+				
+				
+				Telefone tel = new Telefone();
+				tel.setNumero(telefone);
+				
+				Endereco end = new Endereco();
+				end.setRua(rua);
+				end.setBairro(bairro);
+				end.setCidade(cidade);
+				end.setEstado(estado);
+				
+				Cliente cli = new Cliente();
+				cli.setNome(nome);
+				cli.setCpf(cpf);
+				cli.setEndereco(end);
+				cli.setTelefone(tel);
+				
+				ClienteBD bd = new ClienteBD();
+				boolean verifica = bd.cadastrarCliente(cli);
+				
+				if (verifica == true) {
+					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+					limparCampos();
+				}
 			}
 		});
 		btnCadastrar.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));

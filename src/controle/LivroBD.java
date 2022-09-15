@@ -2,7 +2,7 @@ package controle;
 
 import java.sql.*;
 
-public class InsertLivroBD {
+public class LivroBD {
 	public void cadastrarLivro(String titulo, String ano, String editora, String genero, String idioma, String numeroPag, String autor) {
 		try {
 		Connection bd = ConnectionBD.conectar();
@@ -35,6 +35,18 @@ public class InsertLivroBD {
 		catch(SQLException e) {
 			System.out.println("Ocorreu uma excessao SQL: " + e);
 		}
+	}
+	
+	public void alterarLivro() {
+		
+	}
+	
+	public void mostrarLivro() {
+		
+	}
+	
+	public void excluirLivro() {
+		
 	}
 
 }

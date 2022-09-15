@@ -6,8 +6,22 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class InsertClienteBD {
-	public void cadastrarCliente (String nome, String cpf, String rua, String bairro, String cidade, String estado, String tipo, String numero) {
+import modelo.Cliente;
+import modelo.Endereco;
+import modelo.Telefone;
+
+public class ClienteBD {
+	public boolean cadastrarCliente (Cliente cliente) {
+		String nome = cliente.getNome();
+		String cpf = cliente.getCpf();
+		Endereco end = cliente.getEndereco();
+		Telefone tel = cliente.getTelefone();
+		String rua = end.getRua();
+		String bairro = end.getBairro();
+		String cidade = end.getCidade();
+		String estado = end.getEstado();
+		String numero = tel.getNumero();
+		boolean verifica = false;
 		try {
 			Connection bd = ConnectionBD.conectar();
 			String ps1 = "INSERT INTO cliente (nomeCliente, cpf) VALUES ("+nome+","+ cpf +")";
@@ -24,7 +38,7 @@ public class InsertClienteBD {
 				String ps4 = "UPDATE cliente SET endereco_idendereco = "+idEndereco+" where id = "+idCliente+"";
 				String ps5 = "UPDATE telefone SET cliente_idcliente = "+idCliente+" WHERE id = "+idTelefone+"";
 				PreparedStatement p = bd.prepareStatement(ps4 + ps5);
-				p.execute();
+				verifica = p.execute();
 			}
 			
 			//PreparedStatement psb = con.prepareStatement("SELECT idcliente FROM cliente WHERE cpf = ?");
@@ -68,6 +82,19 @@ public class InsertClienteBD {
 		{
 			System.out.println("Ocorreu uma excessao SQL: " + e);
 		}
+		return verifica;
+	}
+	
+	public void alterarCliente () {
+		
+	}
+	
+	public void mostrarCliente () {
+		
+	}
+	
+	public void excluirCliente () {
+		
 	}
 
 }
