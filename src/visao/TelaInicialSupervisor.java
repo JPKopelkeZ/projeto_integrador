@@ -58,39 +58,63 @@ public class TelaInicialSupervisor extends JFrame {
 		setJMenuBar(menuBar);
 		
 		JMenu mnCadastro = new JMenu("+ Cadastro");
+		mnCadastro.setForeground(SystemColor.desktop);
 		mnCadastro.setFont(new Font("Bookman Old Style", Font.BOLD, 13));
 		menuBar.add(mnCadastro);
 		
-		JMenuItem mnCadastroCliente = new JMenuItem("Cliente");
-		mnCadastroCliente.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
-		mnCadastro.add(mnCadastroCliente);
+		JMenuItem mntCadastroCliente = new JMenuItem("Cliente");
+		mntCadastroCliente.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mnCadastro.add(mntCadastroCliente);
 		
-		JMenuItem mnCadastroFornecedor = new JMenuItem("Fornecedor");
-		mnCadastroFornecedor.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
-		mnCadastro.add(mnCadastroFornecedor);
+		JMenuItem mntCadastroFornecedor = new JMenuItem("Fornecedor");
+		mntCadastroFornecedor.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mnCadastro.add(mntCadastroFornecedor);
 		
-		JMenuItem mnCadastroFuncionario = new JMenuItem("Funcionário");
-		mnCadastroFuncionario.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
-		mnCadastro.add(mnCadastroFuncionario);
+		JMenuItem mntCadastroFuncionario = new JMenuItem("Funcionário");
+		mntCadastroFuncionario.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mnCadastro.add(mntCadastroFuncionario);
 		
-		JMenuItem mnCadastroLivro = new JMenuItem("Livro");
-		mnCadastroLivro.addActionListener(new ActionListener() {
+		JMenuItem mntCadastroLivro = new JMenuItem("Livro");
+		mntCadastroLivro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				TelaCadastroLivro cadastroLivro = new TelaCadastroLivro();
 				cadastroLivro.setVisible(true);
 			}
 		});
-		mnCadastroLivro.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
-		mnCadastro.add(mnCadastroLivro);
+		mntCadastroLivro.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mnCadastro.add(mntCadastroLivro);
 		
-		JMenu mnNova = new JMenu("+ Nova");
-		mnNova.setFont(new Font("Bookman Old Style", Font.BOLD, 13));
-		menuBar.add(mnNova);
+		JMenu mnNovaS = new JMenu("+ Nova");
+		mnNovaS.setForeground(SystemColor.desktop);
+		mnNovaS.setFont(new Font("Bookman Old Style", Font.BOLD, 13));
+		menuBar.add(mnNovaS);
 		
-		JMenuItem mnNovaVenda = new JMenuItem("Venda");
-		mnNovaVenda.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
-		mnNova.add(mnNovaVenda);
+		JMenuItem mntNovaVendaS = new JMenuItem("Venda");
+		mntNovaVendaS.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mnNovaS.add(mntNovaVendaS);
+		
+		JMenu mnConsultarS = new JMenu("+ Consultar");
+		mnConsultarS.setForeground(new Color(0, 0, 0));
+		mnConsultarS.setFont(new Font("Bookman Old Style", Font.BOLD, 13));
+		menuBar.add(mnConsultarS);
+		
+		JMenuItem mnConsultarClienteS = new JMenuItem("Cliente");
+		mnConsultarClienteS.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mnConsultarS.add(mnConsultarClienteS);
+		
+		JMenuItem mnConsultarFornecedorS = new JMenuItem("Forncedor");
+		mnConsultarFornecedorS.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mnConsultarS.add(mnConsultarFornecedorS);
+		
+		JMenuItem mntConsultarFuncionarioS = new JMenuItem("Funcionário");
+		mntConsultarFuncionarioS.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mntConsultarFuncionarioS.setForeground(new Color(0, 0, 0));
+		mnConsultarS.add(mntConsultarFuncionarioS);
+		
+		JMenuItem mntConsultarLivroS = new JMenuItem("Livro");
+		mntConsultarLivroS.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mnConsultarS.add(mntConsultarLivroS);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(153, 204, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -144,10 +168,16 @@ public class TelaInicialSupervisor extends JFrame {
 		lblNomeFunc.setBounds(87, 54, 46, 14);
 		panel.add(lblNomeFunc);
 		
+		JButton btnPesquisar = new JButton("Pesquisar");
+		btnPesquisar.setBackground(SystemColor.activeCaption);
+		btnPesquisar.setFont(new Font("Bookman Old Style", Font.PLAIN, 11));
+		btnPesquisar.setBounds(775, 21, 89, 23);
+		panel.add(btnPesquisar);
+		
 		JPanel txtPesquisaEditora = new JPanel();
 		txtPesquisaEditora.setBackground(SystemColor.menu);
 		txtPesquisaEditora.setBorder(new LineBorder(new Color(0, 0, 0)));
-		txtPesquisaEditora.setBounds(0, 105, 188, 459);
+		txtPesquisaEditora.setBounds(0, 105, 223, 459);
 		contentPane.add(txtPesquisaEditora);
 		txtPesquisaEditora.setLayout(null);
 		
@@ -191,7 +221,7 @@ public class TelaInicialSupervisor extends JFrame {
 		
 		txtPesquisaAno = new JTextField();
 		txtPesquisaAno.setFont(new Font("Calisto MT", Font.PLAIN, 12));
-		txtPesquisaAno.setBounds(10, 179, 168, 26);
+		txtPesquisaAno.setBounds(10, 182, 168, 26);
 		txtPesquisaEditora.add(txtPesquisaAno);
 		txtPesquisaAno.setColumns(10);
 		
@@ -201,10 +231,29 @@ public class TelaInicialSupervisor extends JFrame {
 		txtPesquisaEditora.add(textField_4);
 		textField_4.setColumns(10);
 		
+		JButton btnPesquisarGenero = new JButton("");
+		btnPesquisarGenero.setBackground(SystemColor.activeCaption);
+		btnPesquisarGenero.setBounds(188, 68, 20, 20);
+		txtPesquisaEditora.add(btnPesquisarGenero);
+		
+		JButton btnPesquisarAutor = new JButton("");
+		btnPesquisarAutor.setBackground(SystemColor.activeCaption);
+		btnPesquisarAutor.setBounds(188, 125, 20, 20);
+		txtPesquisaEditora.add(btnPesquisarAutor);
+		
+		JButton btnPesquisarAno = new JButton("");
+		btnPesquisarAno.setBackground(SystemColor.activeCaption);
+		btnPesquisarAno.setBounds(188, 186, 20, 20);
+		txtPesquisaEditora.add(btnPesquisarAno);
+		
+		JButton btnPesquisarEditora = new JButton("");
+		btnPesquisarEditora.setBackground(SystemColor.activeCaption);
+		btnPesquisarEditora.setBounds(188, 236, 20, 20);
+		txtPesquisaEditora.add(btnPesquisarEditora);
+		
 		JScrollPane scrollPainelResultado = new JScrollPane();
 		scrollPainelResultado.setViewportBorder(new LineBorder(new Color(0, 0, 0)));
-		scrollPainelResultado.setBounds(217, 128, 694, 403);
+		scrollPainelResultado.setBounds(233, 128, 694, 403);
 		contentPane.add(scrollPainelResultado);
 	}
-	
 }

@@ -59,17 +59,39 @@ public class TelaInicialVendedor extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		
-		JMenu mnNova = new JMenu("+ Nova");
-		mnNova.setFont(new Font("Bookman Old Style", Font.BOLD, 13));
-		menuBar.add(mnNova);
+		JMenu mnNovaV = new JMenu("+ Nova");
+		mnNovaV.setForeground(new Color(0, 0, 0));
+		mnNovaV.setFont(new Font("Bookman Old Style", Font.BOLD, 13));
+		menuBar.add(mnNovaV);
 		
-		JMenuItem mnNovaVenda = new JMenuItem("Venda");
-		mnNovaVenda.addActionListener(new ActionListener() {
+		JMenuItem mntNovaVendaV = new JMenuItem("Venda");
+		mntNovaVendaV.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		mnNovaVenda.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
-		mnNova.add(mnNovaVenda);
+		mntNovaVendaV.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mnNovaV.add(mntNovaVendaV);
+		
+		JMenu mnConsultarV = new JMenu("+ Consultar");
+		mnConsultarV.setFont(new Font("Bookman Old Style", Font.BOLD, 13));
+		mnConsultarV.setForeground(SystemColor.desktop);
+		menuBar.add(mnConsultarV);
+		
+		JMenuItem mntConsultarClienteV = new JMenuItem("Cliente");
+		mntConsultarClienteV.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mnConsultarV.add(mntConsultarClienteV);
+		
+		JMenuItem mntConsultarFornecedorV = new JMenuItem("Fornecedor");
+		mntConsultarFornecedorV.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mnConsultarV.add(mntConsultarFornecedorV);
+		
+		JMenuItem mntConsultarFuncionarioV = new JMenuItem("Funcionário");
+		mntConsultarFuncionarioV.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mnConsultarV.add(mntConsultarFuncionarioV);
+		
+		JMenuItem mntConsultarLivroV = new JMenuItem("Livro");
+		mntConsultarLivroV.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mnConsultarV.add(mntConsultarLivroV);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(153, 204, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -124,10 +146,16 @@ public class TelaInicialVendedor extends JFrame {
 		btnSair_1.setBounds(838, 71, 89, 23);
 		panel.add(btnSair_1);
 		
+		JButton btnPesquisar = new JButton("Pesquisar");
+		btnPesquisar.setBackground(SystemColor.activeCaption);
+		btnPesquisar.setFont(new Font("Bookman Old Style", Font.PLAIN, 11));
+		btnPesquisar.setBounds(775, 19, 89, 23);
+		panel.add(btnPesquisar);
+		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_1.setBackground(SystemColor.menu);
-		panel_1.setBounds(0, 104, 188, 460);
+		panel_1.setBounds(0, 104, 223, 460);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -181,10 +209,30 @@ public class TelaInicialVendedor extends JFrame {
 		panel_1.add(txtEditora);
 		txtEditora.setColumns(10);
 		
+		JButton btnPesquisarGenero = new JButton("");
+		btnPesquisarGenero.setBackground(SystemColor.activeCaption);
+		btnPesquisarGenero.setBounds(188, 66, 20, 20);
+		panel_1.add(btnPesquisarGenero);
+		
+		JButton btnPesquisarAutor = new JButton("");
+		btnPesquisarAutor.setBackground(SystemColor.activeCaption);
+		btnPesquisarAutor.setBounds(188, 119, 20, 20);
+		panel_1.add(btnPesquisarAutor);
+		
+		JButton btnPesquisarAno = new JButton("");
+		btnPesquisarAno.setBackground(SystemColor.activeCaption);
+		btnPesquisarAno.setBounds(188, 174, 20, 20);
+		panel_1.add(btnPesquisarAno);
+		
+		JButton btnPesquisarEditora = new JButton("");
+		btnPesquisarEditora.setBackground(SystemColor.activeCaption);
+		btnPesquisarEditora.setBounds(188, 229, 20, 20);
+		panel_1.add(btnPesquisarEditora);
+		
 		JScrollPane scrollPainelResultado = new JScrollPane();
 		scrollPainelResultado.setBorder(new LineBorder(new Color(0, 0, 0)));
 		scrollPainelResultado.setBackground(new Color(153, 204, 255));
-		scrollPainelResultado.setBounds(218, 133, 694, 401);
+		scrollPainelResultado.setBounds(233, 133, 694, 401);
 		contentPane.add(scrollPainelResultado);
 		
 		JButton btnSair = new JButton("Sair");
