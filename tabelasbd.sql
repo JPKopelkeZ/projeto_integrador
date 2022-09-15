@@ -104,18 +104,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`telefone` (
   `idtelefone` INT NOT NULL AUTO_INCREMENT,
   `tipo` VARCHAR(45) NULL,
   `numero` VARCHAR(30) NULL,
-  `funcionario_idfuncionario` INT NOT NULL,
 
   `cliente_idcliente` INT NOT NULL,
   PRIMARY KEY (`idtelefone`),
-  INDEX `fk_telefone_funcionario1_idx` (`funcionario_idfuncionario` ASC) ,
   INDEX `fk_telefone_cliente1_idx` (`cliente_idcliente` ASC) ,
 
-  CONSTRAINT `fk_telefone_funcionario1`
-    FOREIGN KEY (`funcionario_idfuncionario`)
-    REFERENCES `mydb`.`funcionario` (`idfuncionario`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+
   CONSTRAINT `fk_telefone_cliente1`
     FOREIGN KEY (`cliente_idcliente`)
     REFERENCES `mydb`.`cliente` (`idcliente`)
@@ -497,20 +491,20 @@ insert into livroVendido (idlivroVendido, quantidade, precoAtual, livro_idlivro,
 insert into livroVendido (idlivroVendido, quantidade, precoAtual, livro_idlivro, venda_idvenda) values (9, 8, '130.90', 9, 9);
 insert into livroVendido (idlivroVendido, quantidade, precoAtual, livro_idlivro, venda_idvenda) values (10, 71, '222.20', 1, 10);
 
-insert into telefone (idtelefone, tipo, numero, funcionario_idfuncionario, cliente_idcliente) values (1, 9, '(516) 5392934', '1', '5');
-insert into telefone (idtelefone, tipo, numero, funcionario_idfuncionario, cliente_idcliente) values (2, 6, '(772) 6031088', '4', '1');
-insert into telefone (idtelefone, tipo, numero, funcionario_idfuncionario, cliente_idcliente) values (3, 52, '(508) 5781186', '3', '2');
-insert into telefone (idtelefone, tipo, numero, funcionario_idfuncionario, cliente_idcliente) values (4, 13, '(715) 3102658', '2', '3');
-insert into telefone (idtelefone, tipo, numero, funcionario_idfuncionario, cliente_idcliente) values (5, 100, '(290) 4903956', '1', '3');
-insert into telefone (idtelefone, tipo, numero, funcionario_idfuncionario, cliente_idcliente) values (6, 65, '(889) 9071693', '2', '8');
-insert into telefone (idtelefone, tipo, numero, funcionario_idfuncionario, cliente_idcliente) values (7, 23, '(333) 2543702', '2', '2');
-insert into telefone (idtelefone, tipo, numero, funcionario_idfuncionario, cliente_idcliente) values (8, 8, '(287) 1132231', '3', '7');
-insert into telefone (idtelefone, tipo, numero, funcionario_idfuncionario, cliente_idcliente) values (9, 73, '(282) 4311052', '3', '6');
-insert into telefone (idtelefone, tipo, numero, funcionario_idfuncionario, cliente_idcliente) values (10, 98, '(416) 9309140', '1', '4');
-insert into telefone (idtelefone, tipo, numero, funcionario_idfuncionario, cliente_idcliente) values (11, 68, '(943) 5009045', '4', '1');
-insert into telefone (idtelefone, tipo, numero, funcionario_idfuncionario, cliente_idcliente) values (12, 27, '(723) 7640182', '4', '4');
-insert into telefone (idtelefone, tipo, numero, funcionario_idfuncionario, cliente_idcliente) values (13, 18, '(937) 5046169', '3', '9');
-insert into telefone (idtelefone, tipo, numero, funcionario_idfuncionario, cliente_idcliente) values (14, 31, '(978) 3105768', '2', '10');
+insert into telefone (idtelefone, tipo, numero, cliente_idcliente) values (1, 9, '(516) 5392934', '5');
+insert into telefone (idtelefone, tipo, numero, cliente_idcliente) values (2, 6, '(772) 6031088', '1');
+insert into telefone (idtelefone, tipo, numero, cliente_idcliente) values (3, 52, '(508) 5781186', '2');
+insert into telefone (idtelefone, tipo, numero, cliente_idcliente) values (4, 13, '(715) 3102658', '3');
+insert into telefone (idtelefone, tipo, numero, cliente_idcliente) values (5, 100, '(290) 4903956', '3');
+insert into telefone (idtelefone, tipo, numero, cliente_idcliente) values (6, 65, '(889) 9071693', '8');
+insert into telefone (idtelefone, tipo, numero, cliente_idcliente) values (7, 23, '(333) 2543702', '2');
+insert into telefone (idtelefone, tipo, numero, cliente_idcliente) values (8, 8, '(287) 1132231', '7');
+insert into telefone (idtelefone, tipo, numero, cliente_idcliente) values (9, 73, '(282) 4311052', '6');
+insert into telefone (idtelefone, tipo, numero, cliente_idcliente) values (10, 98, '(416) 9309140', '4');
+insert into telefone (idtelefone, tipo, numero, cliente_idcliente) values (11, 68, '(943) 5009045', '1');
+insert into telefone (idtelefone, tipo, numero, cliente_idcliente) values (12, 27, '(723) 7640182', '4');
+insert into telefone (idtelefone, tipo, numero, cliente_idcliente) values (13, 18, '(937) 5046169', '9');
+insert into telefone (idtelefone, tipo, numero, cliente_idcliente) values (14, 31, '(978) 3105768', '10');
 
 insert into usuario (idusuario, nomeusuario, senha, tipofuncionario, funcionario_idfuncionario) values (1, 'rloyley0', 'lymuuY', 'V', 1);
 insert into usuario (idusuario, nomeusuario, senha, tipofuncionario, funcionario_idfuncionario) values (2, 'tspeares1', 'b7swVGx', 'V', 2);

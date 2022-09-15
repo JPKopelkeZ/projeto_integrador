@@ -6,7 +6,7 @@ public class Funcionario {
 	private String cpf;
 	private float salario;
 	private String funcao;
-	private Telefone telefone;
+	private String telefone;
 	
 	public int getCodigo() {
 		return codigo;
@@ -38,10 +38,10 @@ public class Funcionario {
 	public void setFuncao(String funcao) {
 		this.funcao = funcao;
 	}
-	public Telefone getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
-	public void setTelefone(Telefone telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 	
