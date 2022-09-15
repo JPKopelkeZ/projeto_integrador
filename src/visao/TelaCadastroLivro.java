@@ -19,7 +19,6 @@ import java.awt.event.ActionEvent;
 public class TelaCadastroLivro extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtPesquisarLivro;
 	private JTextField txtTitulo;
 	private JTextField txtAnoPesquisa;
 	private JTextField txtEditoraPesquisa;
@@ -68,14 +67,6 @@ public class TelaCadastroLivro extends JFrame {
 		lblNomeEmpresa.setBounds(24, 11, 223, 32);
 		panel.add(lblNomeEmpresa);
 		lblNomeEmpresa.setFont(new Font("Copperplate Gothic Light", Font.ITALIC, 20));
-		
-		txtPesquisarLivro = new JTextField();
-		txtPesquisarLivro.setForeground(Color.BLACK);
-		txtPesquisarLivro.setFont(new Font("Calisto MT", Font.PLAIN, 15));
-		txtPesquisarLivro.setColumns(10);
-		txtPesquisarLivro.setBackground(SystemColor.menu);
-		txtPesquisarLivro.setBounds(280, 14, 506, 30);
-		panel.add(txtPesquisarLivro);
 		
 		JButton btnVoltar = new JButton(" Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
