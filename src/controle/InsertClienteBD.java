@@ -12,7 +12,7 @@ public class InsertClienteBD {
 			Connection bd = ConnectionBD.conectar();
 			String ps1 = "INSERT INTO cliente (nomeCliente, cpf) VALUES ("+nome+","+ cpf +")";
 			String ps2 = "INSERT INTO endereco (rua, bairro, cidade, estado) VALUES ("+rua+","+bairro+","+cidade+","+estado+")";
-			String ps3 = "INSERT INTO telefone (tipo, numero) VALUES ("+tipo+","+numero+")";
+			String ps3 = "INSERT INTO telefone (numero) VALUES ("+numero+")";
 			PreparedStatement psa = bd.prepareStatement(ps1 + ps2 + ps3);
 			ResultSet r = psa.executeQuery();
 			
