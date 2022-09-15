@@ -28,6 +28,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`funcionario` (
   `funcao` VARCHAR(45) NULL,
   `cpf` CHAR(14) NOT NULL,
   `salario` FLOAT NULL,
+   `telefone` VARCHAR(30) NULL,
   PRIMARY KEY (`idfuncionario`),
   UNIQUE INDEX `idfuncionario_UNIQUE` (`idfuncionario` ASC),
   UNIQUE INDEX `cpf_UNIQUE` (`cpf` ASC))
@@ -46,6 +47,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`usuario` (
   `senha` VARCHAR(45) NOT NULL,
   `funcionario_idfuncionario` INT NOT NULL,
   `tipoFuncionario` CHAR(1) NOT NULL,
+ 
   PRIMARY KEY (`idusuario`),
   UNIQUE INDEX `idusuario_UNIQUE` (`idusuario` ASC) ,
   INDEX `fk_usuario_funcionario_idx` (`funcionario_idfuncionario` ASC) ,
@@ -85,6 +87,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`cliente` (
   `nomeCliente` VARCHAR(45) NULL,
   `cpf` VARCHAR(45) NULL,
   `endereco_idendereco` INT NOT NULL,
+  `telefone` VARCHAR(30) NULL,
   PRIMARY KEY (`idcliente`),
   INDEX `fk_cliente_endereco1_idx` (`endereco_idendereco` ASC),
   CONSTRAINT `fk_cliente_endereco1`
@@ -95,26 +98,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`cliente` (
 ENGINE = InnoDB;
 
 
--- -----------------------------------------------------
--- Table `mydb`.`telefone`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`telefone` ;
-
-CREATE TABLE IF NOT EXISTS `mydb`.`telefone` (
-  `idtelefone` INT NOT NULL AUTO_INCREMENT,
-  `numero` VARCHAR(30) NULL,
-
-  `cliente_idcliente` INT NOT NULL,
-  PRIMARY KEY (`idtelefone`),
-  INDEX `fk_telefone_cliente1_idx` (`cliente_idcliente` ASC) ,
-
-
-  CONSTRAINT `fk_telefone_cliente1`
-    FOREIGN KEY (`cliente_idcliente`)
-    REFERENCES `mydb`.`cliente` (`idcliente`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -358,16 +341,16 @@ insert into endereco (idendereco, rua, bairro, cidade, estado) values (9, '9 Der
 insert into endereco (idendereco, rua, bairro, cidade, estado) values (10, '1304 Morningstar Alley', 'Asian Indian', 'Round Rock', 'Texas');
 
 
-insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco) values (1, 'Ruttger Merrell', '359.160.607-84', 1);
-insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco) values (2, 'Cinda O'' Bee', '348.309.438-20', 2);
-insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco) values (3, 'Tate Laurentin', '774.923.462-96', 3);
-insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco) values (4, 'Son Kubatsch', '783.043.777-64', 4);
-insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco) values (5, 'Gil Barnhill', '275.930.614-12', 5);
-insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco) values (6, 'Elwira Fishby', '177.517.927-82', 6);
-insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco) values (7, 'Kingsly Grainger', '346.527.179-54', 7);
-insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco) values (8, 'Linea Estoile', '327.217.811-79', 8);
-insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco) values (9, 'Michel Traice', '834.996.099-02', 9);
-insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco) values (10, 'Beatrisa Kyle', '097.049.446-75', 10);
+insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco, telefone) values (1, 'Ruttger Merrell', '359.160.607-84', 1, '123');
+insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco, telefone) values (2, 'Cinda O'' Bee', '348.309.438-20', 2, '325345634');
+insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco, telefone) values (3, 'Tate Laurentin', '774.923.462-96', 3, '8348');
+insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco, telefone) values (4, 'Son Kubatsch', '783.043.777-64', 4, '4568786');
+insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco, telefone) values (5, 'Gil Barnhill', '275.930.614-12', 5, '3548648');
+insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco, telefone) values (6, 'Elwira Fishby', '177.517.927-82', 6, '354864');
+insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco, telefone) values (7, 'Kingsly Grainger', '346.527.179-54', 7, '35486453');
+insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco, telefone) values (8, 'Linea Estoile', '327.217.811-79', 8, '5865');
+insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco, telefone) values (9, 'Michel Traice', '834.996.099-02', 9, '123456789');
+insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco, telefone) values (10, 'Beatrisa Kyle', '097.049.446-75', 10, '987654321');
 
 insert into fornecedor (idfornecedor, nomeFornecedor, endereco_idendereco) values (1, 'Skinder', 1);
 insert into fornecedor (idfornecedor, nomeFornecedor, endereco_idendereco) values (2, 'Bubblemix', 2);
@@ -380,10 +363,10 @@ insert into fornecedor (idfornecedor, nomeFornecedor, endereco_idendereco) value
 insert into fornecedor (idfornecedor, nomeFornecedor, endereco_idendereco) values (9, 'Youopia', 9);
 insert into fornecedor (idfornecedor, nomeFornecedor, endereco_idendereco) values (10, 'Agivu', 10);
 
-insert into funcionario (idfuncionario, nomefuncionario, funcao, cpf, salario) values (1, 'Norton Rysdale', 'Vendedor', '415.769.890-89', '4810.46');
-insert into funcionario (idfuncionario, nomefuncionario, funcao, cpf, salario) values (2, 'Rickard Locker', 'Vendedor', '643.421.040-08', '3068.26');
-insert into funcionario (idfuncionario, nomefuncionario, funcao, cpf, salario) values (3, 'Godiva Cursons', 'Supervisor', '984.927.440-90', '4988.99');
-insert into funcionario (idfuncionario, nomefuncionario, funcao, cpf, salario) values (4, 'Ebony Pannett', 'Vendedor', '354.535.930-16', '4437.39');
+insert into funcionario (idfuncionario, nomefuncionario, funcao, cpf, salario, telefone) values (1, 'Norton Rysdale', 'Vendedor', '415.769.890-89', '4810.46', '(516) 5392934');
+insert into funcionario (idfuncionario, nomefuncionario, funcao, cpf, salario, telefone) values (2, 'Rickard Locker', 'Vendedor', '643.421.040-08', '3068.26', '(772) 6031088');
+insert into funcionario (idfuncionario, nomefuncionario, funcao, cpf, salario, telefone) values (3, 'Godiva Cursons', 'Supervisor', '984.927.440-90', '4988.99', '(508) 5781186');
+insert into funcionario (idfuncionario, nomefuncionario, funcao, cpf, salario, telefone) values (4, 'Ebony Pannett', 'Vendedor', '354.535.930-16', '4437.39', '(715) 3102658');
 
 insert into compra (idcompra, quantidade, funcionario_idfuncionario) values (1, 11, 1);
 insert into compra (idcompra, quantidade, funcionario_idfuncionario) values (2, 22, 2);
@@ -490,20 +473,6 @@ insert into livroVendido (idlivroVendido, quantidade, precoAtual, livro_idlivro,
 insert into livroVendido (idlivroVendido, quantidade, precoAtual, livro_idlivro, venda_idvenda) values (9, 8, '130.90', 9, 9);
 insert into livroVendido (idlivroVendido, quantidade, precoAtual, livro_idlivro, venda_idvenda) values (10, 71, '222.20', 1, 10);
 
-insert into telefone (idtelefone, numero, cliente_idcliente) values (1, '(516) 5392934', '5');
-insert into telefone (idtelefone, numero, cliente_idcliente) values (2, '(772) 6031088', '1');
-insert into telefone (idtelefone, numero, cliente_idcliente) values (3, '(508) 5781186', '2');
-insert into telefone (idtelefone, numero, cliente_idcliente) values (4, '(715) 3102658', '3');
-insert into telefone (idtelefone, numero, cliente_idcliente) values (5, '(290) 4903956', '3');
-insert into telefone (idtelefone, numero, cliente_idcliente) values (6, '(889) 9071693', '8');
-insert into telefone (idtelefone, numero, cliente_idcliente) values (7, '(333) 2543702', '2');
-insert into telefone (idtelefone, numero, cliente_idcliente) values (8, '(287) 1132231', '7');
-insert into telefone (idtelefone, numero, cliente_idcliente) values (9, '(282) 4311052', '6');
-insert into telefone (idtelefone, numero, cliente_idcliente) values (10, '(416) 9309140', '4');
-insert into telefone (idtelefone, numero, cliente_idcliente) values (11, '(943) 5009045', '1');
-insert into telefone (idtelefone, numero, cliente_idcliente) values (12, '(723) 7640182', '4');
-insert into telefone (idtelefone, numero, cliente_idcliente) values (13, '(937) 5046169', '9');
-insert into telefone (idtelefone, numero, cliente_idcliente) values (14, '(978) 3105768', '10');
 
 insert into usuario (idusuario, nomeusuario, senha, tipofuncionario, funcionario_idfuncionario) values (1, 'rloyley0', 'lymuuY', 'V', 1);
 insert into usuario (idusuario, nomeusuario, senha, tipofuncionario, funcionario_idfuncionario) values (2, 'tspeares1', 'b7swVGx', 'V', 2);

@@ -6,7 +6,7 @@ public class Cliente {
 	private String cpf;
 	private int codigo;
 	private Endereco endereco;
-	private Telefone telefone;
+	private String telefone;
 	
 
 	public String getNome() {
@@ -41,11 +41,11 @@ public class Cliente {
 		this.endereco = endereco;
 	}
 
-	public Telefone getTelefone() {
+	public String getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(Telefone telefone) {
+	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
 

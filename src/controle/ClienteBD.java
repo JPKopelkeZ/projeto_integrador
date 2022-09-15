@@ -6,28 +6,24 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import modelo.Cliente;
-import modelo.Endereco;
-import modelo.Telefone;
+import modelo.*;
 
 public class ClienteBD {
 	public boolean cadastrarCliente (Cliente cliente) {
 		String nome = cliente.getNome();
 		String cpf = cliente.getCpf();
 		Endereco end = cliente.getEndereco();
-		Telefone tel = cliente.getTelefone();
+		String tel = cliente.getTelefone();
 		String rua = end.getRua();
 		String bairro = end.getBairro();
 		String cidade = end.getCidade();
 		String estado = end.getEstado();
-		String numero = tel.getNumero();
 		boolean verifica = false;
 		try {
 			Connection bd = ConnectionBD.conectar();
 			String ps1 = "INSERT INTO cliente (nomeCliente, cpf) VALUES ("+nome+","+ cpf +")";
 			String ps2 = "INSERT INTO endereco (rua, bairro, cidade, estado) VALUES ("+rua+","+bairro+","+cidade+","+estado+")";
-			String ps3 = "INSERT INTO telefone (numero) VALUES ("+numero+")";
-			PreparedStatement psa = bd.prepareStatement(ps1 + ps2 + ps3);
+			PreparedStatement psa = bd.prepareStatement(ps1 + ps2);
 			ResultSet r = psa.executeQuery();
 			
 			while(r.next()) {
@@ -36,8 +32,7 @@ public class ClienteBD {
 				String idTelefone = r.getString("idtelefone");
 				
 				String ps4 = "UPDATE cliente SET endereco_idendereco = "+idEndereco+" where id = "+idCliente+"";
-				String ps5 = "UPDATE telefone SET cliente_idcliente = "+idCliente+" WHERE id = "+idTelefone+"";
-				PreparedStatement p = bd.prepareStatement(ps4 + ps5);
+				PreparedStatement p = bd.prepareStatement(ps4);
 				verifica = p.execute();
 			}
 			
