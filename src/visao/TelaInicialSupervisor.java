@@ -120,6 +120,13 @@ public class TelaInicialSupervisor extends JFrame {
 		mnConsultarS.add(mntConsultarFuncionarioS);
 		
 		JMenuItem mntConsultarLivroS = new JMenuItem("Livro");
+		mntConsultarLivroS.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				TelaConsultarLivroSupervisor consultaLivroS = new TelaConsultarLivroSupervisor();
+				consultaLivroS.setVisible(true);
+			}
+		});
 		mntConsultarLivroS.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
 		mnConsultarS.add(mntConsultarLivroS);
 		contentPane = new JPanel();
@@ -154,7 +161,7 @@ public class TelaInicialSupervisor extends JFrame {
 		
 		JLabel lblFuncao = new JLabel("Função: Supervisor ");
 		lblFuncao.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
-		lblFuncao.setBounds(20, 68, 146, 14);
+		lblFuncao.setBounds(20, 68, 165, 14);
 		panel.add(lblFuncao);
 		
 		JButton btnSair = new JButton("Sair");
