@@ -1,5 +1,7 @@
 package modelo;
 
+import java.util.ArrayList;
+
 public class Livro {
 	private float preco;
 	private String editora;
@@ -9,13 +11,28 @@ public class Livro {
 	private String idioma;
 	private String genero;
 	private int nPaginas;
-	Autor autor;
+	ArrayList<Autor> listaAutores = new ArrayList();
 	
-	public Autor getAutor() {
-		return autor;
+	
+	
+	public Livro(float preco, String editora, int ano, String titulo, int codigo, String idioma, String genero,
+			int nPaginas, ArrayList<Autor> listaAutores) {
+		super();
+		this.preco = preco;
+		this.editora = editora;
+		this.ano = ano;
+		this.titulo = titulo;
+		this.codigo = codigo;
+		this.idioma = idioma;
+		this.genero = genero;
+		this.nPaginas = nPaginas;
+		this.listaAutores = listaAutores;
 	}
-	public void setAutor(Autor autor) {
-		this.autor = autor;
+	public ArrayList<Autor> getListaAutores() {
+		return listaAutores;
+	}
+	public void setListaAutores(ArrayList<Autor> listaAutores) {
+		this.listaAutores = listaAutores;
 	}
 	public float getPreco() {
 		return preco;
