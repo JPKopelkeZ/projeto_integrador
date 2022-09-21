@@ -114,6 +114,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`livro` (
   `genero` VARCHAR(100) NULL,
   `ano` INT NULL,
   `numeroPaginas` INT NULL,
+  `autor` VARCHAR(150) NULL,
   PRIMARY KEY (`idlivro`),
   UNIQUE INDEX `idlivro_UNIQUE` (`idlivro` ASC) )
 
@@ -253,16 +254,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`compra` (
 ENGINE = InnoDB;
 
 
--- -----------------------------------------------------
--- Table `mydb`.`autor`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`autor` ;
-
-CREATE TABLE IF NOT EXISTS `mydb`.`autor` (
-  `idautor` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(45) NULL,
-  PRIMARY KEY (`idautor`))
-ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -291,43 +282,11 @@ CREATE TABLE IF NOT EXISTS `mydb`.`fornecedor_has_compra` (
 ENGINE = InnoDB;
 
 
--- -----------------------------------------------------
--- Table `mydb`.`autor_has_livro`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`autor_has_livro` ;
-
-CREATE TABLE IF NOT EXISTS `mydb`.`autor_has_livro` (
-  `autor_idautor` INT UNSIGNED NOT NULL,
-  `livro_idlivro` INT NOT NULL,
-  PRIMARY KEY (`autor_idautor`, `livro_idlivro`),
-
-  INDEX `fk_autor_has_livro_livro1_idx` (`livro_idlivro` ASC) ,
-  INDEX `fk_autor_has_livro_autor1_idx` (`autor_idautor` ASC) ,
-
-  CONSTRAINT `fk_autor_has_livro_autor1`
-    FOREIGN KEY (`autor_idautor`)
-    REFERENCES `mydb`.`autor` (`idautor`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_autor_has_livro_livro1`
-    FOREIGN KEY (`livro_idlivro`)
-    REFERENCES `mydb`.`livro` (`idlivro`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
-
-insert into autor (idautor, nome) values (1, 'Nealy Ledley');
-insert into autor (idautor, nome) values (2, 'Wendeline Annott');
-insert into autor (idautor, nome) values (3, 'Garwin Curr');
-insert into autor (idautor, nome) values (4, 'Roarke Purches');
-insert into autor (idautor, nome) values (5, 'Sibelle Gytesham');
-
 
 insert into endereco (idendereco, rua, bairro, cidade, estado) values (1, '497 Hoffman Plaza', 'Guatemalan', 'Huntsville', 'Alabama');
 insert into endereco (idendereco, rua, bairro, cidade, estado) values (2, '4051 Grayhawk Drive', 'Creek', 'Amarillo', 'Texas');
@@ -391,26 +350,25 @@ insert into fornecedor_has_compra (fornecedor_idfornecedor, compra_idcompra) val
 insert into fornecedor_has_compra (fornecedor_idfornecedor, compra_idcompra) values (1, 9);
 insert into fornecedor_has_compra (fornecedor_idfornecedor, compra_idcompra) values (2, 10);
 
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas) values (1, 'Brain Dead', '104.36', 'Oyondu', 'Hungarian', 'Horror|Sci-Fi', 1995, 990);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas) values (2, 'In a Town This Size', '213.40', 'Rooxo', 'Polish', 'Documentary', 2007, 601);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas) values (3, 'Three Faces East', '37.38', 'Tagcat', 'Kurdish', 'Drama|Mystery|War', 1999, 788);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas) values (4, 'Mystery of the Wax Museum', '190.22', 'Twitterbeat', 'Gujarati', 'Horror', 2012, 184);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas) values (5, 'Slipping-Down Life, A', '36.24', 'Babblestorm', 'German', 'Drama|Romance', 1998, 607);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas) values (6, 'Soldier''s Daughter Never Cries, A', '144.36', 'Quinu', 'Romanian', 'Drama', 2006, 864);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas) values (7, 'Chris Rock: Bring the Pain', '222.64', 'Youbridge', 'Icelandic', 'Comedy', 1994, 924);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas) values (8, 'Murders in the Zoo', '49.92', 'Izio', 'Yiddish', 'Crime|Horror|Mystery', 2010, 415);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas) values (9, 'Cuenca Crime, The (Crimen de Cuenca, El)', '136.68', 'Wordpedia', 'Lithuanian', 'Drama', 2010, 285);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas) values (10, 'Learning Curve, The', '133.88', 'Oloo', 'Marathi', 'Crime|Drama|Thriller', 1993, 414);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas) values (11, 'River, The', '117.13', 'Eazzy', 'Malayalam', 'Drama', 1995, 935);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas) values (12, 'Illusion Of Blood', '174.47', 'Meedoo', 'Haitian Creole', 'Fantasy|Horror', 1995, 903);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas) values (13, 'Leprechaun: Origins', '65.54', 'Vipe', 'Northern Sotho', 'Horror', 2012, 412);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas) values (14, 'Bullfighters, The', '223.25', 'Zoomdog', 'Catalan', 'Comedy|Musical', 1987, 329);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas) values (15, 'Dark Star', '206.21', 'Wikivu', 'Montenegrin', 'Comedy|Sci-Fi|Thriller', 1955, 854);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas) values (16, 'Devil and Daniel Webster, The (All That Money Can Buy)', '127.06', 'Skimia', 'Portuguese', 'Drama|Fantasy', 1996, 141);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas) values (17, 'Fog of War: Eleven Lessons from the Life of Robert S. McNamara, The', '211.76', 'Gigaclub', 'Hungarian', 'Documentary|War', 2009, 855);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas) values (18, 'Wrong Is Right (a.k.a. The Man With the Deadly Lens)', '131.03', 'Skynoodle', 'Lao', 'Drama|Thriller', 1996, 906);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas) values (19, 'Target', '105.08', 'Tagopia', 'Azeri', 'Action|Drama|Thriller', 1994, 632);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas) values (20, 'Stewart Lee: If You Prefer a Milder Comedian, Please Ask for One', '181.38', 'Jabbersphere', 'West Frisian', 'Comedy', 1997, 699);
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (1, 'Brain Dead', '104.36', 'Oyondu', 'Hungarian', 'Horror|Sci-Fi', 1995, 990, 'Lesley Ferraro');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (2, 'In a Town This Size', '213.40', 'Rooxo', 'Polish', 'Documentary', 2007, 601, 'Rosie Klimsch');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (3, 'Three Faces East', '37.38', 'Tagcat', 'Kurdish', 'Drama|Mystery|War', 1999, 788, 'Inness Balaam');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (4, 'Mystery of the Wax Museum', '190.22', 'Twitterbeat', 'Gujarati', 'Horror', 2012, 184, 'Fitz Heel');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (5, 'Slipping-Down Life, A', '36.24', 'Babblestorm', 'German', 'Drama|Romance', 1998, 607, 'Pierette Dossantos');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (6, 'Soldier''s Daughter Never Cries, A', '144.36', 'Quinu', 'Romanian', 'Drama', 2006, 864, 'Marlon Varrow');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (7, 'Chris Rock: Bring the Pain', '222.64', 'Youbridge', 'Icelandic', 'Comedy', 1994, 924, 'Leandra Darracott');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (8, 'Murders in the Zoo', '49.92', 'Izio', 'Yiddish', 'Crime|Horror|Mystery', 2010, 415, 'Leola Tuftin');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (9, 'Cuenca Crime, The (Crimen de Cuenca, El)', '136.68', 'Wordpedia', 'Lithuanian', 'Drama', 2010, 285, 'Gianna Jagiela');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (10, 'Learning Curve, The', '133.88', 'Oloo', 'Marathi', 'Crime|Drama|Thriller', 1993, 414, 'Brit Wimpey');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (11, 'River, The', '117.13', 'Eazzy', 'Malayalam', 'Drama', 1995, 935, 'Dulci Mounter');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (12, 'Illusion Of Blood', '174.47', 'Meedoo', 'Haitian Creole', 'Fantasy|Horror', 1995, 903, 'Nance Nys');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (13, 'Leprechaun: Origins', '65.54', 'Vipe', 'Northern Sotho', 'Horror', 2012, 412, 'Pieter Fayerman');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (15, 'Dark Star', '206.21', 'Wikivu', 'Montenegrin', 'Comedy|Sci-Fi|Thriller', 1955, 854, 'Agnella McMillam');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (16, 'Devil and Daniel Webster, The (All That Money Can Buy)', '127.06', 'Skimia', 'Portuguese', 'Drama|Fantasy', 1996, 141, 'Reinaldo Sprigin');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (17, 'Fog of War: Eleven Lessons from the Life of Robert S. McNamara, The', '211.76', 'Gigaclub', 'Hungarian', 'Documentary|War', 2009, 855, 'Vannie Gounard');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (18, 'Wrong Is Right (a.k.a. The Man With the Deadly Lens)', '131.03', 'Skynoodle', 'Lao', 'Drama|Thriller', 1996, 906, 'Lily Grishakin');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (19, 'Target', '105.08', 'Tagopia', 'Azeri', 'Action|Drama|Thriller', 1994, 632, 'Chrysler Passion');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (20, 'Stewart Lee: If You Prefer a Milder Comedian, Please Ask for One', '181.38', 'Jabbersphere', 'West Frisian', 'Comedy', 1997, 699, 'Corrie Athelstan');
 
 insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (1, '7/6/2022', '286.43', '235.93', 5, 1);
 insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (2, '4/15/2022', '156.30', '295.98', 17, 2);
@@ -427,29 +385,6 @@ insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, pr
 insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (13, '8/14/2022', '278.43', '248.33', 8, 1);
 insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (14, '3/27/2022', '15.21', '55.70', 6, 2);
 insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (15, '9/6/2021', '213.63', '105.96', 11, 3);
-
-
-
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (1, 1);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (2, 2);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (3, 3);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (4, 4);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (5, 5);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (1, 6);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (2, 7);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (3, 8);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (4, 9);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (5, 10);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (1, 11);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (2, 12);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (3, 13);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (4, 14);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (5, 15);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (1, 16);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (2, 17);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (3, 18);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (4, 19);
-insert into autor_has_livro (autor_idautor, livro_idlivro) values (5, 20);
 
 insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (1, 1, 1);
 insert into venda (idvenda, cliente_idcliente, funcionario_idfuncionario) values (2, 2, 2);

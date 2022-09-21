@@ -7,6 +7,10 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
+
+import controle.LivroBD;
+import modelo.Livro;
+
 import javax.swing.JTextField;
 import java.awt.SystemColor;
 import java.awt.Font;
@@ -172,8 +176,26 @@ public class TelaCadastroLivro extends JFrame {
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+			if (txtTitulo.getText().equals("")||txtAnoPesquisa.getText().equals("") || txtEditoraPesquisa.getText().equals("")||txtGeneroPesquisa.getText().equals("")||txtIdiomaPesquisa.getText().equals("")||txtPaginaPesquisa.getText().equals("")||txtPesquisaAutor.getText().equals("")) {
+				JOptionPane.showMessageDialog(null, "Favor, preencha todos os campos.");
+			}
+				else {
+				String titulo = txtTitulo.getText();
+				String anoS = txtAnoPesquisa.getText();
+				int ano = Integer.parseInt(anoS);
+				String editora = txtEditoraPesquisa.getText();
+				String genero = txtGeneroPesquisa.getText();
+				String idioma = txtIdiomaPesquisa.getText();
+				String paginaS = txtPaginaPesquisa.getText();
+				int pagina = Integer.parseInt(paginaS);
+				String autor = txtPesquisaAutor.getText();
+				Livro livro = new Livro(titulo, editora, ano, idioma, genero, pagina, autor);
+				LivroBD bdlivro = new LivroBD();
+				bdlivro.cadastrarLivro(livro);
+				
 				JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
 				limparCampos();
+			}
 			}
 		});
 		btnCadastrar.setBackground(SystemColor.menu);

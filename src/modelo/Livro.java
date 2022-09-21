@@ -11,29 +11,22 @@ public class Livro {
 	private String idioma;
 	private String genero;
 	private int nPaginas;
-	ArrayList<Autor> listaAutores = new ArrayList();
+	private String autor;
 	
 	
 	
-	public Livro(float preco, String editora, int ano, String titulo, int codigo, String idioma, String genero,
-			int nPaginas, ArrayList<Autor> listaAutores) {
+	public Livro( String titulo, String editora, int ano, String idioma, String genero,
+			int nPaginas, String autor) {
 		super();
-		this.preco = preco;
 		this.editora = editora;
 		this.ano = ano;
 		this.titulo = titulo;
-		this.codigo = codigo;
 		this.idioma = idioma;
 		this.genero = genero;
 		this.nPaginas = nPaginas;
-		this.listaAutores = listaAutores;
+		this.autor = autor;
 	}
-	public ArrayList<Autor> getListaAutores() {
-		return listaAutores;
-	}
-	public void setListaAutores(ArrayList<Autor> listaAutores) {
-		this.listaAutores = listaAutores;
-	}
+
 	public float getPreco() {
 		return preco;
 	}
@@ -82,5 +75,12 @@ public class Livro {
 	public void setnPaginas(int nPaginas) {
 		this.nPaginas = nPaginas;
 	}
-
+	public String getAutor() {
+		return autor;
+	}
+	public void setAutor(String autor) {
+		this.autor = autor;
+	}
+	
+	
 }
