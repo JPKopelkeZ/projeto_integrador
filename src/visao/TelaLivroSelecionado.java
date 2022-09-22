@@ -196,6 +196,7 @@ public class TelaLivroSelecionado extends JFrame {
 		JButton btnAlterar = new JButton("Alterar");
 		btnAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				livroSelecionado.setTitulo(txtTitulo.getText());
 				livroSelecionado.setAutor(txtAutor.getText());
 				livroSelecionado.setGenero(txtGenero.getText());
@@ -206,7 +207,7 @@ public class TelaLivroSelecionado extends JFrame {
 				livroSelecionado.setPreco(Float.parseFloat(txtPreco.getText()));
 				
 				bd.alterarLivro(livroSelecionado);
-				listaLivro.set(listaLivro.indexOf(livroSelecionado), livroSelecionado);
+				listaLivro = bd.mostrarLivro();
 				JOptionPane.showMessageDialog(null, "Os Dados do Livro foram Alterados");
 				limparCampos();
 			}

@@ -15,7 +15,20 @@ public class Livro {
 	
 	
 	
-	public Livro( String titulo, String editora, int ano, String idioma, String genero,
+	public Livro(int codigo, String titulo, String editora, int ano, String idioma, String genero,
+			int nPaginas, String autor) {
+		super();
+		this.codigo = codigo;
+		this.editora = editora;
+		this.ano = ano;
+		this.titulo = titulo;
+		this.idioma = idioma;
+		this.genero = genero;
+		this.nPaginas = nPaginas;
+		this.autor = autor;
+	}
+	
+	public Livro(String titulo, String editora, int ano, String idioma, String genero,
 			int nPaginas, String autor) {
 		super();
 		this.editora = editora;

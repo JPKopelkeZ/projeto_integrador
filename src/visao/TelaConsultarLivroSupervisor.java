@@ -118,6 +118,7 @@ public class TelaConsultarLivroSupervisor extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				TelaLivroSelecionado tls = new TelaLivroSelecionado();
 				tls.selecionarColuna(listaLivro.get(table.getSelectedRow()));
+				tls.setVisible(true);
 				dispose();
 			}
 		});
@@ -134,7 +135,11 @@ public class TelaConsultarLivroSupervisor extends JFrame {
 				if (livro != null) {
 					bd.excluirLivro(livro);
 					listaLivro.remove(livro);
-					JOptionPane.showMessageDialog(null, "Livro Exclu�do com sucesso");
+					JOptionPane.showMessageDialog(null, "Livro Excluído com sucesso");
+
+					setVisible(false);
+					TelaConsultarLivroSupervisor consultaLivroS = new TelaConsultarLivroSupervisor();
+					consultaLivroS.setVisible(true);
 				}
 			}
 		});

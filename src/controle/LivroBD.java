@@ -49,10 +49,11 @@ public class LivroBD {
 	public void alterarLivro(Livro livro) {
 		int id = livro.getCodigo();
 		String idS = String.valueOf(id);
+		System.out.println(idS);
 		Connection bd = ConnectionBD.conectar();
 		PreparedStatement ps;
 		try {
-			ps = bd.prepareStatement("UPDATE livro set titulo = ?, ano = ?, editora = ?, genero = ?, idioma = ?, numeroPaginas = ? where id = ?");
+			ps = bd.prepareStatement("UPDATE livro SET titulo = ?, ano = ?, editora = ?, genero = ?, idioma = ?, numeroPaginas = ? where idlivro = ?");
 			String ano = String.valueOf(livro.getAno());
 			String numeroPag = String.valueOf(livro.getnPaginas());
 			ps.setString(1, livro.getTitulo());
@@ -114,6 +115,8 @@ public class LivroBD {
 		ResultSet rs = ps.executeQuery();
 		
 		while(rs.next()) {
+			String idS = rs.getString("idlivro");
+			int id = Integer.valueOf(idS);
 			String tituloS = rs.getString("titulo");
 			String anoS = rs.getString("ano");
 			int ano = Integer.valueOf(anoS);
@@ -123,7 +126,7 @@ public class LivroBD {
 			String genero = rs.getString("genero");
 			String idioma = rs.getString("idioma");
 			String autor = rs.getString("autor");
-			Livro livro = new Livro(tituloS, editora, ano, idioma, genero, nPag, autor);
+			Livro livro = new Livro(id, tituloS, editora, ano, idioma, genero, nPag, autor);
 			pesquisa.add(livro);
 		}
 
@@ -143,7 +146,7 @@ public class LivroBD {
 		Connection bd = ConnectionBD.conectar();
 		PreparedStatement ps;
 		try {
-			ps = bd.prepareStatement("DELETE FROM livro WHERE id = ?");
+			ps = bd.prepareStatement("DELETE FROM livro WHERE idlivro = ?");
 			ps.setString(1, idS);
 			ps.execute();
 		} catch (SQLException e) {
