@@ -4,6 +4,7 @@ public class Fornecedor {
 	private int id;
 	private String nome;
 	private Endereco endereco;
+	private String telefone;
 	
 	public int getId() {
 		return id;
@@ -22,6 +23,12 @@ public class Fornecedor {
 	}
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
+	}
+	public String getTelefone() {
+		return telefone;
+	}
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 	
 	

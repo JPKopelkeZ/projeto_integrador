@@ -219,6 +219,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`fornecedor` (
   `idfornecedor` INT NOT NULL AUTO_INCREMENT,
   `nomeFornecedor` VARCHAR(45) NULL,
   `endereco_idendereco` INT NOT NULL,
+  `telefone` VARCHAR(30) NULL,
   PRIMARY KEY (`idfornecedor`),
 
   UNIQUE INDEX `idfornecedor_UNIQUE` (`idfornecedor` ASC) ,
@@ -311,16 +312,16 @@ insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco, telefone)
 insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco, telefone) values (9, 'Michel Traice', '834.996.099-02', 9, '123456789');
 insert into cliente (idcliente, nomeCliente, cpf, endereco_idendereco, telefone) values (10, 'Beatrisa Kyle', '097.049.446-75', 10, '987654321');
 
-insert into fornecedor (idfornecedor, nomeFornecedor, endereco_idendereco) values (1, 'Skinder', 1);
-insert into fornecedor (idfornecedor, nomeFornecedor, endereco_idendereco) values (2, 'Bubblemix', 2);
-insert into fornecedor (idfornecedor, nomeFornecedor, endereco_idendereco) values (3, 'Quamba', 3);
-insert into fornecedor (idfornecedor, nomeFornecedor, endereco_idendereco) values (4, 'Roodel', 4);
-insert into fornecedor (idfornecedor, nomeFornecedor, endereco_idendereco) values (5, 'Flipopia', 5);
-insert into fornecedor (idfornecedor, nomeFornecedor, endereco_idendereco) values (6, 'Brightbean', 6);
-insert into fornecedor (idfornecedor, nomeFornecedor, endereco_idendereco) values (7, 'Fatz', 7);
-insert into fornecedor (idfornecedor, nomeFornecedor, endereco_idendereco) values (8, 'Livepath', 8);
-insert into fornecedor (idfornecedor, nomeFornecedor, endereco_idendereco) values (9, 'Youopia', 9);
-insert into fornecedor (idfornecedor, nomeFornecedor, endereco_idendereco) values (10, 'Agivu', 10);
+insert into fornecedor (idfornecedor, nomeFornecedor, endereco_idendereco, telefone) values (1, 'Skinder', 1, '(144) 2396935');
+insert into fornecedor (idfornecedor, nomeFornecedor, endereco_idendereco, telefone) values (2, 'Bubblemix', 2, '(363) 5372540');
+insert into fornecedor (idfornecedor, nomeFornecedor, endereco_idendereco, telefone) values (3, 'Quamba', 3, '(319) 4222572');
+insert into fornecedor (idfornecedor, nomeFornecedor, endereco_idendereco, telefone) values (4, 'Roodel', 4, '(734) 8902810');
+insert into fornecedor (idfornecedor, nomeFornecedor, endereco_idendereco, telefone) values (5, 'Flipopia', 5, '(843) 9228449');
+insert into fornecedor (idfornecedor, nomeFornecedor, endereco_idendereco, telefone) values (6, 'Brightbean', 6, '(295) 6509149');
+insert into fornecedor (idfornecedor, nomeFornecedor, endereco_idendereco, telefone) values (7, 'Fatz', 7, '(497) 1199661');
+insert into fornecedor (idfornecedor, nomeFornecedor, endereco_idendereco, telefone) values (8, 'Livepath', 8, '(341) 8828544');
+insert into fornecedor (idfornecedor, nomeFornecedor, endereco_idendereco, telefone) values (9, 'Youopia', 9, '(710) 8609268');
+insert into fornecedor (idfornecedor, nomeFornecedor, endereco_idendereco, telefone) values (10, 'Agivu', 10, '(610) 3695996');
 
 insert into funcionario (idfuncionario, nomefuncionario, funcao, cpf, salario, telefone) values (1, 'Norton Rysdale', 'Vendedor', '415.769.890-89', '4810.46', '(516) 5392934');
 insert into funcionario (idfuncionario, nomefuncionario, funcao, cpf, salario, telefone) values (2, 'Rickard Locker', 'Vendedor', '643.421.040-08', '3068.26', '(772) 6031088');
