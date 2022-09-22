@@ -8,13 +8,21 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
+
+import controle.LivroBD;
+import modelo.Livro;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.SystemColor;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import java.awt.Dimension;
 
 public class TelaLivroSelecionado extends JFrame {
 
@@ -27,6 +35,9 @@ public class TelaLivroSelecionado extends JFrame {
 	private JTextField txtNumPaginas;
 	private JTextField txtEditora;
 	private JTextField txtPreco;
+	private Livro livroSelecionado;
+	ArrayList<Livro> listaLivro = new ArrayList();
+	LivroBD bd = new LivroBD();
 
 	/**
 	 * Launch the application.
@@ -48,6 +59,9 @@ public class TelaLivroSelecionado extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaLivroSelecionado() {
+		setMaximumSize(new Dimension(963, 603));
+		setResizable(false);
+		listaLivro = bd.mostrarLivro();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 963, 603);
 		contentPane = new JPanel();
@@ -180,6 +194,23 @@ public class TelaLivroSelecionado extends JFrame {
 		panel_1.add(txtPreco);
 		
 		JButton btnAlterar = new JButton("Alterar");
+		btnAlterar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				livroSelecionado.setTitulo(txtTitulo.getText());
+				livroSelecionado.setAutor(txtAutor.getText());
+				livroSelecionado.setGenero(txtGenero.getText());
+				livroSelecionado.setIdioma(txtIdioma.getText());
+				livroSelecionado.setAno(Integer.parseInt(txtAno.getText()));
+				livroSelecionado.setnPaginas(Integer.parseInt(txtNumPaginas.getText()));
+				livroSelecionado.setEditora(txtEditora.getText());
+				livroSelecionado.setPreco(Float.parseFloat(txtPreco.getText()));
+				
+				bd.alterarLivro(livroSelecionado);
+				listaLivro.set(listaLivro.indexOf(livroSelecionado), livroSelecionado);
+				JOptionPane.showMessageDialog(null, "Os Dados do Livro foram Alterados");
+				limparCampos();
+			}
+		});
 		btnAlterar.setForeground(Color.BLACK);
 		btnAlterar.setFont(new Font("Bookman Old Style", Font.PLAIN, 12));
 		btnAlterar.setBackground(SystemColor.menu);
@@ -199,6 +230,29 @@ public class TelaLivroSelecionado extends JFrame {
 		btnCancelar.setBackground(SystemColor.menu);
 		btnCancelar.setBounds(734, 532, 89, 23);
 		contentPane.add(btnCancelar);
+		
+		
+		}
+	public void selecionarColuna (Livro livroSelecionado) {
+		this.livroSelecionado = livroSelecionado;
+		txtTitulo.setText(livroSelecionado.getTitulo());
+		txtAutor.setText(livroSelecionado.getAutor());
+		txtGenero.setText(livroSelecionado.getGenero());
+		txtIdioma.setText(livroSelecionado.getIdioma());
+		txtAno.setText(String.valueOf(livroSelecionado.getAno()));
+		txtNumPaginas.setText(String.valueOf(livroSelecionado.getnPaginas()));
+		txtEditora.setText(livroSelecionado.getEditora());
+		txtPreco.setText(String.valueOf(livroSelecionado.getPreco()));
 	}
 
+	protected void limparCampos(){
+		txtTitulo.setText("");
+		txtAno.setText("");
+		txtEditora.setText("");
+		txtGenero.setText("");
+		txtIdioma.setText("");
+		txtNumPaginas.setText("");
+		txtAutor.setText("");
+		txtPreco.setText("");
+	}
 }

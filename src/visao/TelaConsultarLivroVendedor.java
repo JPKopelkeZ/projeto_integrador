@@ -17,6 +17,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Dimension;
 
 public class TelaConsultarLivroVendedor extends JFrame {
 
@@ -43,6 +44,8 @@ public class TelaConsultarLivroVendedor extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaConsultarLivroVendedor() {
+		setMaximumSize(new Dimension(963, 603));
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 963, 603);
 		contentPane = new JPanel();
@@ -80,6 +83,7 @@ public class TelaConsultarLivroVendedor extends JFrame {
 		scrollPane.setBounds(10, 125, 927, 397);
 		contentPane.add(scrollPane);
 		
+		//Atualizar tabela
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {

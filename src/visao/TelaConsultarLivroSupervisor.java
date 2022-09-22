@@ -9,19 +9,30 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.SystemColor;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import controle.LivroBD;
+import modelo.Livro;
+
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import java.awt.Dimension;
 
 public class TelaConsultarLivroSupervisor extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
+	ArrayList<Livro> listaLivro = new ArrayList();
+	LivroBD bd = new LivroBD();
+	
 
 	/**
 	 * Launch the application.
@@ -43,6 +54,10 @@ public class TelaConsultarLivroSupervisor extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaConsultarLivroSupervisor() {
+		setMaximumSize(new Dimension(963, 603));
+		setResizable(false);
+		listaLivro = bd.mostrarLivro();
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 963, 603);
 		contentPane = new JPanel();
@@ -81,17 +96,30 @@ public class TelaConsultarLivroSupervisor extends JFrame {
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
+		
+		
+		DefaultTableModel model = new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
 				"T\u00EDtulo", "Autor", "G\u00EAnero", "Idioma", "Ano", "N\u00B0 P\u00E1ginas", "Editora", "Pre\u00E7o"
 			}
-		));
+		);
+		for (int i=0; i < listaLivro.size(); i++) {
+			Livro l = listaLivro.get(i);
+			model.addRow(new Object[] {l.getTitulo(), l.getAutor(), l.getGenero(), l.getIdioma(), l.getAno(), l.getnPaginas(), l.getEditora(), l.getPreco() });
+		}
 		table.setFont(new Font("Bookman Old Style", Font.PLAIN, 11));
 		scrollPane.setViewportView(table);
 		
 		JButton btnSelecionar = new JButton("Selecionar");
+		btnSelecionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaLivroSelecionado tls = new TelaLivroSelecionado();
+				tls.selecionarColuna(listaLivro.get(table.getSelectedRow()));
+				dispose();
+			}
+		});
 		btnSelecionar.setForeground(Color.BLACK);
 		btnSelecionar.setFont(new Font("Bookman Old Style", Font.PLAIN, 12));
 		btnSelecionar.setBackground(SystemColor.menu);
@@ -99,6 +127,16 @@ public class TelaConsultarLivroSupervisor extends JFrame {
 		contentPane.add(btnSelecionar);
 		
 		JButton btnExcluir = new JButton("Excluir");
+		btnExcluir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Livro livro = listaLivro.get(table.getSelectedRow());
+				if (livro != null) {
+					bd.excluirLivro(livro);
+					listaLivro.remove(livro);
+					JOptionPane.showMessageDialog(null, "Livro Excluído com sucesso");
+				}
+			}
+		});
 		btnExcluir.setForeground(Color.BLACK);
 		btnExcluir.setFont(new Font("Bookman Old Style", Font.PLAIN, 12));
 		btnExcluir.setBackground(SystemColor.menu);

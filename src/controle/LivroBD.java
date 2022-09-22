@@ -74,7 +74,7 @@ public class LivroBD {
 	}
 	
 	//retornar livro por titulo
-	public ArrayList<Livro> mostrarLivro(String titulo) {
+	public ArrayList<Livro> mostrarLivroPesquisa(String titulo) {
 		try {
 		ArrayList<Livro> pesquisa = new ArrayList();
 		Connection bd = ConnectionBD.conectar();
