@@ -226,7 +226,7 @@ public class TelaCadastroCliente extends JFrame {
 		panel_1.add(lblNewLabel);
 		
 		JLabel lblEndereco = new JLabel("Endereço:");
-		lblEndereco.setFont(new Font("Bookman Old Style", Font.BOLD, 16));
+		lblEndereco.setFont(new Font("Bookman Old Style", Font.BOLD, 17));
 		lblEndereco.setBounds(59, 176, 116, 14);
 		panel_1.add(lblEndereco);
 	}
