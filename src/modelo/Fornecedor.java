@@ -6,6 +6,13 @@ public class Fornecedor {
 	private Endereco endereco;
 	private String telefone;
 	
+	public Fornecedor(int id, String nome, Endereco endereco, String telefone) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.endereco = endereco;
+		this.telefone = telefone;
+	}
 	public int getId() {
 		return id;
 	}
