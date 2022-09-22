@@ -20,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
+import java.awt.Dimension;
 
 public class TelaInicialSupervisor extends JFrame {
 
@@ -50,6 +51,8 @@ public class TelaInicialSupervisor extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaInicialSupervisor() {
+		setMaximumSize(new Dimension(963, 603));
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 953, 603);
 		

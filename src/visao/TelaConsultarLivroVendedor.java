@@ -15,7 +15,12 @@ import java.awt.SystemColor;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import controle.LivroBD;
+import modelo.Livro;
+
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Dimension;
 
@@ -23,6 +28,8 @@ public class TelaConsultarLivroVendedor extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
+	ArrayList<Livro> listaLivro = new ArrayList();
+	LivroBD bd = new LivroBD();
 
 	/**
 	 * Launch the application.
@@ -46,6 +53,7 @@ public class TelaConsultarLivroVendedor extends JFrame {
 	public TelaConsultarLivroVendedor() {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
+		listaLivro = bd.mostrarLivro();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 963, 603);
 		contentPane = new JPanel();
@@ -85,13 +93,18 @@ public class TelaConsultarLivroVendedor extends JFrame {
 		
 		//Atualizar tabela
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"T\u00EDtulo", "Autor", "G\u00EAnero", "Idioma", "Ano", "N\u00B0 P\u00E1ginas", "Editora", "Pre\u00E7o"
+		DefaultTableModel model = new DefaultTableModel(
+				new Object[][] {
+				},
+				new String[] {
+					"T\u00EDtulo", "Autor", "G\u00EAnero", "Idioma", "Ano", "N\u00B0 P\u00E1ginas", "Editora", "Pre\u00E7o"
+				}
+			);
+			for (int i=0; i < listaLivro.size(); i++) {
+				Livro l = listaLivro.get(i);
+				model.addRow(new Object[] {l.getTitulo(), l.getAutor(), l.getGenero(), l.getIdioma(), l.getAno(), l.getnPaginas(), l.getEditora(), l.getPreco() });
 			}
-		));
+			table.setModel(model);
 		table.setFont(new Font("Bookman Old Style", Font.PLAIN, 11));
 		scrollPane.setViewportView(table);
 	}

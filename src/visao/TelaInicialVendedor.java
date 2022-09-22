@@ -22,6 +22,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JMenuItem;
 import javax.swing.JMenuBar;
 import javax.swing.ButtonGroup;
+import java.awt.Dimension;
 
 public class TelaInicialVendedor extends JFrame {
 
@@ -53,6 +54,8 @@ public class TelaInicialVendedor extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaInicialVendedor() {
+		setMaximumSize(new Dimension(963, 603));
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 953, 603);
 		

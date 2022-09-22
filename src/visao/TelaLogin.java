@@ -16,6 +16,7 @@ import javax.swing.border.LineBorder;
 
 import controle.LoginBD;
 import modelo.Usuario;
+import java.awt.Dimension;
 
 public class TelaLogin extends JFrame {
 
@@ -45,6 +46,8 @@ public class TelaLogin extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaLogin() {
+		setMaximumSize(new Dimension(963, 603));
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 952, 603);
 		contentPane = new JPanel();

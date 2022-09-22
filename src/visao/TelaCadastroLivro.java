@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Dimension;
 
 public class TelaCadastroLivro extends JFrame {
 
@@ -51,6 +52,8 @@ public class TelaCadastroLivro extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaCadastroLivro() {
+		setMaximumSize(new Dimension(963, 603));
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 963, 603);
 		contentPane = new JPanel();

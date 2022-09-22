@@ -20,6 +20,7 @@ import java.awt.SystemColor;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Dimension;
 
 public class TelaCadastroCliente extends JFrame {
 
@@ -52,6 +53,8 @@ public class TelaCadastroCliente extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaCadastroCliente() {
+		setMaximumSize(new Dimension(963, 603));
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 963, 603);
 		contentPane = new JPanel();
