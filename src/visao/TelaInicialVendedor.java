@@ -81,6 +81,13 @@ public class TelaInicialVendedor extends JFrame {
 		menuBar.add(mnConsultarV);
 		
 		JMenuItem mntConsultarClienteV = new JMenuItem("Cliente");
+		mntConsultarClienteV.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				TelaConsultarClienteVendedor consultaClienteV = new TelaConsultarClienteVendedor();
+				consultaClienteV.setVisible(true);
+			}
+		});
 		mntConsultarClienteV.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
 		mnConsultarV.add(mntConsultarClienteV);
 		
