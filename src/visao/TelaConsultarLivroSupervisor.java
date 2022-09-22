@@ -109,6 +109,7 @@ public class TelaConsultarLivroSupervisor extends JFrame {
 			Livro l = listaLivro.get(i);
 			model.addRow(new Object[] {l.getTitulo(), l.getAutor(), l.getGenero(), l.getIdioma(), l.getAno(), l.getnPaginas(), l.getEditora(), l.getPreco() });
 		}
+		table.setModel(model);
 		table.setFont(new Font("Bookman Old Style", Font.PLAIN, 11));
 		scrollPane.setViewportView(table);
 		
@@ -133,7 +134,7 @@ public class TelaConsultarLivroSupervisor extends JFrame {
 				if (livro != null) {
 					bd.excluirLivro(livro);
 					listaLivro.remove(livro);
-					JOptionPane.showMessageDialog(null, "Livro Excluído com sucesso");
+					JOptionPane.showMessageDialog(null, "Livro Excluï¿½do com sucesso");
 				}
 			}
 		});
