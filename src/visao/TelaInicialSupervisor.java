@@ -114,6 +114,13 @@ public class TelaInicialSupervisor extends JFrame {
 		mnConsultarS.add(mnConsultarClienteS);
 		
 		JMenuItem mnConsultarFornecedorS = new JMenuItem("Forncedor");
+		mnConsultarFornecedorS.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				TelaConsultarFornecedorSupervisor consultaFornecedorS = new TelaConsultarFornecedorSupervisor();
+				consultaFornecedorS.setVisible(true);
+			}
+		});
 		mnConsultarFornecedorS.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
 		mnConsultarS.add(mnConsultarFornecedorS);
 		
