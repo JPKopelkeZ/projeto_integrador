@@ -1,10 +1,38 @@
 package modelo;
 
 public class Endereco {
+	private int id;
 	private String rua;
 	private String bairro;
 	private String estado;
 	private String cidade;
+	
+	
+
+	public Endereco(int id, String rua, String bairro, String estado, String cidade) {
+		super();
+		this.id = id;
+		this.rua = rua;
+		this.bairro = bairro;
+		this.estado = estado;
+		this.cidade = cidade;
+	}
+	
+	
+
+	public Endereco() {
+
+	}
+
+
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 
 	public String getRua() {
 		return rua;
