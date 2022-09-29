@@ -146,6 +146,13 @@ public class TelaInicialSupervisor extends JFrame {
 		mnConsultarS.add(mnConsultarFornecedorS);
 		
 		JMenuItem mntConsultarFuncionarioS = new JMenuItem("Funcionário");
+		mntConsultarFuncionarioS.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				TelaConsultarFuncionarioSupervisor consultaFuncionarioS = new TelaConsultarFuncionarioSupervisor();
+				consultaFuncionarioS.setVisible(true);
+			}
+		});
 		mntConsultarFuncionarioS.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
 		mntConsultarFuncionarioS.setForeground(new Color(0, 0, 0));
 		mnConsultarS.add(mntConsultarFuncionarioS);
