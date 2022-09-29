@@ -5,8 +5,23 @@ public class LivroVendido {
 	private int codigo;
 	private int quantidade;
 	private int precoAtual;
+	public Livro livro;
+	public Venda venda;
 	
-	Livro livro;
+	
+	
+	public LivroVendido(int codigo, int quantidade, int precoAtual, Livro livro, Venda venda) {
+		super();
+		this.codigo = codigo;
+		this.quantidade = quantidade;
+		this.precoAtual = precoAtual;
+		this.livro = livro;
+		this.venda = venda;
+	}
+	public LivroVendido() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public int getCodigo() {
 		return codigo;
 	}
@@ -31,5 +46,13 @@ public class LivroVendido {
 	public void setLivro(Livro livro) {
 		this.livro = livro;
 	}
+	public Venda getVenda() {
+		return venda;
+	}
+	public void setVenda(Venda venda) {
+		this.venda = venda;
+	}
+	
+	
 	
 }
