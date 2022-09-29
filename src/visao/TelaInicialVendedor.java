@@ -123,6 +123,17 @@ public class TelaInicialVendedor extends JFrame {
 		});
 		mntConsultarLivroV.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
 		mnConsultarV.add(mntConsultarLivroV);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Venda");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				TelaConsultarVendaVendedor consultaVendaV =  new TelaConsultarVendaVendedor();
+				consultaVendaV.setVisible(true);
+			}
+		});
+		mntmNewMenuItem.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mnConsultarV.add(mntmNewMenuItem);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(153, 204, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
