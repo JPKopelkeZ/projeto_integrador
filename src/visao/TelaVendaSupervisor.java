@@ -8,8 +8,16 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 
+import controle.ClienteBD;
+import controle.FuncionarioBD;
 import controle.LivroBD;
+import controle.LivroVendidoBD;
+import controle.VendaBD;
+import modelo.Cliente;
+import modelo.Funcionario;
 import modelo.Livro;
+import modelo.LivroVendido;
+import modelo.Venda;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -184,12 +192,33 @@ public class TelaVendaSupervisor extends JFrame {
 					JOptionPane.showMessageDialog(null, "Favor, preencha todos os campos.");
 				}
 				else {
-					String Livro = textLivro.getText();
-					String Cliente = textCliente.getText();
-					String FormaPagamento = textFormaPagamento.getText();
-					String Supervisor = textSupervisor.getText();
+					String LivroID = textLivro.getText();
+					int idlivro = Integer.valueOf(LivroID);
+					
+					String ClienteID = textCliente.getText();
+					int idcliente = Integer.valueOf(ClienteID);
+					
+					String PrecoS = textPreco.getText();
+					int preco = Integer.valueOf(PrecoS);
+					
+					String SupervisorID = textSupervisor.getText();
+					int idfunc = Integer.valueOf(SupervisorID);
+					
 					String Quantidade = textQuantidade.getText();
-
+					int quant = Integer.valueOf(Quantidade);
+					
+					LivroBD lbd = new LivroBD();
+					VendaBD vbd = new VendaBD();
+					
+					Venda venda = new Venda(idcliente, idfunc);
+					vbd.cadastrarVenda(venda);
+					
+					Livro livro = lbd.mostrarLivroPesquisaId(idlivro);
+					LivroVendido lv = new LivroVendido(quant, preco, livro, venda);
+					
+					LivroVendidoBD lvbd = new LivroVendidoBD();
+					lvbd.cadastrarLivroVendido(lv);
+					
 					
 					JOptionPane.showMessageDialog(null, "venda realizada com sucesso!");
 					limparCampos();

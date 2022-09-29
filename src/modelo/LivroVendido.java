@@ -18,6 +18,19 @@ public class LivroVendido {
 		this.livro = livro;
 		this.venda = venda;
 	}
+	
+	
+	
+	public LivroVendido(int quantidade, int precoAtual, Livro livro, Venda venda) {
+		super();
+		this.quantidade = quantidade;
+		this.precoAtual = precoAtual;
+		this.livro = livro;
+		this.venda = venda;
+	}
+
+
+
 	public LivroVendido() {
 		super();
 		// TODO Auto-generated constructor stub
