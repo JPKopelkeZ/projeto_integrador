@@ -5,91 +5,108 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import modelo.*;
 
 public class ClienteBD {
 	public boolean cadastrarCliente (Cliente cliente) {
-		String nome = cliente.getNome();
-		String cpf = cliente.getCpf();
-		Endereco end = cliente.getEndereco();
-		String tel = cliente.getTelefone();
-		String rua = end.getRua();
-		String bairro = end.getBairro();
-		String cidade = end.getCidade();
-		String estado = end.getEstado();
 		boolean verifica = false;
 		try {
 			Connection bd = ConnectionBD.conectar();
-			String ps1 = "INSERT INTO cliente (nomeCliente, cpf) VALUES ("+nome+","+ cpf +")";
-			String ps2 = "INSERT INTO endereco (rua, bairro, cidade, estado) VALUES ("+rua+","+bairro+","+cidade+","+estado+")";
-			PreparedStatement psa = bd.prepareStatement(ps1 + ps2);
-			ResultSet r = psa.executeQuery();
-			
-			while(r.next()) {
-				String idCliente = r.getString("idcliente");
-				String idEndereco = r.getString("idendereco");
-				String idTelefone = r.getString("idtelefone");
-				
-				String ps4 = "UPDATE cliente SET endereco_idendereco = "+idEndereco+" where id = "+idCliente+"";
-				PreparedStatement p = bd.prepareStatement(ps4);
-				verifica = p.execute();
-			}
-			
-			//PreparedStatement psb = con.prepareStatement("SELECT idcliente FROM cliente WHERE cpf = ?");
-			//psb.setString(1, cpf);
-			//ResultSet rs = psb.executeQuery();
-			
-			//PreparedStatement psc = con.prepareStatement("SELECT idendereco FROM endereco WHERE rua = ?, bairro = ?, cidade = ?, estado = ?");
-			//psc.setString(1, rua);
-			//psc.setString(2, bairro);
-			//psc.setString(3, cidade);
-			//psc.setString(4, estado);
-			//ResultSet rs2 = psc.executeQuery();
-			
-			//PreparedStatement pse = con.prepareStatement("SELECT idtelefone from telefone where numero = ?");
-			//pse.setString(1, numero);
-			//ResultSet rs3 = pse.executeQuery();
-			
-			//while(rs.next() && rs2.next()) {
-			//	String id = rs.getString("idcliente");
-			//	String endid = rs2.getString("idendereco");
-			//	
-			//	PreparedStatement psd = con.prepareStatement("UPDATE cliente SET endereco_idendereco = ? where id = ?");
-			//	psd.setString(1, endid);
-			//	psd.setString(2, id);
-			//	psd.execute();
-				
-				
-			//}
-			
-			//while(rs.next() && rs3.next()) {
-			//	String idcli = rs.getString("idcliente");
-			//	String foneid = rs3.getString("idtelefone");
-			//	
-			//	PreparedStatement psf = con.prepareStatement("UPDATE telefone SET cliente_idcliente = ? WHERE id = ?");
-			//	psf.setString(1, idcli);
-			//	psf.setString(2, foneid);
-			//}
+			Endereco end = cliente.getEndereco();
+			int endid = end.getId();
+			String endidS = String.valueOf(endid);
+			PreparedStatement ps = bd.prepareStatement("INSERT INTO cliente (nomeCliente, cpf, endereco_idendereco, telefone) VALUES (?, ?)");
+			ps.setString(1, cliente.getNome());
+			ps.setString(2, cliente.getCpf());
+			ps.setString(3, endidS);
+			ps.setString(4, cliente.getTelefone());
+			verifica = ps.execute();
+
 			ConnectionBD.fechar();
+			return verifica;
 		}
 		catch(SQLException e)
 		{
 			System.out.println("Ocorreu uma excessao SQL: " + e);
+			return false;
 		}
-		return verifica;
 	}
 	
-	public void alterarCliente () {
+	public void alterarCliente (Cliente cliente) {
+		int id = cliente.getCodigo();
+		String idS = String.valueOf(id);
+		Connection bd = ConnectionBD.conectar();
+		Endereco end = cliente.getEndereco();
+		int endid = end.getId();
+		String endidS = String.valueOf(endid);
+		PreparedStatement ps;
+		try {
+			ps = bd.prepareStatement("UPDATE cliente SET nomeCliente = ?, cpf = ?, endereco_idendereco = ?, telefone = ? where idcliente = ?");
+			ps.setString(1, cliente.getNome());
+			ps.setString(2, cliente.getCpf());
+			ps.setString(3, endidS);
+			ps.setString(4, cliente.getTelefone());
+			ps.setString(5, idS);
+			ps.execute();
+			
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
+		
+		
+		ConnectionBD.fechar();
 	}
 	
-	public void mostrarCliente () {
-		
+	public ArrayList<Cliente> mostrarCliente () {
+		try {
+			ArrayList<Cliente> pesquisa = new ArrayList();
+			Connection bd = ConnectionBD.conectar();
+			EnderecoBD ebd = new EnderecoBD();
+			PreparedStatement ps = bd.prepareStatement("SELECT * FROM cliente");
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				String idS = rs.getString("idcliente");
+				String nome = rs.getString("nomeCliente");
+				String cpf = rs.getString("cpf");
+				String endidS = rs.getString("endereco_idendereco");
+				String telefone = rs.getString("telefone");
+				int id = Integer.valueOf(idS);
+				Endereco end = ebd.pesquisaEnderecoID(id);
+				Cliente cliente = new Cliente(id, nome, cpf, end, telefone);
+				pesquisa.add(cliente);
+				
+			}
+			ConnectionBD.fechar();
+			return pesquisa;
+		}
+		catch (SQLException e) {
+			System.out.println("Ocorreu uma excessao SQL: " + e);
+			return null;
+		}
 	}
 	
-	public void excluirCliente () {
+	public void excluirCliente (Cliente cliente) {
+		int id = cliente.getCodigo();
+		String idS = String.valueOf(id);
+		Connection bd = ConnectionBD.conectar();
+		PreparedStatement ps;
+		try {
+			ps = bd.prepareStatement("DELETE FROM cliente WHERE idcliente = ?");
+			ps.setString(1, idS);
+			ps.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
+		
+		
+		ConnectionBD.fechar();
 	}
 
 }

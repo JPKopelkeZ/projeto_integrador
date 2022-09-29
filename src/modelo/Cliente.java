@@ -9,6 +9,22 @@ public class Cliente {
 	private String telefone;
 	
 
+	public Cliente(int id, String nome, String cpf, Endereco end, String telefone) {
+		super();
+		this.nome = nome;
+		this.cpf = cpf;
+		endereco = end;
+		this.telefone = telefone;
+	}
+	
+	
+
+	public Cliente() {
+		super();
+	}
+
+
+
 	public String getNome() {
 		return nome;
 	}
