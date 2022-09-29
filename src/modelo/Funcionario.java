@@ -8,6 +8,27 @@ public class Funcionario {
 	private String funcao;
 	private String telefone;
 	
+	
+	
+	public Funcionario(int codigo, String nome, String cpf, float salario, String funcao, String telefone) {
+		super();
+		this.codigo = codigo;
+		this.nome = nome;
+		this.cpf = cpf;
+		this.salario = salario;
+		this.funcao = funcao;
+		this.telefone = telefone;
+	}
+	
+	
+	
+	public Funcionario() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
 	public int getCodigo() {
 		return codigo;
 	}

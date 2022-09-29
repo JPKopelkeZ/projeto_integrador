@@ -90,6 +90,35 @@ public class ClienteBD {
 		}
 	}
 	
+	public Cliente pesquisaClienteID(int id) {
+		try {
+			Cliente cliente = new Cliente();
+			String idS = String.valueOf(id);
+			Connection bd = ConnectionBD.conectar();
+			EnderecoBD ebd = new EnderecoBD();
+			PreparedStatement ps = bd.prepareStatement("SELECT * FROM cliente WHERE idcliente = ?");
+			ps.setString(1, idS);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				String nome = rs.getString("nomeCliente");
+				String cpf = rs.getString("cpf");
+				String endidS = rs.getString("endereco_idendereco");
+				String telefone = rs.getString("telefone");
+				Endereco end = ebd.pesquisaEnderecoID(id);
+				cliente = new Cliente(id, nome, cpf, end, telefone);
+			}
+			
+			
+			
+			ConnectionBD.fechar();
+			return cliente;
+		}
+		catch (SQLException e) {
+			System.out.println("Ocorreu uma excessao SQL: " + e);
+			return null;
+		}
+	}
+	
 	public void excluirCliente (Cliente cliente) {
 		int id = cliente.getCodigo();
 		String idS = String.valueOf(id);
