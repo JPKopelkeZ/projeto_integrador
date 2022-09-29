@@ -83,14 +83,14 @@ public class LivroVendidoBD {
 			while(rs.next()) {
 				String idS = rs.getString("idlivroVendido");
 				String quantidade = rs.getString("quantidade");
-				int quant = Integer.valueOf(quantidade);
+				int quant = Integer.parseInt(quantidade);
 				String precoAtual = rs.getString("precoAtual");
-				int preco = Integer.valueOf(precoAtual);
+				float preco = Float.parseFloat(precoAtual);
 				String idLivroS = rs.getString("livro_idlivro");
-				int idLivro = Integer.valueOf(idLivroS);
+				int idLivro = Integer.parseInt(idLivroS);
 				String idVendaS = rs.getString("venda_idvenda");
-				int idVenda = Integer.valueOf(idVendaS);
-				int id = Integer.valueOf(idS);
+				int idVenda = Integer.parseInt(idVendaS);
+				int id = Integer.parseInt(idS);
 				Livro livro = lbd.mostrarLivroPesquisaId(idLivro);
 				Venda venda = vbd.pesquisarVenda(idVenda);
 				LivroVendido livroVendido = new LivroVendido(id, quant, preco, livro, venda);

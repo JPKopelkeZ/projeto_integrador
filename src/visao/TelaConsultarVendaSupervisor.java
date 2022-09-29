@@ -15,14 +15,24 @@ import java.awt.SystemColor;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import controle.ClienteBD;
+import controle.FuncionarioBD;
+import controle.LivroVendidoBD;
+import modelo.*;
+
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class TelaConsultarVendaSupervisor extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
-
+	ArrayList<LivroVendido>listaVenda = new ArrayList();
+	LivroVendidoBD bd = new LivroVendidoBD();
+	ClienteBD cbd = new ClienteBD();
+	FuncionarioBD fbd = new FuncionarioBD();
 	/**
 	 * Launch the application.
 	 */
@@ -45,6 +55,7 @@ public class TelaConsultarVendaSupervisor extends JFrame {
 	public TelaConsultarVendaSupervisor() {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
+		listaVenda = bd.mostrarLivrosVendidos();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 963, 603);
 		contentPane = new JPanel();
@@ -84,17 +95,42 @@ public class TelaConsultarVendaSupervisor extends JFrame {
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Livro", "Cliente", "Funcion\u00E1rio", "Quantidade", "Total"
+		
+		DefaultTableModel model = new DefaultTableModel(
+				new Object[][] {
+				},
+				new String[] {
+						"Livro", "Cliente", "Funcion\u00E1rio", "Quantidade", "Total"
+				}
+			);
+			for (int i=0; i < listaVenda.size(); i++) {
+				LivroVendido lv = listaVenda.get(i);
+				Livro l = lv.getLivro();
+				Venda v = lv.getVenda();
+				int idC = v.getIdcliente();
+				int idF = v.getIdfuncionario();
+				Cliente c = cbd.pesquisaClienteID(idC);
+				String nomecliente = c.getNome();
+				Funcionario f = fbd.pesquisaFuncionarioID(idF);
+				String nomefunc = f.getNome();
+				
+				model.addRow(new Object[] { l.getTitulo(), nomecliente, nomefunc, lv.getQuantidade(), lv.getPrecoAtual()});
 			}
-		));
+			table.setModel(model);
+		
+		
 		table.setFont(new Font("Bookman Old Style", Font.PLAIN, 11));
 		scrollPane.setViewportView(table);
 		
 		JButton btnSelecionar = new JButton("Selecionar");
+		btnSelecionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaVendaSelecionada tvs = new TelaVendaSelecionada();
+				//selecionar coluna
+				tvs.setVisible(true);
+				
+			}
+		});
 		btnSelecionar.setForeground(Color.BLACK);
 		btnSelecionar.setFont(new Font("Bookman Old Style", Font.PLAIN, 12));
 		btnSelecionar.setBackground(SystemColor.menu);
