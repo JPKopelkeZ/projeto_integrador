@@ -23,6 +23,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import java.awt.Dimension;
 
 public class TelaVendaSupervisor extends JFrame {
 
@@ -54,6 +55,8 @@ public class TelaVendaSupervisor extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaVendaSupervisor() {
+		setMaximumSize(new Dimension(963, 603));
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 963, 624);
 		
