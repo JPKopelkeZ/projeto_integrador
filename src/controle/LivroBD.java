@@ -106,6 +106,38 @@ public class LivroBD {
 			return null;
 		}
 	}
+	//retornar livro por id
+	public Livro mostrarLivroPesquisaId(int id) {
+		try {
+		Connection bd = ConnectionBD.conectar();
+		String idS = String.valueOf(id);
+		PreparedStatement ps = bd.prepareStatement("SELECT * FROM livro WHERE idlivro = ? ");
+		ps.setString(1, idS);
+		ResultSet rs = ps.executeQuery();
+		Livro livro = new Livro();
+		
+		while(rs.next()) {
+			String tituloS = rs.getString("titulo");
+			String anoS = rs.getString("ano");
+			int ano = Integer.valueOf(anoS);
+			String nPagS = rs.getString("numeroPaginas");
+			int nPag = Integer.valueOf(nPagS);
+			String editora = rs.getString("editora");
+			String genero = rs.getString("genero");
+			String idioma = rs.getString("idioma");
+			String autor = rs.getString("autor");
+			livro = new Livro(tituloS, editora, ano, idioma, genero, nPag, autor);
+		}
+
+		
+		ConnectionBD.fechar();
+		return livro;
+		}
+		catch (SQLException e) {
+			System.out.println("Ocorreu uma excessao SQL: " + e);
+			return null;
+		}
+	}
 	//Consultar/Listar Livros
 	public ArrayList<Livro> mostrarLivro() {
 		try {

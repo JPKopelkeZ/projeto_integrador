@@ -112,7 +112,7 @@ public class EnderecoBD {
 		Connection bd = ConnectionBD.conectar();
 		PreparedStatement ps;
 		try {
-			ps = bd.prepareStatement("DELETE FROM endreco WHERE idendereco = ?");
+			ps = bd.prepareStatement("DELETE FROM endereco WHERE idendereco = ?");
 			ps.setString(1, idS);
 			ps.execute();
 		} catch (SQLException e) {

@@ -15,6 +15,11 @@ public class Livro {
 	
 	
 	
+	public Livro() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public Livro(int codigo, String titulo, String editora, int ano, String idioma, String genero,
 			int nPaginas, String autor) {
 		super();
