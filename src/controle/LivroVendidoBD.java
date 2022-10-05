@@ -95,13 +95,14 @@ public class LivroVendidoBD {
 				Venda venda = vbd.pesquisarVenda(idVenda);
 				LivroVendido livroVendido = new LivroVendido(id, quant, preco, livro, venda);
 				pesquisa.add(livroVendido);
+				return pesquisa;
 				
 			}
 			ConnectionBD.fechar();
 			return pesquisa;
 		}
 		catch (SQLException e) {
-			System.out.println("Ocorreu uma excessao SQL: " + e);
+			System.out.println("Ocorreu uma excessao SQL LivroVendidoBD: " + e);
 			return null;
 		}
 	}

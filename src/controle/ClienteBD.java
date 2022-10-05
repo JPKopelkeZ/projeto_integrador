@@ -114,7 +114,7 @@ public class ClienteBD {
 			return cliente;
 		}
 		catch (SQLException e) {
-			System.out.println("Ocorreu uma excessao SQL: " + e);
+			System.out.println("Ocorreu uma excessao SQL pesquisaClienteID: " + e);
 			return null;
 		}
 	}
