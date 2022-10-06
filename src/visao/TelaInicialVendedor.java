@@ -70,7 +70,11 @@ public class TelaInicialVendedor extends JFrame {
 		JMenuItem mntNovaVendaV = new JMenuItem("Venda");
 		mntNovaVendaV.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				TelaVendaVendedor TelaVendaVendedor = new TelaVendaVendedor();
+				TelaVendaVendedor.setVisible(true);
 			}
+			
+			
 		});
 		mntNovaVendaV.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
 		mnNovaV.add(mntNovaVendaV);
@@ -88,6 +92,7 @@ public class TelaInicialVendedor extends JFrame {
 				consultaClienteV.setVisible(true);
 			}
 		});
+		
 		mntConsultarClienteV.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
 		mnConsultarV.add(mntConsultarClienteV);
 		

@@ -7,18 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
-
-import controle.ClienteBD;
-import controle.FuncionarioBD;
-import controle.LivroBD;
-import controle.LivroVendidoBD;
-import controle.VendaBD;
-import modelo.Cliente;
-import modelo.Funcionario;
-import modelo.Livro;
-import modelo.LivroVendido;
-import modelo.Venda;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -33,14 +21,14 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.Dimension;
 
-public class TelaVendaSupervisor extends JFrame {
+public class TelaVendaVendedor extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textLivro;
 	private JTextField textCliente;
 	private JTextField textPreco;
 	private JTextField textFormaPagamento;
-	private JTextField textSupervisor;
+	private JTextField textVendedor;
 	private JTextField textQuantidade;
 
 	/**
@@ -50,7 +38,7 @@ public class TelaVendaSupervisor extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaVendaSupervisor frame = new TelaVendaSupervisor();
+					TelaVendaVendedor frame = new TelaVendaVendedor();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -62,11 +50,11 @@ public class TelaVendaSupervisor extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaVendaSupervisor() {
+	public TelaVendaVendedor() {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 963, 624);
+		setBounds(100, 100, 963, 603);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -113,9 +101,10 @@ public class TelaVendaSupervisor extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaInicialSupervisor telaSupervisor = new TelaInicialSupervisor();
-				telaSupervisor.setVisible(true);
+				TelaInicialVendedor TelaVendedor = new TelaInicialVendedor();
+				TelaVendedor.setVisible(true);
 			}
+			
 		});
 		btnVoltar.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
 		btnVoltar.setBackground(SystemColor.menu);
@@ -125,7 +114,7 @@ public class TelaVendaSupervisor extends JFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_1.setBounds(75, 116, 768, 437);
+		panel_1.setBounds(75, 116, 768, 420);
 		contentPane_1.add(panel_1);
 		
 		JLabel lblNovaVenda = new JLabel("Nova Venda ");
@@ -141,7 +130,7 @@ public class TelaVendaSupervisor extends JFrame {
 		textLivro = new JTextField();
 		textLivro.setFont(new Font("Calisto MT", Font.PLAIN, 13));
 		textLivro.setColumns(10);
-		textLivro.setBounds(115, 60, 470, 30);
+		textLivro.setBounds(115, 66, 470, 30);
 		panel_1.add(textLivro);
 		
 		JLabel lblCliente = new JLabel("Cliente");
@@ -177,88 +166,61 @@ public class TelaVendaSupervisor extends JFrame {
 		lblNumeroDPagina.setBounds(27, 183, 197, 24);
 		panel_1.add(lblNumeroDPagina);
 		
-		textSupervisor = new JTextField();
-		textSupervisor.setFont(new Font("Calisto MT", Font.PLAIN, 13));
-		textSupervisor.setColumns(10);
-		textSupervisor.setBounds(208, 223, 377, 30);
-		panel_1.add(textSupervisor);
+		textVendedor = new JTextField();
+		textVendedor.setFont(new Font("Calisto MT", Font.PLAIN, 13));
+		textVendedor.setColumns(10);
+		textVendedor.setBounds(208, 223, 377, 30);
+		panel_1.add(textVendedor);
 		
-		JLabel lblSupervisor = new JLabel("Supervisor");
-		lblSupervisor.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
-		lblSupervisor.setBounds(103, 224, 144, 24);
-		panel_1.add(lblSupervisor);
+		JLabel lblVendedor = new JLabel("Vendedor");
+		lblVendedor.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
+		lblVendedor.setBounds(103, 224, 144, 24);
+		panel_1.add(lblVendedor);
 		
 		JButton btnFinalizar = new JButton("Finalizar");
 		btnFinalizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (textLivro.getText().equals("")||textCliente.getText().equals("") || textPreco.getText().equals("")||textFormaPagamento.getText().equals("")||textSupervisor.getText().equals("")||textQuantidade.getText().equals("")) {
+				if (textLivro.getText().equals("")||textCliente.getText().equals("") || textPreco.getText().equals("")||textFormaPagamento.getText().equals("")||textVendedor.getText().equals("")||textQuantidade.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "Favor, preencha todos os campos.");
 				}
 				else {
-					String LivroID = textLivro.getText();
-					int idlivro = Integer.valueOf(LivroID);
-					
-					String ClienteID = textCliente.getText();
-					int idcliente = Integer.valueOf(ClienteID);
-					
-					String PrecoS = textPreco.getText();
-					int preco = Integer.valueOf(PrecoS);
-					
-					String SupervisorID = textSupervisor.getText();
-					int idfunc = Integer.valueOf(SupervisorID);
-					
+					String Livro = textLivro.getText();
+					String Cliente = textCliente.getText();
+					String FormaPagamento = textFormaPagamento.getText();
+					String Supervisor = textVendedor.getText();
 					String Quantidade = textQuantidade.getText();
-					int quant = Integer.valueOf(Quantidade);
-					
-					LivroBD lbd = new LivroBD();
-					VendaBD vbd = new VendaBD();
-					
-					Venda venda = new Venda(idcliente, idfunc);
-					vbd.cadastrarVenda(venda);
-					
-					Livro livro = lbd.mostrarLivroPesquisaId(idlivro);
-					LivroVendido lv = new LivroVendido(quant, preco, livro, venda);
-					
-					LivroVendidoBD lvbd = new LivroVendidoBD();
-					lvbd.cadastrarLivroVendido(lv);
-					
+
 					
 					JOptionPane.showMessageDialog(null, "Venda realizada com sucesso!");
 					limparCampos();
 				}
 			}
-			
 		});
-		
 		btnFinalizar.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
 		btnFinalizar.setBackground(SystemColor.menu);
-		btnFinalizar.setBounds(643, 396, 115, 30);
+		btnFinalizar.setBounds(643, 379, 115, 30);
 		panel_1.add(btnFinalizar);
 		
 		JButton btnNewButton = new JButton("Cancelar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				limparCampos();
-				}
-			
+			}
 		});
 		btnNewButton.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
 		btnNewButton.setBackground(SystemColor.menu);
-		btnNewButton.setBounds(531, 396, 110, 30);
+		btnNewButton.setBounds(523, 379, 110, 30);
 		panel_1.add(btnNewButton);
 		
 		textQuantidade = new JTextField();
+		textQuantidade.setColumns(10);
 		textQuantidade.setBounds(207, 264, 378, 30);
 		panel_1.add(textQuantidade);
-		textQuantidade.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("Quantidade");
 		lblNewLabel.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
 		lblNewLabel.setBounds(103, 265, 110, 24);
 		panel_1.add(lblNewLabel);
-		
-
-
 	}
 	protected void limparCampos() {
 		// TODO Auto-generated method stub
@@ -266,7 +228,7 @@ public class TelaVendaSupervisor extends JFrame {
 		textCliente.setText("");
 		textPreco.setText("");
 		textFormaPagamento.setText("");
-		textSupervisor.setText("");
+		textVendedor.setText("");
 		textQuantidade.setText("");
 		}
 }
