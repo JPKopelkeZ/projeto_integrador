@@ -58,10 +58,10 @@ public class FornecedorBD {
 	
 	public ArrayList<Fornecedor> mostrarFornecedor(){
 		try {
-			ArrayList<Fornecedor> pesquisa = new ArrayList();
+			ArrayList<Fornecedor> pesquisa = new ArrayList<>();
 			Connection bd = ConnectionBD.conectar();
 			EnderecoBD ebd = new EnderecoBD();
-			PreparedStatement ps = bd.prepareStatement("SELECT * FROM fornecedor");
+			PreparedStatement ps = bd.prepareStatement("SELECT * FROM fornecedor INNER JOIN endereco ON fornecedor.endereco_idendereco = endereco.idendereco");
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				String idS = rs.getString("idfornecedor");
@@ -69,7 +69,12 @@ public class FornecedorBD {
 				String endidS = rs.getString("endereco_idendereco");
 				String telefone = rs.getString("telefone");
 				int id = Integer.valueOf(idS);
-				Endereco end = ebd.pesquisaEnderecoID(id);
+				Endereco end = new Endereco();
+				end.setId(rs.getInt("endereco.idendereco"));
+				end.setEstado(rs.getString("endereco.estado"));
+				end.setBairro(rs.getString("endereco.bairro"));
+				end.setCidade(rs.getString("endereco.cidade"));
+				end.setRua(rs.getString("endereco.rua"));
 				Fornecedor fornecedor = new Fornecedor(id, nome, end, telefone);
 				pesquisa.add(fornecedor);
 				
