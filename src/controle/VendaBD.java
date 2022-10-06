@@ -75,15 +75,12 @@ public class VendaBD {
 				int idfunc = Integer.valueOf(idfuncionario);
 				
 				venda = new Venda(idcli, idfunc);
-			}
-			
-			
-			
+			}			
 			ConnectionBD.fechar();
 			return venda;
 		}
 		catch (SQLException e) {
-			System.out.println("Ocorreu uma excessao SQL: " + e);
+			System.out.println("Ocorreu uma excessao SQL VendaBD: " + e);
 			return null;
 		}
 	}

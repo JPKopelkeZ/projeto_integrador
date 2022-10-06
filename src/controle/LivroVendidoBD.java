@@ -74,25 +74,34 @@ public class LivroVendidoBD {
 	
 	public ArrayList<LivroVendido> mostrarLivrosVendidos(){
 		try {
-			ArrayList<LivroVendido> pesquisa = new ArrayList();
+			ArrayList<LivroVendido> pesquisa = new ArrayList<>();
 			Connection bd = ConnectionBD.conectar();
 			LivroBD lbd = new LivroBD();
 			VendaBD vbd = new VendaBD();
-			PreparedStatement ps = bd.prepareStatement("SELECT * FROM livroVendido");
+			PreparedStatement ps = bd.prepareStatement("SELECT * FROM livroVendido INNER JOIN livro ON livro.idlivro = livroVendido.livro_idlivro INNER JOIN venda ON venda.idvenda = livroVendido.venda_idvenda");
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				String idS = rs.getString("idlivroVendido");
-				String quantidade = rs.getString("quantidade");
-				int quant = Integer.valueOf(quantidade);
-				String precoAtual = rs.getString("precoAtual");
-				int preco = Integer.valueOf(precoAtual);
-				String idLivroS = rs.getString("livro_idlivro");
-				int idLivro = Integer.valueOf(idLivroS);
-				String idVendaS = rs.getString("venda_idvenda");
-				int idVenda = Integer.valueOf(idVendaS);
+				String idS = rs.getString("livroVendido.idlivroVendido");
 				int id = Integer.valueOf(idS);
-				Livro livro = lbd.mostrarLivroPesquisaId(idLivro);
-				Venda venda = vbd.pesquisarVenda(idVenda);
+				String quantidade = rs.getString("livroVendido.quantidade");
+				int quant = Integer.parseInt(quantidade);
+				String precoAtual = rs.getString("livroVendido.precoAtual");
+				float preco = Float.parseFloat(precoAtual);
+				
+				Livro livro = new Livro();
+				livro.setTitulo(rs.getString("livro.titulo"));
+				livro.setPreco(Float.parseFloat(rs.getString("livro.preco")));
+				livro.setEditora(rs.getString("livro.editora"));
+				livro.setIdioma(rs.getString("livro.idioma"));
+				livro.setGenero(rs.getString("livro.genero"));
+				livro.setAno(Integer.valueOf(rs.getString("livro.ano")));
+				livro.setnPaginas(Integer.valueOf(rs.getString("livro.numeroPaginas")));
+				livro.setAutor(rs.getString("livro.autor"));
+				
+				Venda venda = new Venda();
+				venda.setIdcliente(Integer.valueOf(rs.getString("venda.cliente_idcliente")));
+				venda.setIdfuncionario(Integer.valueOf(rs.getString("venda.funcionario_idfuncionario")));
+				
 				LivroVendido livroVendido = new LivroVendido(id, quant, preco, livro, venda);
 				pesquisa.add(livroVendido);
 				
@@ -101,7 +110,7 @@ public class LivroVendidoBD {
 			return pesquisa;
 		}
 		catch (SQLException e) {
-			System.out.println("Ocorreu uma excessao SQL: " + e);
+			System.out.println("Ocorreu uma excessao SQL LivroVendidoBD: " + e);
 			return null;
 		}
 	}

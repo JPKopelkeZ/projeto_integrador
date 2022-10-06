@@ -29,7 +29,7 @@ public class EnderecoBD {
 	
 	public ArrayList<Endereco> mostrarEndereco(){
 		try {
-			ArrayList<Endereco> pesquisa = new ArrayList();
+			ArrayList<Endereco> pesquisa = new ArrayList<>();
 			Connection bd = ConnectionBD.conectar();
 			PreparedStatement ps = bd.prepareStatement("SELECT * FROM endereco");
 			ResultSet rs = ps.executeQuery();

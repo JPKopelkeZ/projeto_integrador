@@ -4,13 +4,13 @@ public class LivroVendido {
 
 	private int codigo;
 	private int quantidade;
-	private int precoAtual;
+	private float precoAtual;
 	public Livro livro;
 	public Venda venda;
 	
 	
 	
-	public LivroVendido(int codigo, int quantidade, int precoAtual, Livro livro, Venda venda) {
+	public LivroVendido(int codigo, int quantidade, float precoAtual, Livro livro, Venda venda) {
 		super();
 		this.codigo = codigo;
 		this.quantidade = quantidade;
@@ -21,7 +21,7 @@ public class LivroVendido {
 	
 	
 	
-	public LivroVendido(int quantidade, int precoAtual, Livro livro, Venda venda) {
+	public LivroVendido(int quantidade, float precoAtual, Livro livro, Venda venda) {
 		super();
 		this.quantidade = quantidade;
 		this.precoAtual = precoAtual;
@@ -47,10 +47,10 @@ public class LivroVendido {
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
-	public int getPrecoAtual() {
+	public float getPrecoAtual() {
 		return precoAtual;
 	}
-	public void setPrecoAtual(int precoAtual) {
+	public void setPrecoAtual(float precoAtual) {
 		this.precoAtual = precoAtual;
 	}
 	public Livro getLivro() {
