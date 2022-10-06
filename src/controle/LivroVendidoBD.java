@@ -76,8 +76,6 @@ public class LivroVendidoBD {
 		try {
 			ArrayList<LivroVendido> pesquisa = new ArrayList<>();
 			Connection bd = ConnectionBD.conectar();
-			LivroBD lbd = new LivroBD();
-			VendaBD vbd = new VendaBD();
 			PreparedStatement ps = bd.prepareStatement("SELECT * FROM livroVendido INNER JOIN livro ON livro.idlivro = livroVendido.livro_idlivro INNER JOIN venda ON venda.idvenda = livroVendido.venda_idvenda");
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
@@ -89,6 +87,7 @@ public class LivroVendidoBD {
 				float preco = Float.parseFloat(precoAtual);
 				
 				Livro livro = new Livro();
+				livro.setCodigo(Integer.parseInt(rs.getString("livro.idlivro")));
 				livro.setTitulo(rs.getString("livro.titulo"));
 				livro.setPreco(Float.parseFloat(rs.getString("livro.preco")));
 				livro.setEditora(rs.getString("livro.editora"));
@@ -99,6 +98,7 @@ public class LivroVendidoBD {
 				livro.setAutor(rs.getString("livro.autor"));
 				
 				Venda venda = new Venda();
+				venda.setId(Integer.valueOf(rs.getString("idvenda")));
 				venda.setIdcliente(Integer.valueOf(rs.getString("venda.cliente_idcliente")));
 				venda.setIdfuncionario(Integer.valueOf(rs.getString("venda.funcionario_idfuncionario")));
 				

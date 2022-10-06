@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -22,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
 import controle.ClienteBD;
 import controle.FuncionarioBD;
 import controle.LivroVendidoBD;
+import controle.VendaBD;
 import modelo.Cliente;
 import modelo.Funcionario;
 import modelo.Livro;
@@ -36,6 +38,7 @@ public class TelaConsultarVendaSupervisor extends JFrame {
 	LivroVendidoBD bd = new LivroVendidoBD();
 	ClienteBD cbd = new ClienteBD();
 	FuncionarioBD fbd = new FuncionarioBD();
+	VendaBD vbd = new VendaBD();
 
 	/**
 	 * Launch the application.
@@ -128,8 +131,10 @@ public class TelaConsultarVendaSupervisor extends JFrame {
 		btnSelecionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaVendaSelecionada tvs = new TelaVendaSelecionada();
-				// selecionar coluna
+				// tls.selecionarColuna(listaLivro.get(table.getSelectedRow()));
+				tvs.selecionarColuna(listaVenda.get(table.getSelectedRow()));
 				tvs.setVisible(true);
+				dispose();
 
 			}
 		});
@@ -140,6 +145,23 @@ public class TelaConsultarVendaSupervisor extends JFrame {
 		contentPane.add(btnSelecionar);
 
 		JButton btnExcluir = new JButton("Excluir");
+		btnExcluir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				LivroVendido lv = listaVenda.get(table.getSelectedRow());
+				if (lv != null) {
+					Venda venda = lv.getVenda();
+					bd.excluirLivroVendido(lv);
+					listaVenda.remove(lv);
+					vbd.excluirVenda(venda);
+					JOptionPane.showMessageDialog(null, "Livro Excluído com sucesso");
+
+					setVisible(false);
+					TelaConsultarVendaSupervisor consultaVenda = new TelaConsultarVendaSupervisor();
+					consultaVenda.setVisible(true);
+				}
+			}
+			
+		});
 		btnExcluir.setForeground(Color.BLACK);
 		btnExcluir.setFont(new Font("Bookman Old Style", Font.PLAIN, 12));
 		btnExcluir.setBackground(SystemColor.menu);

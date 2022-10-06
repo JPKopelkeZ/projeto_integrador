@@ -126,7 +126,7 @@ public class LivroBD {
 			String genero = rs.getString("genero");
 			String idioma = rs.getString("idioma");
 			String autor = rs.getString("autor");
-			livro = new Livro(tituloS, editora, ano, idioma, genero, nPag, autor);
+			livro = new Livro(id, tituloS, editora, ano, idioma, genero, nPag, autor);
 		}
 
 		

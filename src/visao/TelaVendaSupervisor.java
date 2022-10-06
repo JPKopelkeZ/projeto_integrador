@@ -202,7 +202,7 @@ public class TelaVendaSupervisor extends JFrame {
 					int idcliente = Integer.valueOf(ClienteID);
 					
 					String PrecoS = textPreco.getText();
-					int preco = Integer.valueOf(PrecoS);
+					float preco = Float.parseFloat(PrecoS);
 					
 					String SupervisorID = textSupervisor.getText();
 					int idfunc = Integer.valueOf(SupervisorID);
@@ -215,9 +215,10 @@ public class TelaVendaSupervisor extends JFrame {
 					
 					Venda venda = new Venda(idcliente, idfunc);
 					vbd.cadastrarVenda(venda);
+					Venda vendaCadastrada = vbd.pesquisarUltimaVenda();
 					
 					Livro livro = lbd.mostrarLivroPesquisaId(idlivro);
-					LivroVendido lv = new LivroVendido(quant, preco, livro, venda);
+					LivroVendido lv = new LivroVendido(quant, preco, livro, vendaCadastrada);
 					
 					LivroVendidoBD lvbd = new LivroVendidoBD();
 					lvbd.cadastrarLivroVendido(lv);

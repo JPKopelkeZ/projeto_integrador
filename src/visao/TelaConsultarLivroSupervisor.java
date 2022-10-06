@@ -27,7 +27,7 @@ public class TelaConsultarLivroSupervisor extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
-	ArrayList<Livro> listaLivro = new ArrayList();
+	ArrayList<Livro> listaLivro = new ArrayList<>();
 	LivroBD bd = new LivroBD();
 	
 

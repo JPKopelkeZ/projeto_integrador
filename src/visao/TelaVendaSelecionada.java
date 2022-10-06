@@ -8,12 +8,23 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Dimension;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
+
+import controle.LivroBD;
+import controle.LivroVendidoBD;
+import controle.VendaBD;
+import modelo.Livro;
+import modelo.LivroVendido;
+import modelo.Venda;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.SystemColor;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class TelaVendaSelecionada extends JFrame {
@@ -24,6 +35,13 @@ public class TelaVendaSelecionada extends JFrame {
 	private JTextField txtFuncionario;
 	private JTextField txtQuantidade;
 	private JTextField txtTotal;
+	private LivroVendido lv;
+	private Livro livro;
+	private Venda venda;
+	ArrayList<LivroVendido> listaLivroVendido = new ArrayList<LivroVendido>();
+	LivroVendidoBD lvbd = new LivroVendidoBD();
+	LivroBD lbd = new LivroBD();
+	VendaBD vbd = new VendaBD();
 
 	/**
 	 * Launch the application.
@@ -47,6 +65,7 @@ public class TelaVendaSelecionada extends JFrame {
 	public TelaVendaSelecionada() {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
+		listaLivroVendido = lvbd.mostrarLivrosVendidos();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 963, 603);
 		contentPane = new JPanel();
@@ -147,6 +166,30 @@ public class TelaVendaSelecionada extends JFrame {
 		panel_1.add(txtTotal);
 		
 		JButton btnAlterar = new JButton("Alterar");
+		btnAlterar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int idlivro = Integer.valueOf(txtLivro.getText());
+				livro = lbd.mostrarLivroPesquisaId(idlivro);
+				
+				int idcliente = Integer.valueOf(txtCliente.getText());
+				int idfuncionario = Integer.valueOf(txtFuncionario.getText());
+				venda.setIdcliente(idcliente);
+				venda.setIdfuncionario(idfuncionario);
+
+				listaLivroVendido = lvbd.mostrarLivrosVendidos();
+				vbd.alterarVenda(venda);
+				
+				lv.setLivro(livro);
+				lv.setVenda(venda);
+				lv.setPrecoAtual(Float.parseFloat(txtTotal.getText()));
+				lv.setQuantidade(Integer.valueOf(txtQuantidade.getText()));
+				
+				lvbd.alterarLivroVendido(lv);
+				listaLivroVendido = lvbd.mostrarLivrosVendidos();
+				JOptionPane.showMessageDialog(null, "Os Dados da Venda foram Alterados");
+				limparCampos();
+			}
+		});
 		btnAlterar.setForeground(Color.BLACK);
 		btnAlterar.setFont(new Font("Bookman Old Style", Font.PLAIN, 12));
 		btnAlterar.setBackground(SystemColor.menu);
@@ -166,6 +209,30 @@ public class TelaVendaSelecionada extends JFrame {
 		btnCancelar.setBackground(SystemColor.menu);
 		btnCancelar.setBounds(720, 530, 89, 23);
 		contentPane.add(btnCancelar);
+	}
+	
+	public void selecionarColuna (LivroVendido lv) {
+		this.lv = lv;
+		//txtTitulo.setText(livroSelecionado.getTitulo());
+		livro = lv.getLivro();
+		int livroid = livro.getCodigo();
+		venda = lv.getVenda();
+		int clienteid = venda.getIdcliente();
+		int funcid = venda.getIdfuncionario();
+		txtLivro.setText(String.valueOf(livroid));
+		txtCliente.setText(String.valueOf(clienteid));
+		txtFuncionario.setText(String.valueOf(funcid));
+		txtQuantidade.setText(String.valueOf(lv.getQuantidade()));
+		txtTotal.setText(String.valueOf(lv.getPrecoAtual()));
+		
+	}
+	
+	protected void limparCampos() {
+		txtLivro.setText("");
+		txtCliente.setText("");
+		txtFuncionario.setText("");
+		txtQuantidade.setText("");
+		txtTotal.setText("");
 	}
 
 }

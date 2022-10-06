@@ -74,7 +74,32 @@ public class VendaBD {
 				int idcli = Integer.valueOf(idcliente);
 				int idfunc = Integer.valueOf(idfuncionario);
 				
-				venda = new Venda(idcli, idfunc);
+				venda = new Venda(id, idcli, idfunc);
+			}			
+			ConnectionBD.fechar();
+			return venda;
+		}
+		catch (SQLException e) {
+			System.out.println("Ocorreu uma excessao SQL VendaBD: " + e);
+			return null;
+		}
+	}
+	
+	public Venda pesquisarUltimaVenda() {
+		try {
+			Venda venda = new Venda();
+			Connection bd = ConnectionBD.conectar();
+			PreparedStatement ps = bd.prepareStatement("SELECT * FROM venda ORDER BY idvenda desc limit 1");
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				String idS = rs.getString("idvenda");
+				String idcliente = rs.getString("cliente_idcliente");
+				String idfuncionario = rs.getString("funcionario_idfuncionario");
+				int id = Integer.valueOf(idS);
+				int idcli = Integer.valueOf(idcliente);
+				int idfunc = Integer.valueOf(idfuncionario);
+				
+				venda = new Venda(id, idcli, idfunc);
 			}			
 			ConnectionBD.fechar();
 			return venda;

@@ -14,6 +14,14 @@ public class Venda {
 	}
 	
 	
+	public Venda(int id, int idcliente, int idfuncionario) {
+		super();
+		this.id = id;
+		this.idcliente = idcliente;
+		this.idfuncionario = idfuncionario;
+	}
+
+
 	public Venda() {
 		super();
 	}
