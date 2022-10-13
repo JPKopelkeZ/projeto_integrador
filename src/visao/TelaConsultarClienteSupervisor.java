@@ -8,6 +8,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.SystemColor;
@@ -16,6 +18,7 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import controle.ClienteBD;
+import controle.EnderecoBD;
 import modelo.Cliente;
 import modelo.Endereco;
 
@@ -30,6 +33,7 @@ public class TelaConsultarClienteSupervisor extends JFrame {
 	private JTable table;
 	ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
 	ClienteBD bd = new ClienteBD();
+	EnderecoBD ebd = new EnderecoBD();
 
 	/**
 	 * Launch the application.
@@ -122,6 +126,22 @@ public class TelaConsultarClienteSupervisor extends JFrame {
 		contentPane.add(btnSelecionar);
 		
 		JButton btnExcluir = new JButton("Excluir");
+		btnExcluir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Cliente c = listaClientes.get(table.getSelectedRow());
+				if (c != null) {
+					Endereco endereco = c.getEndereco();
+					bd.excluirCliente(c);
+					listaClientes.remove(c);
+					ebd.excluirEndereco(endereco);
+					JOptionPane.showMessageDialog(null, "Cliente excluído com sucesso!");
+					
+					setVisible(false);
+					TelaConsultarClienteSupervisor consultaCliente = new TelaConsultarClienteSupervisor();
+					consultaCliente.setVisible(true);
+				}
+			}
+		});
 		btnExcluir.setForeground(Color.BLACK);
 		btnExcluir.setFont(new Font("Bookman Old Style", Font.PLAIN, 12));
 		btnExcluir.setBackground(SystemColor.menu);
