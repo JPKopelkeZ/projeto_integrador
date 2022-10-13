@@ -15,13 +15,21 @@ import java.awt.SystemColor;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import controle.ClienteBD;
+import modelo.Cliente;
+import modelo.Endereco;
+
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class TelaConsultarClienteVendedor extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
+	ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
+	ClienteBD bd = new ClienteBD();
 
 	/**
 	 * Launch the application.
@@ -45,6 +53,7 @@ public class TelaConsultarClienteVendedor extends JFrame {
 	public TelaConsultarClienteVendedor() {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
+		listaClientes = bd.mostrarCliente();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 963, 603);
 		contentPane = new JPanel();
@@ -84,13 +93,24 @@ public class TelaConsultarClienteVendedor extends JFrame {
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Nome", "CPF", "Rua", "Bairro", "Cidade", "Estado", "Telefone"
+		
+		DefaultTableModel model = new DefaultTableModel(
+				new Object[][] {
+				},
+				new String[] {
+					"Nome", "CPF", "Rua", "Bairro", "Cidade", "Estado", "Telefone"
+				}
+			);
+			for (int i = 0; i < listaClientes.size(); i++) {
+				Cliente c = listaClientes.get(i);
+				Endereco e = c.getEndereco();
+				String rua = e.getRua();
+				String bairro = e.getBairro();
+				String cidade = e.getCidade();
+				String estado = e.getEstado();
+				model.addRow(new Object[] {c.getNome(), c.getCpf(), rua, bairro, cidade, estado, c.getTelefone()});
 			}
-		));
+			table.setModel(model);
 		table.setFont(new Font("Bookman Old Style", Font.PLAIN, 11));
 		scrollPane.setViewportView(table);
 	}
