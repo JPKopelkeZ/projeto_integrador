@@ -212,9 +212,10 @@ public class TelaVendaVendedor extends JFrame {
 					
 					Venda venda = new Venda(idcliente, idfunc);
 					vbd.cadastrarVenda(venda);
+					Venda vendaCadastrada = vbd.pesquisarUltimaVenda();
 					
 					Livro livro = lbd.mostrarLivroPesquisaId(idlivro);
-					LivroVendido lv = new LivroVendido(quant, preco, livro, venda);
+					LivroVendido lv = new LivroVendido(quant, preco, livro, vendaCadastrada);
 					
 					LivroVendidoBD lvbd = new LivroVendidoBD();
 					lvbd.cadastrarLivroVendido(lv);
