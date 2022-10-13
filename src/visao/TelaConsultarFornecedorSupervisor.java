@@ -15,13 +15,21 @@ import java.awt.SystemColor;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import controle.FornecedorBD;
+import modelo.Endereco;
+import modelo.Fornecedor;
+
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class TelaConsultarFornecedorSupervisor extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
+	ArrayList<Fornecedor> listaFornecedor = new ArrayList<Fornecedor>();
+	FornecedorBD bd = new FornecedorBD();
 
 	/**
 	 * Launch the application.
@@ -45,6 +53,7 @@ public class TelaConsultarFornecedorSupervisor extends JFrame {
 	public TelaConsultarFornecedorSupervisor() {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
+		listaFornecedor = bd.mostrarFornecedor();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 963, 603);
 		contentPane = new JPanel();
@@ -84,13 +93,24 @@ public class TelaConsultarFornecedorSupervisor extends JFrame {
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
+		
+		DefaultTableModel model = new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
 				"Nome", "Rua", "Bairro", "Cidade", "Estado", "Telefone"
 			}
-		));
+		);
+		for (int i = 0; i < listaFornecedor.size(); i++) {
+			Fornecedor f = listaFornecedor.get(i);
+			Endereco e = f.getEndereco();
+			String rua = e.getRua();
+			String bairro = e.getBairro();
+			String cidade = e.getCidade();
+			String estado = e.getEstado();
+			model.addRow(new Object[] {f.getNome(), rua, bairro, cidade, estado, f.getTelefone()});
+		}
+		table.setModel(model);
 		table.setFont(new Font("Bookman Old Style", Font.PLAIN, 11));
 		scrollPane.setViewportView(table);
 		
