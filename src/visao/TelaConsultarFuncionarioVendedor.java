@@ -15,13 +15,20 @@ import java.awt.SystemColor;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import controle.FuncionarioBD;
+import modelo.Funcionario;
+
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class TelaConsultarFuncionarioVendedor extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
+	ArrayList<Funcionario> listaFuncionarios = new ArrayList<Funcionario>();
+	FuncionarioBD bd = new FuncionarioBD();
 
 	/**
 	 * Launch the application.
@@ -45,6 +52,7 @@ public class TelaConsultarFuncionarioVendedor extends JFrame {
 	public TelaConsultarFuncionarioVendedor() {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
+		listaFuncionarios = bd.mostrarFuncionario();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 963, 603);
 		contentPane = new JPanel();
@@ -84,13 +92,19 @@ public class TelaConsultarFuncionarioVendedor extends JFrame {
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Nome", "Fun\u00E7\u00E3o", "Usu\u00E1rio", "CPF", "Sal\u00E1rio", "Telefone"
+		
+		DefaultTableModel model = new DefaultTableModel(
+				new Object[][] {
+				},
+				new String[] {
+					"Nome", "Fun\u00E7\u00E3o", "CPF", "Sal\u00E1rio", "Telefone"
+				}
+			);
+			for (int i = 0; i < listaFuncionarios.size(); i++) {
+				Funcionario f = listaFuncionarios.get(i);
+				model.addRow(new Object[] {f.getNome(), f.getFuncao(), f.getCpf(), f.getSalario(), f.getTelefone()});
 			}
-		));
+		table.setModel(model);
 		table.setFont(new Font("Bookman Old Style", Font.PLAIN, 11));
 		scrollPane.setViewportView(table);
 	}
