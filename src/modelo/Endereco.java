@@ -18,6 +18,14 @@ public class Endereco {
 		this.cidade = cidade;
 	}
 	
+	public Endereco(String rua, String bairro, String estado, String cidade) {
+		super();
+		this.rua = rua;
+		this.bairro = bairro;
+		this.estado = estado;
+		this.cidade = cidade;
+	}
+	
 	
 
 	public Endereco() {

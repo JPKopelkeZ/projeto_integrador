@@ -170,37 +170,33 @@ public class TelaCadastroCliente extends JFrame {
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String nome = textNome.getText();
+				
 				String telefone = textTelefone.getText();
+				
 				String cpf = textCPF.getText();
+				
 				String rua = textRua.getText();
+				
 				String bairro = textBairro.getText();
+				
 				String cidade = textCidade.getText();
+				
 				String estado = textEstado.getText();
 	
 				EnderecoBD ebd = new EnderecoBD();
-				Endereco end = new Endereco();
-				end.setRua(rua);
-				end.setBairro(bairro);
-				end.setCidade(cidade);
-				end.setEstado(estado);
-				ebd.cadastrarEndereco(end);
 				
+				Endereco end = new Endereco(rua, bairro, cidade, estado);
+				ebd.cadastrarEndereco(end);				
 				Endereco enderecoCadastrado = ebd.pesquisarUltimoEndereco();
 				
 				ClienteBD bd = new ClienteBD();
-				Cliente cli = new Cliente();
-				cli.setNome(nome);
-				cli.setCpf(cpf);
-				cli.setEndereco(enderecoCadastrado);
-				cli.setTelefone(telefone);			
-				
-				
-				boolean verifica = bd.cadastrarCliente(cli);
-				
-				if (verifica == true) {
-					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
-					limparCampos();
-				}
+				Cliente cli = new Cliente(nome, cpf, enderecoCadastrado, telefone);		
+								
+				bd.cadastrarCliente(cli);
+
+				JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+				limparCampos();
+
 			}
 		});
 		btnCadastrar.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));

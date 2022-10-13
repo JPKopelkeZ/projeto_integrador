@@ -11,6 +11,15 @@ public class Cliente {
 
 	public Cliente(int id, String nome, String cpf, Endereco end, String telefone) {
 		super();
+		codigo = id;
+		this.nome = nome;
+		this.cpf = cpf;
+		endereco = end;
+		this.telefone = telefone;
+	}
+	
+	public Cliente(String nome, String cpf, Endereco end, String telefone) {
+		super();
 		this.nome = nome;
 		this.cpf = cpf;
 		endereco = end;
