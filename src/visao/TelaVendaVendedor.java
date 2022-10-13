@@ -73,12 +73,30 @@ public class TelaVendaVendedor extends JFrame {
 		menuBar.add(mnConsultar);
 		
 		JMenuItem mntCliente = new JMenuItem("Cliente");
+		mntCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaConsultaCliente tcc = new TelaConsultaCliente();
+				tcc.setVisible(true);
+			}
+		});
 		mnConsultar.add(mntCliente);
 		
 		JMenuItem mntmFuncionario = new JMenuItem("Funcionário");
+		mntmFuncionario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaConsultaFuncionario tcc = new TelaConsultaFuncionario();
+				tcc.setVisible(true);
+			}
+		});
 		mnConsultar.add(mntmFuncionario);
 		
 		JMenuItem mntmLivro = new JMenuItem("Livro");
+		mntmLivro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaConsultaLivro tcc = new TelaConsultaLivro();
+				tcc.setVisible(true);
+			}
+		});
 		mnConsultar.add(mntmLivro);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
