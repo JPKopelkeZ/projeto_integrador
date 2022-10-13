@@ -169,6 +169,11 @@ public class TelaCadastroCliente extends JFrame {
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				if (textNome.getText().equals("")||textTelefone.getText().equals("") || textCPF.getText().equals("")||textRua.getText().equals("")||textBairro.getText().equals("")||textCidade.getText().equals("")||textEstado.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Favor, preencha todos os campos.");
+				}
+					else {
 				String nome = textNome.getText();
 				
 				String telefone = textTelefone.getText();
@@ -197,7 +202,7 @@ public class TelaCadastroCliente extends JFrame {
 				JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
 				limparCampos();
 
-			}
+			}}
 		});
 		btnCadastrar.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
 		btnCadastrar.setBackground(SystemColor.menu);
