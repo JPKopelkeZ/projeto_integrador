@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import modelo.Endereco;
 import modelo.Fornecedor;
 import modelo.Livro;
+import modelo.Venda;
 
 public class EnderecoBD {
 	
@@ -78,6 +79,31 @@ public class EnderecoBD {
 		}
 		catch (SQLException e) {
 			System.out.println("Ocorreu uma excessao SQL: " + e);
+			return null;
+		}
+	}
+	
+	public Endereco pesquisarUltimoEndereco() {
+		try {
+			Endereco endereco = new Endereco();
+			Connection bd = ConnectionBD.conectar();
+			PreparedStatement ps = bd.prepareStatement("SELECT * FROM endereco ORDER BY idendereco desc limit 1");
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				String idE = rs.getString("idendereco");
+				int id = Integer.valueOf(idE);
+				String rua = rs.getString("rua");
+				String bairro = rs.getString("bairro");
+				String cidade = rs.getString("cidade");
+				String estado = rs.getString("estado");
+				
+				endereco = new Endereco(id, rua, bairro, cidade, estado);
+			}			
+			ConnectionBD.fechar();
+			return endereco;
+		}
+		catch (SQLException e) {
+			System.out.println("Ocorreu uma excessao SQL EnderecoBD: " + e);
 			return null;
 		}
 	}

@@ -18,7 +18,7 @@ public class ClienteBD {
 			int endid = end.getId();
 			String endidS = String.valueOf(endid);
 			PreparedStatement ps = bd.prepareStatement(
-					"INSERT INTO cliente (nomeCliente, cpf, endereco_idendereco, telefone) VALUES (?, ?)");
+					"INSERT INTO cliente (nomeCliente, cpf, endereco_idendereco, telefone) VALUES (?, ?, ?, ?)");
 			ps.setString(1, cliente.getNome());
 			ps.setString(2, cliente.getCpf());
 			ps.setString(3, endidS);

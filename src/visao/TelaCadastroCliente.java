@@ -177,20 +177,24 @@ public class TelaCadastroCliente extends JFrame {
 				String cidade = textCidade.getText();
 				String estado = textEstado.getText();
 	
-				
+				EnderecoBD ebd = new EnderecoBD();
 				Endereco end = new Endereco();
 				end.setRua(rua);
 				end.setBairro(bairro);
 				end.setCidade(cidade);
 				end.setEstado(estado);
+				ebd.cadastrarEndereco(end);
 				
+				Endereco enderecoCadastrado = ebd.pesquisarUltimoEndereco();
+				
+				ClienteBD bd = new ClienteBD();
 				Cliente cli = new Cliente();
 				cli.setNome(nome);
 				cli.setCpf(cpf);
-				cli.setEndereco(end);
+				cli.setEndereco(enderecoCadastrado);
 				cli.setTelefone(telefone);			
 				
-				ClienteBD bd = new ClienteBD();
+				
 				boolean verifica = bd.cadastrarCliente(cli);
 				
 				if (verifica == true) {
