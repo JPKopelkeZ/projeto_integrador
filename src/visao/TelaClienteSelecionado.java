@@ -18,6 +18,8 @@ import modelo.Endereco;
 import modelo.Fornecedor;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.SystemColor;
@@ -193,6 +195,30 @@ public class TelaClienteSelecionado extends JFrame {
 		panel_1.add(textTelefone);
 		
 		JButton btnAlterar = new JButton("Alterar");
+		btnAlterar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ClienteSelecionado.setNome(textNome.getText());
+				ClienteSelecionado.setCpf(textCPF.getText());
+				ClienteSelecionado.setTelefone(textTelefone.getText());
+				
+				String rua = String.valueOf(textRua.getText());
+				String bairro = String.valueOf(textBairro.getText());
+				String cidade = String.valueOf(textCidade.getText());
+				String estado = String.valueOf(textEstado.getText());
+				endereco.setRua(rua);
+				endereco.setBairro(bairro);
+				endereco.setCidade(cidade);
+				endereco.setEstado(estado);
+				
+				listaCliente = bd.mostrarCliente();
+				ebd.alterarEndereco(endereco);
+				bd.alterarCliente(ClienteSelecionado);
+				
+				listaCliente = bd.mostrarCliente();
+				JOptionPane.showMessageDialog(null, "Dados do Cliente alterados com sucesso!");
+				limparCampos();
+			}
+		});
 		btnAlterar.setForeground(Color.BLACK);
 		btnAlterar.setFont(new Font("Bookman Old Style", Font.PLAIN, 12));
 		btnAlterar.setBackground(SystemColor.menu);
