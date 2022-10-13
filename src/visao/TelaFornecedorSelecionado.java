@@ -6,12 +6,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.border.LineBorder;
 
+import controle.EnderecoBD;
 import controle.FornecedorBD;
 import controle.LivroBD;
 import modelo.Endereco;
 import modelo.Fornecedor;
+import modelo.Funcionario;
 import modelo.Livro;
 
 import javax.swing.JLabel;
@@ -34,9 +38,11 @@ public class TelaFornecedorSelecionado extends JFrame {
 	private JTextField textEstado;
 	private JTextField textBairro;
 	private JTextField textTelefone;
+	private Endereco endereco;
 	private Fornecedor FornecedorSelecionado;
 	ArrayList<Fornecedor> listaFornecedor = new ArrayList();
 	FornecedorBD bd = new FornecedorBD();
+	EnderecoBD ebd = new EnderecoBD();
 
 	/**
 	 * Launch the application.
@@ -58,6 +64,8 @@ public class TelaFornecedorSelecionado extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaFornecedorSelecionado() {
+		setMaximumSize(new Dimension(963, 603));
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 964, 603);
 		contentPane = new JPanel();
@@ -196,10 +204,7 @@ public class TelaFornecedorSelecionado extends JFrame {
 
 			}
 
-			private void limparCampos() {
-				// TODO Auto-generated method stub
-				
-			}
+			
 		});
 		btnAlterar.setForeground(Color.BLACK);
 		btnAlterar.setFont(new Font("Bookman Old Style", Font.PLAIN, 12));
@@ -220,6 +225,28 @@ public class TelaFornecedorSelecionado extends JFrame {
 		btnCancelar.setBackground(SystemColor.menu);
 		btnCancelar.setBounds(734, 532, 89, 23);
 		contentPane_1.add(btnCancelar);
+	}
+
+	public void selecionarColuna(Fornecedor FornecedorSelecionado){
+		this.FornecedorSelecionado = FornecedorSelecionado;
+		endereco = FornecedorSelecionado.getEndereco();
+		
+		textNome.setText(FornecedorSelecionado.getNome());
+		textRua.setText(endereco.getRua());
+		textCidade.setText(endereco.getCidade());
+		textEstado.setText(endereco.getEstado());
+		textBairro.setText(String.valueOf(endereco.getBairro()));
+		textTelefone.setText(String.valueOf(FornecedorSelecionado.getTelefone()));
+	
+	}
+	protected void limparCampos(){
+		textNome.setText("");
+		textRua.setText("");
+		textCidade.setText("");
+		textEstado.setText("");
+		textBairro.setText("");
+		textTelefone.setText("");
+		
 	}
 
 }

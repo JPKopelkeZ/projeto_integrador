@@ -8,12 +8,20 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Dimension;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
+
+import controle.FuncionarioBD;
+import controle.LivroBD;
+import modelo.Funcionario;
+import modelo.Livro;
+import modelo.Usuario;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.SystemColor;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class TelaFuncionarioSelecionado extends JFrame {
@@ -21,10 +29,12 @@ public class TelaFuncionarioSelecionado extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtNome;
 	private JTextField txtFuncao;
-	private JTextField txtUsuario;
-	private JTextField txtCpf;
+	private JTextField txtCPF;
 	private JTextField txtSalario;
 	private JTextField txtTelefone;
+	private Funcionario FuncionarioSelecionado;
+	ArrayList<Funcionario> listaLivro = new ArrayList();
+	FuncionarioBD bd = new FuncionarioBD();
 
 	/**
 	 * Launch the application.
@@ -94,7 +104,7 @@ public class TelaFuncionarioSelecionado extends JFrame {
 		
 		JLabel lblNome = new JLabel("Nome");
 		lblNome.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
-		lblNome.setBounds(34, 64, 46, 14);
+		lblNome.setBounds(45, 64, 46, 14);
 		panel_1.add(lblNome);
 		
 		txtNome = new JTextField();
@@ -111,51 +121,40 @@ public class TelaFuncionarioSelecionado extends JFrame {
 		txtFuncao = new JTextField();
 		txtFuncao.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
 		txtFuncao.setColumns(10);
-		txtFuncao.setBounds(101, 110, 557, 29);
+		txtFuncao.setBounds(90, 110, 568, 29);
 		panel_1.add(txtFuncao);
-		
-		JLabel lblUsurio = new JLabel("Usuário");
-		lblUsurio.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
-		lblUsurio.setBounds(35, 177, 66, 14);
-		panel_1.add(lblUsurio);
-		
-		txtUsuario = new JTextField();
-		txtUsuario.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
-		txtUsuario.setColumns(10);
-		txtUsuario.setBounds(101, 170, 557, 29);
-		panel_1.add(txtUsuario);
 		
 		JLabel lblCpf = new JLabel("CPF");
 		lblCpf.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
-		lblCpf.setBounds(34, 231, 46, 14);
+		lblCpf.setBounds(55, 173, 46, 14);
 		panel_1.add(lblCpf);
 		
-		txtCpf = new JTextField();
-		txtCpf.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
-		txtCpf.setColumns(10);
-		txtCpf.setBounds(90, 224, 568, 29);
-		panel_1.add(txtCpf);
+		txtCPF = new JTextField();
+		txtCPF.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
+		txtCPF.setColumns(10);
+		txtCPF.setBounds(90, 166, 568, 29);
+		panel_1.add(txtCPF);
 		
 		JLabel lblSalario = new JLabel("Salário");
 		lblSalario.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
-		lblSalario.setBounds(23, 283, 57, 14);
+		lblSalario.setBounds(34, 226, 57, 14);
 		panel_1.add(lblSalario);
 		
 		txtSalario = new JTextField();
 		txtSalario.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
 		txtSalario.setColumns(10);
-		txtSalario.setBounds(90, 276, 568, 29);
+		txtSalario.setBounds(90, 219, 568, 29);
 		panel_1.add(txtSalario);
 		
 		JLabel lblTelefone = new JLabel("Telefone");
 		lblTelefone.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
-		lblTelefone.setBounds(20, 334, 82, 14);
+		lblTelefone.setBounds(19, 283, 82, 14);
 		panel_1.add(lblTelefone);
 		
 		txtTelefone = new JTextField();
 		txtTelefone.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
 		txtTelefone.setColumns(10);
-		txtTelefone.setBounds(90, 327, 568, 29);
+		txtTelefone.setBounds(90, 276, 578, 29);
 		panel_1.add(txtTelefone);
 		
 		JButton btnAlterar = new JButton("Alterar");
@@ -178,5 +177,25 @@ public class TelaFuncionarioSelecionado extends JFrame {
 		btnCancelar.setBackground(SystemColor.menu);
 		btnCancelar.setBounds(722, 531, 89, 23);
 		contentPane.add(btnCancelar);
+		
+		
+	}
+	
+	public void selecionarColuna(Funcionario FuncionarioSelecionado){
+		this.FuncionarioSelecionado = FuncionarioSelecionado;
+		txtNome.setText(FuncionarioSelecionado.getNome());
+		txtFuncao.setText(FuncionarioSelecionado.getFuncao());
+		txtCPF.setText(FuncionarioSelecionado.getCpf());
+		txtSalario.setText(String.valueOf(FuncionarioSelecionado.getSalario()));
+		txtTelefone.setText(String.valueOf(FuncionarioSelecionado.getTelefone()));
+	
+	}
+	protected void limparCampos(){
+		txtNome.setText("");
+		txtFuncao.setText("");
+		txtCPF.setText("");
+		txtSalario.setText("");
+		txtTelefone.setText("");
+		
 	}
 }

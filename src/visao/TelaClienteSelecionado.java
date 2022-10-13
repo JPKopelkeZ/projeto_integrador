@@ -6,13 +6,24 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.border.LineBorder;
+
+import controle.ClienteBD;
+import controle.EnderecoBD;
+import controle.FornecedorBD;
+import modelo.Cliente;
+import modelo.Endereco;
+import modelo.Fornecedor;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.SystemColor;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class TelaClienteSelecionado extends JFrame {
@@ -25,6 +36,11 @@ public class TelaClienteSelecionado extends JFrame {
 	private JTextField textCidade;
 	private JTextField textEstado;
 	private JTextField textTelefone;
+	private Cliente ClienteSelecionado;
+	private Endereco endereco;
+	ArrayList<Cliente> listaCliente = new ArrayList();
+	ClienteBD bd = new ClienteBD();
+	EnderecoBD ebd = new EnderecoBD();
 
 	/**
 	 * Launch the application.
@@ -46,6 +62,8 @@ public class TelaClienteSelecionado extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaClienteSelecionado() {
+		setMaximumSize(new Dimension(963, 603));
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 963, 603);
 		contentPane = new JPanel();
@@ -194,5 +212,28 @@ public class TelaClienteSelecionado extends JFrame {
 		btnCancelar.setBackground(SystemColor.menu);
 		btnCancelar.setBounds(734, 532, 89, 23);
 		contentPane_1.add(btnCancelar);
+	}
+	public void selecionarColuna(Cliente ClienteSelecionado){
+		this.ClienteSelecionado = ClienteSelecionado;
+		endereco = ClienteSelecionado.getEndereco();
+		
+		textNome.setText(ClienteSelecionado.getNome());
+		textCPF.setText(ClienteSelecionado.getCpf());
+		textRua.setText(endereco.getRua());
+		textCidade.setText(endereco.getCidade());
+		textEstado.setText(endereco.getEstado());
+		textBairro.setText(String.valueOf(endereco.getBairro()));
+		textTelefone.setText(String.valueOf(ClienteSelecionado.getTelefone()));
+	
+	}
+	protected void limparCampos(){
+		textNome.setText("");
+		textCPF.setText("");
+		textRua.setText("");
+		textCidade.setText("");
+		textEstado.setText("");
+		textBairro.setText("");
+		textTelefone.setText("");
+		
 	}
 }
