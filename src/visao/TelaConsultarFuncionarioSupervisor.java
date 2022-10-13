@@ -109,6 +109,14 @@ public class TelaConsultarFuncionarioSupervisor extends JFrame {
 		scrollPane.setViewportView(table);
 		
 		JButton btnSelecionar = new JButton("Selecionar");
+		btnSelecionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaFuncionarioSelecionado tcs = new TelaFuncionarioSelecionado();
+			    tcs.selecionarColuna(listaFuncionarios.get(table.getSelectedRow()));
+			    tcs.setVisible(true);
+			    dispose();
+			}
+		});
 		btnSelecionar.setForeground(Color.BLACK);
 		btnSelecionar.setFont(new Font("Bookman Old Style", Font.PLAIN, 12));
 		btnSelecionar.setBackground(SystemColor.menu);
