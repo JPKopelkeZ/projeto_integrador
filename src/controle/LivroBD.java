@@ -75,15 +75,21 @@ public class LivroBD {
 	}
 	
 	//retornar livro por titulo
-	public ArrayList<Livro> mostrarLivroPesquisa(String titulo) {
+	public ArrayList<Livro> mostrarLivroPesquisa(String variavel) {
 		try {
 		ArrayList<Livro> pesquisa = new ArrayList();
 		Connection bd = ConnectionBD.conectar();
-		PreparedStatement ps = bd.prepareStatement("SELECT * FROM livro WHERE titulo = ? ");
-		ps.setString(1, titulo);
+		PreparedStatement ps = bd.prepareStatement("SELECT * FROM livro WHERE titulo LIKE ? OR ano LIKE ? OR editora LIKE ? OR genero LIKE ? OR autor LIKE ?");
+		ps.setString(1, '%' + variavel + '%');
+		ps.setString(2, '%' + variavel + '%');
+		ps.setString(3, '%' + variavel + '%');
+		ps.setString(4, '%' + variavel + '%');
+		ps.setString(5, '%' + variavel + '%');
 		ResultSet rs = ps.executeQuery();
 		
 		while(rs.next()) {
+			String idS = rs.getString("idlivro");
+			int id = Integer.valueOf(idS);
 			String tituloS = rs.getString("titulo");
 			String anoS = rs.getString("ano");
 			int ano = Integer.valueOf(anoS);
@@ -93,7 +99,7 @@ public class LivroBD {
 			String genero = rs.getString("genero");
 			String idioma = rs.getString("idioma");
 			String autor = rs.getString("autor");
-			Livro livro = new Livro(tituloS, editora, ano, idioma, genero, nPag, autor);
+			Livro livro = new Livro(id, tituloS, editora, ano, idioma, genero, nPag, autor);
 			pesquisa.add(livro);
 		}
 
