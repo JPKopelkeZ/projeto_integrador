@@ -12,15 +12,24 @@ import java.awt.Font;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import controle.FuncionarioBD;
+import modelo.Cliente;
+import modelo.Funcionario;
+
 import javax.swing.JButton;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import java.awt.Dimension;
 
 public class TelaConsultaFuncionario extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
+	ArrayList<Funcionario> listaFuncionario = new ArrayList<Funcionario>();
+	FuncionarioBD bd = new FuncionarioBD();
 
 	/**
 	 * Launch the application.
@@ -42,6 +51,9 @@ public class TelaConsultaFuncionario extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaConsultaFuncionario() {
+		setMaximumSize(new Dimension(963, 603));
+		setResizable(false);
+		listaFuncionario = bd.mostrarFuncionario();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 963, 603);
 		contentPane = new JPanel();
@@ -80,13 +92,20 @@ public class TelaConsultaFuncionario extends JFrame {
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
+		DefaultTableModel model = new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
 				"ID", "Nome"
 			}
-		));
+		);
+		for (int i = 0; i < listaFuncionario.size(); i++) {
+			Funcionario f = listaFuncionario.get(i);
+			int id = f.getCodigo();
+			String nome = f.getNome();
+			model.addRow(new Object[] {id, nome});
+		}
+		table.setModel(model);
 		scrollPane.setViewportView(table);
 	}
 

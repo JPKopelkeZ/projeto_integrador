@@ -12,15 +12,24 @@ import java.awt.Font;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import controle.LivroBD;
+import modelo.Funcionario;
+import modelo.Livro;
+
 import javax.swing.JButton;
 import java.awt.SystemColor;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import java.awt.Dimension;
 
 public class TelaConsultaLivro extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
+	ArrayList<Livro> listaLivro = new ArrayList<Livro>();
+	LivroBD bd = new LivroBD();
 
 	/**
 	 * Launch the application.
@@ -42,6 +51,9 @@ public class TelaConsultaLivro extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaConsultaLivro() {
+		setMaximumSize(new Dimension(963, 603));
+		setResizable(false);
+		listaLivro = bd.mostrarLivro();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 963, 603);
 		contentPane = new JPanel();
@@ -79,13 +91,21 @@ public class TelaConsultaLivro extends JFrame {
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
+		DefaultTableModel model = new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
 				"ID", "Titulo", "Pre\u00E7o"
 			}
-		));
+		);
+		for (int i = 0; i < listaLivro.size(); i++) {
+			Livro l = listaLivro.get(i);
+			int id = l.getCodigo();
+			String titulo = l.getTitulo();
+			float preco = l.getPreco();
+			model.addRow(new Object[] {id, titulo, preco});
+		}
+		table.setModel(model);
 		scrollPane.setViewportView(table);
 	}
 

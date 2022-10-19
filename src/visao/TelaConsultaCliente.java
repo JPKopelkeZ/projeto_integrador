@@ -15,14 +15,21 @@ import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import controle.ClienteBD;
+import modelo.Cliente;
+
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class TelaConsultaCliente extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
+	ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
+	ClienteBD bd = new ClienteBD(); 
 
 	/**
 	 * Launch the application.
@@ -46,6 +53,7 @@ public class TelaConsultaCliente extends JFrame {
 	public TelaConsultaCliente() {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
+		listaClientes = bd.mostrarCliente();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 963, 603);
 		contentPane = new JPanel();
@@ -83,13 +91,20 @@ public class TelaConsultaCliente extends JFrame {
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
+		DefaultTableModel model = new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
 				"ID", "Nome"
 			}
-		));
+		);
+		for (int i = 0; i < listaClientes.size(); i++) {
+			Cliente c = listaClientes.get(i);
+			int id = c.getCodigo();
+			String nome = c.getNome();
+			model.addRow(new Object[] {id, nome});
+		}
+		table.setModel(model);
 		scrollPane.setViewportView(table);
 	}
 }
