@@ -66,6 +66,7 @@ public class TelaFornecedorSelecionado extends JFrame {
 	public TelaFornecedorSelecionado() {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
+		listaFornecedor = bd.mostrarFornecedor();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 964, 603);
 		contentPane = new JPanel();
@@ -187,16 +188,15 @@ public class TelaFornecedorSelecionado extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				FornecedorSelecionado.setNome(textNome.getText());
-				Endereco end = new Endereco();
-				end.setRua(textRua.getText());
-				end.setBairro(textBairro.getText());
-				end.setCidade(textCidade.getText());
-				end.setEstado(textEstado.getText());
-				FornecedorSelecionado.setEndereco(end);
+				endereco.setRua(textRua.getText());
+				endereco.setBairro(textBairro.getText());
+				endereco.setCidade(textCidade.getText());
+				endereco.setEstado(textEstado.getText());
+				FornecedorSelecionado.setEndereco(endereco);
 				
 				FornecedorSelecionado.setTelefone(textTelefone.getText());
 				
-				
+				ebd.alterarEndereco(endereco);
 				bd.alterarFornecedor(FornecedorSelecionado);
 				listaFornecedor = bd.mostrarFornecedor();
 				JOptionPane.showMessageDialog(null, "Os Dados do Fornecedor foram Alterados");
