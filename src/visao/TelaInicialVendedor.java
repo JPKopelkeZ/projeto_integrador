@@ -16,6 +16,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import java.awt.SystemColor;
 import javax.swing.SwingConstants;
@@ -23,6 +24,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JMenuBar;
 import javax.swing.ButtonGroup;
 import java.awt.Dimension;
+import javax.swing.JTable;
 
 public class TelaInicialVendedor extends JFrame {
 
@@ -33,6 +35,7 @@ public class TelaInicialVendedor extends JFrame {
 	private JTextField txtAno;
 	private JTextField txtEditora;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -281,6 +284,17 @@ public class TelaInicialVendedor extends JFrame {
 		scrollPainelResultado.setBackground(new Color(153, 204, 255));
 		scrollPainelResultado.setBounds(233, 133, 694, 401);
 		contentPane.add(scrollPainelResultado);
+		
+		table = new JTable();
+		DefaultTableModel model = new DefaultTableModel(
+				new Object[][] {
+				},
+				new String[] {
+					"C\u00F3digo", "T\u00EDtulo", "Autor", "G\u00EAnero", "Idioma", "Ano", "N\u00B0 P\u00E1ginas", "Editora", "Pre\u00E7o"
+				}
+			);
+		table.setModel(model);
+		scrollPainelResultado.setViewportView(table);
 		
 		JButton btnSair = new JButton("Sair");
 		btnSair.setBounds(836, 545, 80, 14);

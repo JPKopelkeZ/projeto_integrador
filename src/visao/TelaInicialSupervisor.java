@@ -11,16 +11,23 @@ import javax.swing.border.LineBorder;
 import java.awt.SystemColor;
 import javax.swing.JScrollPane;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import java.awt.Dimension;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
+import controle.LivroBD;
+import modelo.Livro;
 
 public class TelaInicialSupervisor extends JFrame {
 
@@ -30,6 +37,10 @@ public class TelaInicialSupervisor extends JFrame {
 	private JTextField txtPesquisaAutor;
 	private JTextField txtPesquisaAno;
 	private JTextField textField_4;
+	private JTable table;
+	ArrayList<Livro> listaLivro = new ArrayList<Livro>();
+	LivroBD bd = new LivroBD();
+	DefaultTableModel model;
 
 	/**
 	 * Launch the application.
@@ -53,6 +64,7 @@ public class TelaInicialSupervisor extends JFrame {
 	public TelaInicialSupervisor() {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
+		listaLivro = bd.mostrarLivro();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 953, 603);
 		
@@ -247,6 +259,31 @@ public class TelaInicialSupervisor extends JFrame {
 		panel.add(lblNomeFunc);
 		
 		JButton btnPesquisar = new JButton("Pesquisar");
+		btnPesquisar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				if (txtPesquisarProdutos.getText().equals("")) {
+					model.setRowCount(0);
+					listaLivro = bd.mostrarLivro();
+					for (int i = 0; i < listaLivro.size(); i++) {
+						Livro l = listaLivro.get(i);
+
+						model.addRow(new Object[] {l.getCodigo(), l.getTitulo(), l.getAutor(), l.getGenero(), l.getIdioma(), l.getAno(), l.getnPaginas(), l.getEditora(), l.getPreco()});
+					
+					}
+				} else 
+				{
+					model.setRowCount(0);
+					listaLivro = bd.mostrarLivroPesquisa(txtPesquisarProdutos.getText());
+					for (int i = 0; i < listaLivro.size(); i++) {
+						Livro l = listaLivro.get(i);
+
+						model.addRow(new Object[] {l.getCodigo(), l.getTitulo(), l.getAutor(), l.getGenero(), l.getIdioma(), l.getAno(), l.getnPaginas(), l.getEditora(), l.getPreco()});
+					
+					}
+				}
+			}
+		});
 		btnPesquisar.setBackground(SystemColor.activeCaption);
 		btnPesquisar.setFont(new Font("Bookman Old Style", Font.PLAIN, 11));
 		btnPesquisar.setBounds(775, 21, 89, 23);
@@ -331,7 +368,22 @@ public class TelaInicialSupervisor extends JFrame {
 		
 		JScrollPane scrollPainelResultado = new JScrollPane();
 		scrollPainelResultado.setViewportBorder(new LineBorder(new Color(0, 0, 0)));
-		scrollPainelResultado.setBounds(233, 128, 694, 403);
+		scrollPainelResultado.setBounds(233, 116, 694, 415);
 		contentPane.add(scrollPainelResultado);
+		
+		table = new JTable();
+		model = new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"C\u00F3digo", "T\u00EDtulo", "Autor", "G\u00EAnero", "Idioma", "Ano", "N\u00B0 P\u00E1ginas", "Editora", "Pre\u00E7o"
+			}
+		);
+		table.setModel(model);
+		for (int i = 0; i < listaLivro.size(); i++) {
+			Livro l = listaLivro.get(i);
+
+			model.addRow(new Object[] {l.getCodigo(), l.getTitulo(), l.getAutor(), l.getGenero(), l.getIdioma(), l.getAno(), l.getnPaginas(), l.getEditora(), l.getPreco()});
+		scrollPainelResultado.setViewportView(table);
 	}
-}
+}}
