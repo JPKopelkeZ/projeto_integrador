@@ -16,6 +16,8 @@ import modelo.Livro;
 import modelo.Usuario;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.SystemColor;
@@ -33,7 +35,7 @@ public class TelaFuncionarioSelecionado extends JFrame {
 	private JTextField txtSalario;
 	private JTextField txtTelefone;
 	private Funcionario FuncionarioSelecionado;
-	ArrayList<Funcionario> listaLivro = new ArrayList();
+	ArrayList<Funcionario> listaFuncionario = new ArrayList();
 	FuncionarioBD bd = new FuncionarioBD();
 
 	/**
@@ -58,6 +60,7 @@ public class TelaFuncionarioSelecionado extends JFrame {
 	public TelaFuncionarioSelecionado() {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
+		listaFuncionario = bd.mostrarFuncionario();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 963, 603);
 		contentPane = new JPanel();
@@ -158,6 +161,22 @@ public class TelaFuncionarioSelecionado extends JFrame {
 		panel_1.add(txtTelefone);
 		
 		JButton btnAlterar = new JButton("Alterar");
+		btnAlterar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				FuncionarioSelecionado.setNome(txtNome.getText());
+				FuncionarioSelecionado.setFuncao(txtFuncao.getText());
+				FuncionarioSelecionado.setCpf(txtCPF.getText());
+				FuncionarioSelecionado.setSalario(Float.parseFloat(txtSalario.getText()));
+				FuncionarioSelecionado.setTelefone(txtTelefone.getText());
+				
+				
+				bd.alterarFuncionario(FuncionarioSelecionado);
+				listaFuncionario = bd.mostrarFuncionario();
+				JOptionPane.showMessageDialog(null, "Dados do Cliente alterados com sucesso!");
+				limparCampos();
+				
+			}
+		});
 		btnAlterar.setForeground(Color.BLACK);
 		btnAlterar.setFont(new Font("Bookman Old Style", Font.PLAIN, 12));
 		btnAlterar.setBackground(SystemColor.menu);
@@ -170,6 +189,8 @@ public class TelaFuncionarioSelecionado extends JFrame {
 				setVisible(false);
 				TelaInicialSupervisor inicialS = new TelaInicialSupervisor();
 				inicialS.setVisible(true);
+				
+				
 			}
 		});
 		btnCancelar.setForeground(Color.BLACK);

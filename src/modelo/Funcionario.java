@@ -20,7 +20,14 @@ public class Funcionario {
 		this.telefone = telefone;
 	}
 	
-	
+	public Funcionario(String nome, String cpf, float salario, String funcao, String telefone) {
+		super();
+		this.nome = nome;
+		this.cpf = cpf;
+		this.salario = salario;
+		this.funcao = funcao;
+		this.telefone = telefone;
+	}
 	
 	public Funcionario() {
 		super();
