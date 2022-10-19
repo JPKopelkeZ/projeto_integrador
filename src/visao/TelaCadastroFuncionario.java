@@ -7,7 +7,17 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
+
+import controle.ClienteBD;
+import controle.EnderecoBD;
+import controle.FuncionarioBD;
+import modelo.Cliente;
+import modelo.Endereco;
+import modelo.Funcionario;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.SystemColor;
@@ -19,12 +29,13 @@ import java.awt.event.ActionEvent;
 public class TelaCadastroFuncionario extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField textNome;
+	private JTextField textcpf;
+	private JTextField textSalario;
+	private JTextField textFuncao;
+	private JTextField textTelefone;
 	private JTextField textField;
 	private JTextField textField_1;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
 
 	/**
 	 * Launch the application.
@@ -96,89 +107,124 @@ public class TelaCadastroFuncionario extends JFrame {
 		
 		JLabel lblCadastrarFuncionario = new JLabel("Cadastrar Funcionário ");
 		lblCadastrarFuncionario.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 19));
-		lblCadastrarFuncionario.setBounds(10, 11, 246, 14);
+		lblCadastrarFuncionario.setBounds(10, 11, 246, 29);
 		panel_1.add(lblCadastrarFuncionario);
 		
 		JLabel lblNome = new JLabel("Nome");
 		lblNome.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
-		lblNome.setBounds(59, 41, 87, 14);
+		lblNome.setBounds(59, 73, 87, 14);
 		panel_1.add(lblNome);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Calisto MT", Font.PLAIN, 13));
-		textField.setColumns(10);
-		textField.setBounds(115, 35, 470, 30);
-		panel_1.add(textField);
+		textNome = new JTextField();
+		textNome.setFont(new Font("Calisto MT", Font.PLAIN, 13));
+		textNome.setColumns(10);
+		textNome.setBounds(115, 67, 470, 30);
+		panel_1.add(textNome);
 		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Calisto MT", Font.PLAIN, 13));
-		textField_1.setColumns(10);
-		textField_1.setBounds(115, 86, 470, 30);
-		panel_1.add(textField_1);
+		textcpf = new JTextField();
+		textcpf.setFont(new Font("Calisto MT", Font.PLAIN, 13));
+		textcpf.setColumns(10);
+		textcpf.setBounds(115, 120, 470, 30);
+		panel_1.add(textcpf);
 		
-		JLabel lblTelefone = new JLabel("Telefone");
-		lblTelefone.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
-		lblTelefone.setBounds(35, 92, 87, 14);
-		panel_1.add(lblTelefone);
+		JLabel lblcpf = new JLabel("CPF");
+		lblcpf.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
+		lblcpf.setBounds(59, 126, 87, 14);
+		panel_1.add(lblcpf);
 		
-		textField_3 = new JTextField();
-		textField_3.setFont(new Font("Calisto MT", Font.PLAIN, 13));
-		textField_3.setColumns(10);
-		textField_3.setBounds(115, 164, 470, 30);
-		panel_1.add(textField_3);
+		textSalario = new JTextField();
+		textSalario.setFont(new Font("Calisto MT", Font.PLAIN, 13));
+		textSalario.setColumns(10);
+		textSalario.setBounds(115, 172, 470, 30);
+		panel_1.add(textSalario);
 		
-		JLabel lblRua = new JLabel("Rua");
-		lblRua.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
-		lblRua.setBounds(69, 170, 70, 14);
-		panel_1.add(lblRua);
+		JLabel lblSalario = new JLabel("Salario");
+		lblSalario.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
+		lblSalario.setBounds(52, 178, 70, 14);
+		panel_1.add(lblSalario);
 		
-		textField_4 = new JTextField();
-		textField_4.setFont(new Font("Calisto MT", Font.PLAIN, 13));
-		textField_4.setColumns(10);
-		textField_4.setBounds(115, 205, 470, 30);
-		panel_1.add(textField_4);
+		textFuncao = new JTextField();
+		textFuncao.setFont(new Font("Calisto MT", Font.PLAIN, 13));
+		textFuncao.setColumns(10);
+		textFuncao.setBounds(115, 226, 470, 30);
+		panel_1.add(textFuncao);
 		
-		JLabel lblBairro = new JLabel("Bairro");
-		lblBairro.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
-		lblBairro.setBounds(59, 211, 197, 14);
-		panel_1.add(lblBairro);
-		
-		textField_5 = new JTextField();
-		textField_5.setFont(new Font("Calisto MT", Font.PLAIN, 13));
-		textField_5.setColumns(10);
-		textField_5.setBounds(115, 246, 470, 30);
-		panel_1.add(textField_5);
-		
-		JLabel lblCidade = new JLabel("Cidade");
-		lblCidade.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
-		lblCidade.setBounds(52, 252, 70, 14);
-		panel_1.add(lblCidade);
+		JLabel lblFuncao = new JLabel("Função");
+		lblFuncao.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
+		lblFuncao.setBounds(52, 227, 197, 24);
+		panel_1.add(lblFuncao);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				if (textNome.getText().equals("")||textcpf.getText().equals("") ||textSalario.getText().equals("")||textFuncao.getText().equals("")){
+					JOptionPane.showMessageDialog(null, "Favor, preencha todos os campos.");
+				}
+					else {
+				String Nome = textNome.getText();
+				
+				String cpf = textcpf.getText();
+				
+				String SalarioS = textSalario.getText();
+				float sal = Float.parseFloat(SalarioS);
+				
+				String Funcao = textFuncao.getText();
+				
+				String Telefone = textTelefone.getText();
+				
+				
+				
+				FuncionarioBD bd = new FuncionarioBD();
+				Funcionario fun = new Funcionario(Nome, cpf, sal, Funcao, Telefone);		
+								
+				bd.cadastrarFuncionario(fun);
+
+				JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+				limparCampos();
+
+			}}
+
+		
+		});
 		btnCadastrar.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
 		btnCadastrar.setBackground(SystemColor.menu);
 		btnCadastrar.setBounds(643, 396, 115, 30);
 		panel_1.add(btnCadastrar);
 		
 		JButton btnNewButton = new JButton("Cancelar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				limparCampos();
+				
+			}
+		});
 		btnNewButton.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
 		btnNewButton.setBackground(SystemColor.menu);
 		btnNewButton.setBounds(531, 396, 110, 30);
 		panel_1.add(btnNewButton);
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(115, 287, 470, 30);
-		panel_1.add(textField_6);
+		JLabel lblTelefone = new JLabel("Telefone");
+		lblTelefone.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
+		lblTelefone.setBounds(35, 286, 87, 24);
+		panel_1.add(lblTelefone);
 		
-		JLabel lblNewLabel = new JLabel("Estado");
-		lblNewLabel.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
-		lblNewLabel.setBounds(52, 293, 70, 14);
-		panel_1.add(lblNewLabel);
+		textTelefone = new JTextField();
+		textTelefone.setFont(new Font("Calisto MT", Font.PLAIN, 13));
+		textTelefone.setColumns(10);
+		textTelefone.setBounds(115, 285, 470, 30);
+		panel_1.add(textTelefone);
 		
-		JLabel lblEndereco = new JLabel("Endereço:");
-		lblEndereco.setFont(new Font("Bookman Old Style", Font.BOLD, 17));
-		lblEndereco.setBounds(35, 139, 116, 14);
-		panel_1.add(lblEndereco);
+		
+	}
+
+	protected void limparCampos() {
+		textNome.setText("");
+		textcpf.setText("");
+		textSalario.setText("");
+		textFuncao.setText("");
+		textTelefone.setText("");
+		
+		
 	}
 }

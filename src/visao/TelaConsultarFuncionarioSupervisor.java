@@ -9,6 +9,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.border.LineBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.SystemColor;
@@ -17,6 +19,8 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import controle.FuncionarioBD;
+import modelo.Cliente;
+import modelo.Endereco;
 import modelo.Funcionario;
 
 import java.awt.event.ActionListener;
@@ -124,6 +128,22 @@ public class TelaConsultarFuncionarioSupervisor extends JFrame {
 		contentPane.add(btnSelecionar);
 		
 		JButton btnExcluir = new JButton("Excluir");
+		btnExcluir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Funcionario c = listaFuncionarios.get(table.getSelectedRow());
+				if (c != null) {
+					
+					bd.excluirFuncionario(c);
+					listaFuncionarios.remove(c);
+					JOptionPane.showMessageDialog(null, "Cliente excluído com sucesso!");
+					
+					setVisible(false);
+					TelaConsultarFuncionarioSupervisor consultaCliente = new TelaConsultarFuncionarioSupervisor();
+					consultaCliente.setVisible(true);
+				}
+				
+			}
+		});
 		btnExcluir.setForeground(Color.BLACK);
 		btnExcluir.setFont(new Font("Bookman Old Style", Font.PLAIN, 12));
 		btnExcluir.setBackground(SystemColor.menu);
