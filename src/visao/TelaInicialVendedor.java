@@ -30,10 +30,6 @@ public class TelaInicialVendedor extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtPesquisarProduto;
-	private JTextField txtGenero;
-	private JTextField txtAutor;
-	private JTextField txtAno;
-	private JTextField txtEditora;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JTable table;
 
@@ -142,6 +138,17 @@ public class TelaInicialVendedor extends JFrame {
 		});
 		mntmNewMenuItem.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
 		mnConsultarV.add(mntmNewMenuItem);
+		
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Histórico de Preço");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				TelaConsultaHistoricodePreco TelaConsultaHistoricodePreco = new TelaConsultaHistoricodePreco();
+				TelaConsultaHistoricodePreco.setVisible(true);
+			}
+		});
+		mntmNewMenuItem_1.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mnConsultarV.add(mntmNewMenuItem_1);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(153, 204, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -202,87 +209,10 @@ public class TelaInicialVendedor extends JFrame {
 		btnPesquisar.setBounds(775, 19, 89, 23);
 		panel.add(btnPesquisar);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_1.setBackground(SystemColor.menu);
-		panel_1.setBounds(0, 104, 223, 460);
-		contentPane.add(panel_1);
-		panel_1.setLayout(null);
-		
-		JLabel lblFiltos = new JLabel("FILTROS");
-		lblFiltos.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFiltos.setFont(new Font("Bookman Old Style", Font.PLAIN, 20));
-		lblFiltos.setBounds(0, 0, 188, 41);
-		panel_1.add(lblFiltos);
-		
-		JLabel lblGenero = new JLabel("Gênero");
-		lblGenero.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
-		lblGenero.setBounds(10, 41, 178, 20);
-		panel_1.add(lblGenero);
-		
-		JLabel lblAutor = new JLabel("Autor(a)");
-		lblAutor.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
-		lblAutor.setBounds(10, 95, 178, 20);
-		panel_1.add(lblAutor);
-		
-		JLabel lblAno = new JLabel("Ano");
-		lblAno.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
-		lblAno.setBounds(10, 151, 178, 20);
-		panel_1.add(lblAno);
-		
-		JLabel lblEditora = new JLabel("Editora");
-		lblEditora.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
-		lblEditora.setBounds(10, 207, 178, 20);
-		panel_1.add(lblEditora);
-		
-		txtGenero = new JTextField();
-		txtGenero.setFont(new Font("Calisto MT", Font.PLAIN, 12));
-		txtGenero.setBounds(10, 64, 168, 25);
-		panel_1.add(txtGenero);
-		txtGenero.setColumns(10);
-		
-		txtAutor = new JTextField();
-		txtAutor.setFont(new Font("Calisto MT", Font.PLAIN, 12));
-		txtAutor.setBounds(10, 115, 168, 25);
-		panel_1.add(txtAutor);
-		txtAutor.setColumns(10);
-		
-		txtAno = new JTextField();
-		txtAno.setFont(new Font("Calisto MT", Font.PLAIN, 12));
-		txtAno.setBounds(10, 170, 168, 26);
-		panel_1.add(txtAno);
-		txtAno.setColumns(10);
-		
-		txtEditora = new JTextField();
-		txtEditora.setFont(new Font("Calisto MT", Font.PLAIN, 12));
-		txtEditora.setBounds(10, 226, 168, 25);
-		panel_1.add(txtEditora);
-		txtEditora.setColumns(10);
-		
-		JButton btnPesquisarGenero = new JButton("");
-		btnPesquisarGenero.setBackground(SystemColor.activeCaption);
-		btnPesquisarGenero.setBounds(188, 66, 20, 20);
-		panel_1.add(btnPesquisarGenero);
-		
-		JButton btnPesquisarAutor = new JButton("");
-		btnPesquisarAutor.setBackground(SystemColor.activeCaption);
-		btnPesquisarAutor.setBounds(188, 119, 20, 20);
-		panel_1.add(btnPesquisarAutor);
-		
-		JButton btnPesquisarAno = new JButton("");
-		btnPesquisarAno.setBackground(SystemColor.activeCaption);
-		btnPesquisarAno.setBounds(188, 174, 20, 20);
-		panel_1.add(btnPesquisarAno);
-		
-		JButton btnPesquisarEditora = new JButton("");
-		btnPesquisarEditora.setBackground(SystemColor.activeCaption);
-		btnPesquisarEditora.setBounds(188, 229, 20, 20);
-		panel_1.add(btnPesquisarEditora);
-		
 		JScrollPane scrollPainelResultado = new JScrollPane();
 		scrollPainelResultado.setBorder(new LineBorder(new Color(0, 0, 0)));
 		scrollPainelResultado.setBackground(new Color(153, 204, 255));
-		scrollPainelResultado.setBounds(233, 133, 694, 401);
+		scrollPainelResultado.setBounds(28, 116, 876, 418);
 		contentPane.add(scrollPainelResultado);
 		
 		table = new JTable();

@@ -33,10 +33,6 @@ public class TelaInicialSupervisor extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtPesquisarProdutos;
-	private JTextField txtPesquisaGenero;
-	private JTextField txtPesquisaAutor;
-	private JTextField txtPesquisaAno;
-	private JTextField textField_4;
 	private JTable table;
 	ArrayList<Livro> listaLivro = new ArrayList<Livro>();
 	LivroBD bd = new LivroBD();
@@ -205,6 +201,17 @@ public class TelaInicialSupervisor extends JFrame {
 		});
 		mntmNewMenuItem.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
 		mnConsultarS.add(mntmNewMenuItem);
+		
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Histórico de Preço");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				TelaConsultaHistoricodePreco TelaConsultaHistoricodePreco = new TelaConsultaHistoricodePreco();
+				TelaConsultaHistoricodePreco.setVisible(true);
+			}
+		});
+		mntmNewMenuItem_1.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mnConsultarS.add(mntmNewMenuItem_1);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(153, 204, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -289,86 +296,9 @@ public class TelaInicialSupervisor extends JFrame {
 		btnPesquisar.setBounds(775, 21, 89, 23);
 		panel.add(btnPesquisar);
 		
-		JPanel txtPesquisaEditora = new JPanel();
-		txtPesquisaEditora.setBackground(SystemColor.menu);
-		txtPesquisaEditora.setBorder(new LineBorder(new Color(0, 0, 0)));
-		txtPesquisaEditora.setBounds(0, 105, 223, 459);
-		contentPane.add(txtPesquisaEditora);
-		txtPesquisaEditora.setLayout(null);
-		
-		JLabel lblFiltros = new JLabel("FILTROS");
-		lblFiltros.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFiltros.setFont(new Font("Bookman Old Style", Font.PLAIN, 20));
-		lblFiltros.setBounds(37, 11, 108, 14);
-		txtPesquisaEditora.add(lblFiltros);
-		
-		JLabel lblGenero = new JLabel("Gênero");
-		lblGenero.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
-		lblGenero.setBounds(10, 46, 95, 14);
-		txtPesquisaEditora.add(lblGenero);
-		
-		txtPesquisaGenero = new JTextField();
-		txtPesquisaGenero.setFont(new Font("Calisto MT", Font.PLAIN, 12));
-		txtPesquisaGenero.setBounds(10, 64, 168, 26);
-		txtPesquisaEditora.add(txtPesquisaGenero);
-		txtPesquisaGenero.setColumns(10);
-		
-		JLabel lblAutor = new JLabel("Autor(a)");
-		lblAutor.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
-		lblAutor.setBounds(10, 106, 73, 14);
-		txtPesquisaEditora.add(lblAutor);
-		
-		txtPesquisaAutor = new JTextField();
-		txtPesquisaAutor.setFont(new Font("Calisto MT", Font.PLAIN, 12));
-		txtPesquisaAutor.setBounds(10, 121, 168, 26);
-		txtPesquisaEditora.add(txtPesquisaAutor);
-		txtPesquisaAutor.setColumns(10);
-		
-		JLabel lblEditora = new JLabel("Editora");
-		lblEditora.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
-		lblEditora.setBounds(10, 219, 95, 14);
-		txtPesquisaEditora.add(lblEditora);
-		
-		JLabel lblAno = new JLabel("Ano");
-		lblAno.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
-		lblAno.setBounds(10, 164, 46, 14);
-		txtPesquisaEditora.add(lblAno);
-		
-		txtPesquisaAno = new JTextField();
-		txtPesquisaAno.setFont(new Font("Calisto MT", Font.PLAIN, 12));
-		txtPesquisaAno.setBounds(10, 182, 168, 26);
-		txtPesquisaEditora.add(txtPesquisaAno);
-		txtPesquisaAno.setColumns(10);
-		
-		textField_4 = new JTextField();
-		textField_4.setFont(new Font("Calisto MT", Font.PLAIN, 12));
-		textField_4.setBounds(10, 233, 168, 26);
-		txtPesquisaEditora.add(textField_4);
-		textField_4.setColumns(10);
-		
-		JButton btnPesquisarGenero = new JButton("");
-		btnPesquisarGenero.setBackground(SystemColor.activeCaption);
-		btnPesquisarGenero.setBounds(188, 68, 20, 20);
-		txtPesquisaEditora.add(btnPesquisarGenero);
-		
-		JButton btnPesquisarAutor = new JButton("");
-		btnPesquisarAutor.setBackground(SystemColor.activeCaption);
-		btnPesquisarAutor.setBounds(188, 125, 20, 20);
-		txtPesquisaEditora.add(btnPesquisarAutor);
-		
-		JButton btnPesquisarAno = new JButton("");
-		btnPesquisarAno.setBackground(SystemColor.activeCaption);
-		btnPesquisarAno.setBounds(188, 186, 20, 20);
-		txtPesquisaEditora.add(btnPesquisarAno);
-		
-		JButton btnPesquisarEditora = new JButton("");
-		btnPesquisarEditora.setBackground(SystemColor.activeCaption);
-		btnPesquisarEditora.setBounds(188, 236, 20, 20);
-		txtPesquisaEditora.add(btnPesquisarEditora);
-		
 		JScrollPane scrollPainelResultado = new JScrollPane();
 		scrollPainelResultado.setViewportBorder(new LineBorder(new Color(0, 0, 0)));
-		scrollPainelResultado.setBounds(233, 116, 694, 415);
+		scrollPainelResultado.setBounds(24, 116, 883, 415);
 		contentPane.add(scrollPainelResultado);
 		
 		table = new JTable();
