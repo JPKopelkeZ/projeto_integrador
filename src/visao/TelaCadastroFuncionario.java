@@ -34,8 +34,7 @@ public class TelaCadastroFuncionario extends JFrame {
 	private JTextField textSalario;
 	private JTextField textFuncao;
 	private JTextField textTelefone;
-	private JTextField textField;
-	private JTextField textField_1;
+	
 
 	/**
 	 * Launch the application.
