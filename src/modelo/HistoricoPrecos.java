@@ -3,7 +3,6 @@ package modelo;
 public class HistoricoPrecos {
 	private int id;
 	private Livro livro;
-	private Funcionario supervisor;
 	private String dataAlteracao;
 	private float precoAlterado;
 	private float precoAnterior;
@@ -12,13 +11,6 @@ public class HistoricoPrecos {
 	}
 	public void setId(int id) {
 		this.id = id;
-	}
-	
-	public Funcionario getSupervisor() {
-		return supervisor;
-	}
-	public void setSupervisor(Funcionario supervisor) {
-		this.supervisor = supervisor;
 	}
 	public String getDataAlteracao() {
 		return dataAlteracao;
@@ -44,15 +36,18 @@ public class HistoricoPrecos {
 	public void setLivro(Livro livro) {
 		this.livro = livro;
 	}
-	public HistoricoPrecos(int id, Livro livro, Funcionario supervisor, String dataAlteracao, float precoAlterado,
+	public HistoricoPrecos(int id, Livro livro, String dataAlteracao, float precoAlterado,
 			float precoAnterior) {
 		super();
 		this.id = id;
 		this.livro = livro;
-		this.supervisor = supervisor;
+
 		this.dataAlteracao = dataAlteracao;
 		this.precoAlterado = precoAlterado;
 		this.precoAnterior = precoAnterior;
+	}
+	public HistoricoPrecos() {
+		// TODO Auto-generated constructor stub
 	}
 	
 

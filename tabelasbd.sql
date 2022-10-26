@@ -190,24 +190,18 @@ CREATE TABLE IF NOT EXISTS `mydb`.`historicoPrecos` (
   `precoAlterado` FLOAT NULL,
   `precoAnterior` FLOAT NULL,
   `livro_idlivro` INT NOT NULL,
-  `funcionario_idfuncionario` INT NOT NULL,
   PRIMARY KEY (`idhistoricoPrecos`),
 
   UNIQUE INDEX `idhistoricoPrecos_UNIQUE` (`idhistoricoPrecos` ASC),
   INDEX `fk_historicoPrecos_livro1_idx` (`livro_idlivro` ASC),
-  INDEX `fk_historicoPrecos_funcionario1_idx` (`funcionario_idfuncionario` ASC),
 
 
   CONSTRAINT `fk_historicoPrecos_livro1`
     FOREIGN KEY (`livro_idlivro`)
     REFERENCES `mydb`.`livro` (`idlivro`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_historicoPrecos_funcionario1`
-    FOREIGN KEY (`funcionario_idfuncionario`)
-    REFERENCES `mydb`.`funcionario` (`idfuncionario`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON UPDATE NO ACTION
+)
 ENGINE = InnoDB;
 
 
