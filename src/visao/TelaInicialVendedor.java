@@ -11,12 +11,17 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JMenu;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
+
+import controle.LivroBD;
+import modelo.Livro;
+
 import javax.swing.JScrollPane;
 import java.awt.SystemColor;
 import javax.swing.SwingConstants;
@@ -36,6 +41,9 @@ public class TelaInicialVendedor extends JFrame {
 	private JTextField txtEditora;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private JTable table;
+	ArrayList<Livro> listaLivro = new ArrayList<Livro>();
+	LivroBD bd = new LivroBD();
+	DefaultTableModel model;
 
 	/**
 	 * Launch the application.
@@ -59,6 +67,7 @@ public class TelaInicialVendedor extends JFrame {
 	public TelaInicialVendedor() {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
+		listaLivro = bd.mostrarLivro();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 953, 603);
 		
@@ -197,6 +206,30 @@ public class TelaInicialVendedor extends JFrame {
 		panel.add(btnSair_1);
 		
 		JButton btnPesquisar = new JButton("Pesquisar");
+		btnPesquisar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (txtPesquisarProduto.getText().equals("")) {
+					model.setRowCount(0);
+					listaLivro = bd.mostrarLivro();
+					for (int i = 0; i < listaLivro.size(); i++) {
+						Livro l = listaLivro.get(i);
+
+						model.addRow(new Object[] {l.getCodigo(), l.getTitulo(), l.getAutor(), l.getGenero(), l.getIdioma(), l.getAno(), l.getnPaginas(), l.getEditora(), l.getPreco()});
+					
+					}
+				} else 
+				{
+					model.setRowCount(0);
+					listaLivro = bd.mostrarLivroPesquisa(txtPesquisarProduto.getText());
+					for (int i = 0; i < listaLivro.size(); i++) {
+						Livro l = listaLivro.get(i);
+
+						model.addRow(new Object[] {l.getCodigo(), l.getTitulo(), l.getAutor(), l.getGenero(), l.getIdioma(), l.getAno(), l.getnPaginas(), l.getEditora(), l.getPreco()});
+					
+					}
+				}
+			}
+		});
 		btnPesquisar.setBackground(SystemColor.activeCaption);
 		btnPesquisar.setFont(new Font("Bookman Old Style", Font.PLAIN, 11));
 		btnPesquisar.setBounds(775, 19, 89, 23);
@@ -294,6 +327,10 @@ public class TelaInicialVendedor extends JFrame {
 				}
 			);
 		table.setModel(model);
+		for (int i = 0; i < listaLivro.size(); i++) {
+			Livro l = listaLivro.get(i);
+
+			model.addRow(new Object[] {l.getCodigo(), l.getTitulo(), l.getAutor(), l.getGenero(), l.getIdioma(), l.getAno(), l.getnPaginas(), l.getEditora(), l.getPreco()});
 		scrollPainelResultado.setViewportView(table);
 		
 		JButton btnSair = new JButton("Sair");
@@ -302,4 +339,4 @@ public class TelaInicialVendedor extends JFrame {
 		btnSair.setBackground(new Color(0, 0, 0));
 		btnSair.setFont(new Font("Bookman Old Style", Font.PLAIN, 11));
 	}
-}
+}}
