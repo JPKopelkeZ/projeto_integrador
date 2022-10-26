@@ -31,6 +31,7 @@ public class TelaCadastroLivro extends JFrame {
 	private JTextField txtIdiomaPesquisa;
 	private JTextField txtPaginaPesquisa;
 	private JTextField txtPesquisaAutor;
+	private JTextField txtQuantidade;
 
 	/**
 	 * Launch the application.
@@ -176,10 +177,21 @@ public class TelaCadastroLivro extends JFrame {
 		lblAutor.setBounds(47, 294, 70, 14);
 		panel_1.add(lblAutor);
 		
+		JLabel lblQuant = new JLabel("Quantidade");
+		lblQuant.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
+		lblQuant.setBounds(47, 335, 115, 14);
+		panel_1.add(lblQuant);
+		
+		txtQuantidade = new JTextField();
+		txtQuantidade.setFont(new Font("Calisto MT", Font.PLAIN, 13));
+		txtQuantidade.setColumns(10);
+		txtQuantidade.setBounds(154, 329, 431, 30);
+		panel_1.add(txtQuantidade);
+		
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			if (txtTitulo.getText().equals("")||txtAnoPesquisa.getText().equals("") || txtEditoraPesquisa.getText().equals("")||txtGeneroPesquisa.getText().equals("")||txtIdiomaPesquisa.getText().equals("")||txtPaginaPesquisa.getText().equals("")||txtPesquisaAutor.getText().equals("")) {
+			if (txtTitulo.getText().equals("")||txtAnoPesquisa.getText().equals("") || txtEditoraPesquisa.getText().equals("")||txtGeneroPesquisa.getText().equals("")||txtIdiomaPesquisa.getText().equals("")||txtPaginaPesquisa.getText().equals("")||txtPesquisaAutor.getText().equals("") || txtQuantidade.getText().equals("")) {
 				JOptionPane.showMessageDialog(null, "Favor, preencha todos os campos.");
 			}
 				else {
@@ -192,7 +204,9 @@ public class TelaCadastroLivro extends JFrame {
 				String paginaS = txtPaginaPesquisa.getText();
 				int pagina = Integer.parseInt(paginaS);
 				String autor = txtPesquisaAutor.getText();
-				Livro livro = new Livro(titulo, editora, ano, idioma, genero, pagina, autor);
+				String quantS = txtQuantidade.getText();
+				int quant = Integer.parseInt(quantS);
+				Livro livro = new Livro(titulo, editora, ano, idioma, genero, pagina, autor, quant);
 				LivroBD bdlivro = new LivroBD();
 				bdlivro.cadastrarLivro(livro);
 				
@@ -216,6 +230,8 @@ public class TelaCadastroLivro extends JFrame {
 		btnNewButton.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
 		btnNewButton.setBounds(531, 396, 110, 30);
 		panel_1.add(btnNewButton);
+		
+		
 	}
 	
 	protected void limparCampos(){
