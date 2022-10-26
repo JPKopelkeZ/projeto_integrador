@@ -319,7 +319,7 @@ public class TelaInicialVendedor extends JFrame {
 		contentPane.add(scrollPainelResultado);
 		
 		table = new JTable();
-		DefaultTableModel model = new DefaultTableModel(
+		model = new DefaultTableModel(
 				new Object[][] {
 				},
 				new String[] {
@@ -330,7 +330,7 @@ public class TelaInicialVendedor extends JFrame {
 		for (int i = 0; i < listaLivro.size(); i++) {
 			Livro l = listaLivro.get(i);
 
-			model.addRow(new Object[] {l.getCodigo(), l.getTitulo(), l.getAutor(), l.getGenero(), l.getIdioma(), l.getAno(), l.getnPaginas(), l.getEditora(), l.getPreco()});
+		model.addRow(new Object[] {l.getCodigo(), l.getTitulo(), l.getAutor(), l.getGenero(), l.getIdioma(), l.getAno(), l.getnPaginas(), l.getEditora(), l.getPreco()});
 		scrollPainelResultado.setViewportView(table);
 		
 		JButton btnSair = new JButton("Sair");
