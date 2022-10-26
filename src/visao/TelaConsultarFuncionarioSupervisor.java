@@ -126,29 +126,6 @@ public class TelaConsultarFuncionarioSupervisor extends JFrame {
 		btnSelecionar.setBackground(SystemColor.menu);
 		btnSelecionar.setBounds(832, 524, 105, 23);
 		contentPane.add(btnSelecionar);
-		
-		JButton btnExcluir = new JButton("Excluir");
-		btnExcluir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Funcionario c = listaFuncionarios.get(table.getSelectedRow());
-				if (c != null) {
-					
-					bd.excluirFuncionario(c);
-					listaFuncionarios.remove(c);
-					JOptionPane.showMessageDialog(null, "Cliente excluído com sucesso!");
-					
-					setVisible(false);
-					TelaConsultarFuncionarioSupervisor consultaCliente = new TelaConsultarFuncionarioSupervisor();
-					consultaCliente.setVisible(true);
-				}
-				
-			}
-		});
-		btnExcluir.setForeground(Color.BLACK);
-		btnExcluir.setFont(new Font("Bookman Old Style", Font.PLAIN, 12));
-		btnExcluir.setBackground(SystemColor.menu);
-		btnExcluir.setBounds(733, 525, 89, 23);
-		contentPane.add(btnExcluir);
 	}
 
 }

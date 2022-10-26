@@ -9,6 +9,8 @@ import java.awt.Dimension;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.SystemColor;
@@ -16,7 +18,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import controle.EnderecoBD;
 import controle.FornecedorBD;
+import modelo.Cliente;
 import modelo.Endereco;
 import modelo.Fornecedor;
 
@@ -30,6 +34,7 @@ public class TelaConsultarFornecedorSupervisor extends JFrame {
 	private JTable table;
 	ArrayList<Fornecedor> listaFornecedor = new ArrayList<Fornecedor>();
 	FornecedorBD bd = new FornecedorBD();
+	EnderecoBD ebd = new EnderecoBD();
 
 	/**
 	 * Launch the application.
@@ -131,6 +136,24 @@ public class TelaConsultarFornecedorSupervisor extends JFrame {
 		contentPane.add(btnSelecionar);
 		
 		JButton btnExcluir = new JButton("Excluir");
+		btnExcluir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Fornecedor c = listaFornecedor.get(table.getSelectedRow());
+				if (c != null) {
+					Endereco endereco = c.getEndereco();
+					bd.excluirFornecedor(c);
+					listaFornecedor.remove(c);
+					ebd.excluirEndereco(endereco);
+					JOptionPane.showMessageDialog(null, "Fornecedor excluído com sucesso!");
+					
+					setVisible(false);
+					TelaConsultarFornecedorSupervisor consultaFornecedor = new TelaConsultarFornecedorSupervisor();
+					consultaFornecedor.setVisible(true);
+				}
+					
+				
+			}
+		});
 		btnExcluir.setForeground(Color.BLACK);
 		btnExcluir.setFont(new Font("Bookman Old Style", Font.PLAIN, 12));
 		btnExcluir.setBackground(SystemColor.menu);
