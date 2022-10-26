@@ -7,7 +7,15 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
+
+import controle.EnderecoBD;
+import controle.FornecedorBD;
+import modelo.Endereco;
+import modelo.Fornecedor;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.SystemColor;
@@ -18,12 +26,12 @@ import java.awt.event.ActionEvent;
 public class TelaCadastroFornecedor extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
+	private JTextField textNome;
+	private JTextField textTelefone;
+	private JTextField textRua;
+	private JTextField textBairro;
+	private JTextField textCidade;
+	private JTextField textEstado;
 
 	/**
 	 * Launch the application.
@@ -101,50 +109,50 @@ public class TelaCadastroFornecedor extends JFrame {
 		lblNome.setBounds(59, 41, 87, 14);
 		panel_1.add(lblNome);
 		
-		textField = new JTextField();
-		textField.setFont(new Font("Calisto MT", Font.PLAIN, 13));
-		textField.setColumns(10);
-		textField.setBounds(115, 35, 470, 30);
-		panel_1.add(textField);
+		textNome = new JTextField();
+		textNome.setFont(new Font("Calisto MT", Font.PLAIN, 13));
+		textNome.setColumns(10);
+		textNome.setBounds(115, 35, 470, 30);
+		panel_1.add(textNome);
 		
-		textField_1 = new JTextField();
-		textField_1.setFont(new Font("Calisto MT", Font.PLAIN, 13));
-		textField_1.setColumns(10);
-		textField_1.setBounds(115, 88, 470, 30);
-		panel_1.add(textField_1);
+		textTelefone = new JTextField();
+		textTelefone.setFont(new Font("Calisto MT", Font.PLAIN, 13));
+		textTelefone.setColumns(10);
+		textTelefone.setBounds(115, 88, 470, 30);
+		panel_1.add(textTelefone);
 		
 		JLabel lblTelefone = new JLabel("Telefone");
 		lblTelefone.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
 		lblTelefone.setBounds(42, 94, 87, 14);
 		panel_1.add(lblTelefone);
 		
-		textField_3 = new JTextField();
-		textField_3.setFont(new Font("Calisto MT", Font.PLAIN, 13));
-		textField_3.setColumns(10);
-		textField_3.setBounds(115, 158, 470, 30);
-		panel_1.add(textField_3);
+		textRua = new JTextField();
+		textRua.setFont(new Font("Calisto MT", Font.PLAIN, 13));
+		textRua.setColumns(10);
+		textRua.setBounds(115, 158, 470, 30);
+		panel_1.add(textRua);
 		
 		JLabel lblRua = new JLabel("Rua");
 		lblRua.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
 		lblRua.setBounds(69, 164, 70, 14);
 		panel_1.add(lblRua);
 		
-		textField_4 = new JTextField();
-		textField_4.setFont(new Font("Calisto MT", Font.PLAIN, 13));
-		textField_4.setColumns(10);
-		textField_4.setBounds(115, 199, 470, 30);
-		panel_1.add(textField_4);
+		textBairro = new JTextField();
+		textBairro.setFont(new Font("Calisto MT", Font.PLAIN, 13));
+		textBairro.setColumns(10);
+		textBairro.setBounds(115, 199, 470, 30);
+		panel_1.add(textBairro);
 		
 		JLabel lblBairro = new JLabel("Bairro");
 		lblBairro.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
 		lblBairro.setBounds(59, 205, 197, 14);
 		panel_1.add(lblBairro);
 		
-		textField_5 = new JTextField();
-		textField_5.setFont(new Font("Calisto MT", Font.PLAIN, 13));
-		textField_5.setColumns(10);
-		textField_5.setBounds(115, 240, 470, 30);
-		panel_1.add(textField_5);
+		textCidade = new JTextField();
+		textCidade.setFont(new Font("Calisto MT", Font.PLAIN, 13));
+		textCidade.setColumns(10);
+		textCidade.setBounds(115, 240, 470, 30);
+		panel_1.add(textCidade);
 		
 		JLabel lblCidade = new JLabel("Cidade");
 		lblCidade.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
@@ -152,6 +160,34 @@ public class TelaCadastroFornecedor extends JFrame {
 		panel_1.add(lblCidade);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (textNome.getText().equals("")||textTelefone.getText().equals("") || textRua.getText().equals("")||textBairro.getText().equals("")||textCidade.getText().equals("")||textEstado.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Favor, preencha todos os campos.");
+				} else {
+					String nome = textNome.getText();
+					String telefone = textTelefone.getText();
+					String rua = textRua.getText();
+					String bairro = textBairro.getText();
+					String cidade = textCidade.getText();
+					String estado = textEstado.getText();
+					
+					EnderecoBD ebd = new EnderecoBD();
+					
+					Endereco end = new Endereco(rua, bairro, cidade, estado);
+					ebd.cadastrarEndereco(end);				
+					Endereco enderecoCadastrado = ebd.pesquisarUltimoEndereco();
+					
+					FornecedorBD bd = new FornecedorBD();
+					Fornecedor f = new Fornecedor(nome, telefone, enderecoCadastrado);
+					
+					bd.cadastrarFornecedor(f);
+					
+					JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
+					limparCampos();
+				}
+			}
+		});
 		btnCadastrar.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
 		btnCadastrar.setBackground(SystemColor.menu);
 		btnCadastrar.setBounds(643, 396, 115, 30);
@@ -163,10 +199,10 @@ public class TelaCadastroFornecedor extends JFrame {
 		btnNewButton.setBounds(531, 396, 110, 30);
 		panel_1.add(btnNewButton);
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(115, 281, 470, 30);
-		panel_1.add(textField_6);
+		textEstado = new JTextField();
+		textEstado.setColumns(10);
+		textEstado.setBounds(115, 281, 470, 30);
+		panel_1.add(textEstado);
 		
 		JLabel lblNewLabel = new JLabel("Estado");
 		lblNewLabel.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
@@ -177,6 +213,14 @@ public class TelaCadastroFornecedor extends JFrame {
 		lblEndereco.setFont(new Font("Bookman Old Style", Font.BOLD, 18));
 		lblEndereco.setBounds(20, 129, 116, 14);
 		panel_1.add(lblEndereco);
+	}
+	protected void limparCampos(){
+		textNome.setText("");
+		textTelefone.setText("");
+		textRua.setText("");
+		textBairro.setText("");
+		textCidade.setText("");
+		textEstado.setText("");
 	}
 
 }

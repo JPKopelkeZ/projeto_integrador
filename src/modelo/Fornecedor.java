@@ -13,6 +13,11 @@ public class Fornecedor {
 		this.endereco = endereco;
 		this.telefone = telefone;
 	}
+	public Fornecedor(String nome, String telefone, Endereco endereco) {
+		this.nome = nome;
+		this.telefone = telefone;
+		this.endereco = endereco;
+	}
 	public int getId() {
 		return id;
 	}
