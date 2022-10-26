@@ -12,6 +12,7 @@ public class Livro {
 	private String genero;
 	private int nPaginas;
 	private String autor;
+	private int quant;
 	
 	
 	
@@ -21,7 +22,7 @@ public class Livro {
 	}
 
 	public Livro(int codigo, String titulo, String editora, int ano, String idioma, String genero,
-			int nPaginas, String autor) {
+			int nPaginas, String autor, int quant) {
 		super();
 		this.codigo = codigo;
 		this.editora = editora;
@@ -31,10 +32,11 @@ public class Livro {
 		this.genero = genero;
 		this.nPaginas = nPaginas;
 		this.autor = autor;
+		this.quant = quant;
 	}
 	
 	public Livro(String titulo, String editora, int ano, String idioma, String genero,
-			int nPaginas, String autor) {
+			int nPaginas, String autor, int quant) {
 		super();
 		this.editora = editora;
 		this.ano = ano;
@@ -43,6 +45,7 @@ public class Livro {
 		this.genero = genero;
 		this.nPaginas = nPaginas;
 		this.autor = autor;
+		this.quant = quant;
 	}
 
 	public float getPreco() {
@@ -98,6 +101,14 @@ public class Livro {
 	}
 	public void setAutor(String autor) {
 		this.autor = autor;
+	}
+
+	public int getQuant() {
+		return quant;
+	}
+
+	public void setQuant(int quant) {
+		this.quant = quant;
 	}
 	
 	
