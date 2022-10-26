@@ -11,10 +11,9 @@ public class LivroBD {
 		Connection bd = ConnectionBD.conectar();
 	
 		
-		PreparedStatement ps = bd.prepareStatement("INSERT INTO livro (titulo, ano, editora, genero, idioma, numeroPaginas, autor, quant) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+		PreparedStatement ps = bd.prepareStatement("INSERT INTO livro (titulo, ano, editora, genero, idioma, numeroPaginas, autor) VALUES (?, ?, ?, ?, ?, ?, ?)");
 		String ano = String.valueOf(livro.getAno());
 		String numeroPag = String.valueOf(livro.getnPaginas());
-		String quant = String.valueOf(livro.getQuant());
 		ps.setString(1, livro.getTitulo());
 		ps.setString(2, ano);
 		ps.setString(3, livro.getEditora());
@@ -22,7 +21,6 @@ public class LivroBD {
 		ps.setString(5, livro.getIdioma());
 		ps.setString(6, numeroPag);
 		ps.setString(7, livro.getAutor());
-		ps.setString(8, quant);
 		ps.execute();
 		
 		
@@ -55,18 +53,16 @@ public class LivroBD {
 		Connection bd = ConnectionBD.conectar();
 		PreparedStatement ps;
 		try {
-			ps = bd.prepareStatement("UPDATE livro SET titulo = ?, ano = ?, editora = ?, genero = ?, idioma = ?, numeroPaginas = ?, quant = ? where idlivro = ?");
+			ps = bd.prepareStatement("UPDATE livro SET titulo = ?, ano = ?, editora = ?, genero = ?, idioma = ?, numeroPaginas = ? where idlivro = ?");
 			String ano = String.valueOf(livro.getAno());
 			String numeroPag = String.valueOf(livro.getnPaginas());
-			String quant = String.valueOf(livro.getQuant());
 			ps.setString(1, livro.getTitulo());
 			ps.setString(2, ano);
 			ps.setString(3, livro.getEditora());
 			ps.setString(4, livro.getGenero());
 			ps.setString(5, livro.getIdioma());
 			ps.setString(6, numeroPag);
-			ps.setString(7, quant);
-			ps.setString(8, idS);
+			ps.setString(7, idS);
 			ps.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -103,9 +99,7 @@ public class LivroBD {
 			String genero = rs.getString("genero");
 			String idioma = rs.getString("idioma");
 			String autor = rs.getString("autor");
-			String quantS = rs.getString("quant");
-			int quant = Integer.valueOf(quantS);
-			Livro livro = new Livro(id, tituloS, editora, ano, idioma, genero, nPag, autor, quant);
+			Livro livro = new Livro(id, tituloS, editora, ano, idioma, genero, nPag, autor);
 			pesquisa.add(livro);
 		}
 
@@ -138,9 +132,7 @@ public class LivroBD {
 			String genero = rs.getString("genero");
 			String idioma = rs.getString("idioma");
 			String autor = rs.getString("autor");
-			String quantS = rs.getString("quant");
-			int quant = Integer.valueOf(quantS);
-			livro = new Livro(id, tituloS, editora, ano, idioma, genero, nPag, autor, quant);
+			livro = new Livro(id, tituloS, editora, ano, idioma, genero, nPag, autor);
 		}
 
 		
@@ -172,9 +164,7 @@ public class LivroBD {
 			String genero = rs.getString("genero");
 			String idioma = rs.getString("idioma");
 			String autor = rs.getString("autor");
-			String quantS = rs.getString("quant");
-			int quant = Integer.valueOf(quantS);
-			Livro livro = new Livro(id, tituloS, editora, ano, idioma, genero, nPag, autor, quant);
+			Livro livro = new Livro(id, tituloS, editora, ano, idioma, genero, nPag, autor);
 			pesquisa.add(livro);
 		}
 

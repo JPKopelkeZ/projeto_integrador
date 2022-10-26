@@ -115,7 +115,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`livro` (
   `ano` INT NULL,
   `numeroPaginas` INT NULL,
   `autor` VARCHAR(150) NULL,
-  `quant` INT NULL,
   PRIMARY KEY (`idlivro`),
   UNIQUE INDEX `idlivro_UNIQUE` (`idlivro` ASC) )
 
@@ -352,25 +351,25 @@ insert into fornecedor_has_compra (fornecedor_idfornecedor, compra_idcompra) val
 insert into fornecedor_has_compra (fornecedor_idfornecedor, compra_idcompra) values (1, 9);
 insert into fornecedor_has_compra (fornecedor_idfornecedor, compra_idcompra) values (2, 10);
 
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor, quant) values (1, 'Brain Dead', '104.36', 'Oyondu', 'Hungarian', 'Horror|Sci-Fi', 1995, 990, 'Lesley Ferraro', 100);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor, quant) values (2, 'In a Town This Size', '213.40', 'Rooxo', 'Polish', 'Documentary', 2007, 601, 'Rosie Klimsch', 100);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor, quant) values (3, 'Three Faces East', '37.38', 'Tagcat', 'Kurdish', 'Drama|Mystery|War', 1999, 788, 'Inness Balaam', 100);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor, quant) values (4, 'Mystery of the Wax Museum', '190.22', 'Twitterbeat', 'Gujarati', 'Horror', 2012, 184, 'Fitz Heel', 100);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor, quant) values (5, 'Slipping-Down Life, A', '36.24', 'Babblestorm', 'German', 'Drama|Romance', 1998, 607, 'Pierette Dossantos', 100);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor, quant) values (6, 'Soldier''s Daughter Never Cries, A', '144.36', 'Quinu', 'Romanian', 'Drama', 2006, 864, 'Marlon Varrow', 100);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor, quant) values (7, 'Chris Rock: Bring the Pain', '222.64', 'Youbridge', 'Icelandic', 'Comedy', 1994, 924, 'Leandra Darracott', 100);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor, quant) values (8, 'Murders in the Zoo', '49.92', 'Izio', 'Yiddish', 'Crime|Horror|Mystery', 2010, 415, 'Leola Tuftin', 100);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor, quant) values (9, 'Cuenca Crime, The (Crimen de Cuenca, El)', '136.68', 'Wordpedia', 'Lithuanian', 'Drama', 2010, 285, 'Gianna Jagiela', 100);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor, quant) values (10, 'Learning Curve, The', '133.88', 'Oloo', 'Marathi', 'Crime|Drama|Thriller', 1993, 414, 'Brit Wimpey', 100);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor, quant) values (11, 'River, The', '117.13', 'Eazzy', 'Malayalam', 'Drama', 1995, 935, 'Dulci Mounter', 100);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor, quant) values (12, 'Illusion Of Blood', '174.47', 'Meedoo', 'Haitian Creole', 'Fantasy|Horror', 1995, 903, 'Nance Nys', 100);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor, quant) values (13, 'Leprechaun: Origins', '65.54', 'Vipe', 'Northern Sotho', 'Horror', 2012, 412, 'Pieter Fayerman', 100);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor, quant) values (15, 'Dark Star', '206.21', 'Wikivu', 'Montenegrin', 'Comedy|Sci-Fi|Thriller', 1955, 854, 'Agnella McMillam', 100);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor, quant) values (16, 'Devil and Daniel Webster, The (All That Money Can Buy)', '127.06', 'Skimia', 'Portuguese', 'Drama|Fantasy', 1996, 141, 'Reinaldo Sprigin', 100);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor, quant) values (17, 'Fog of War: Eleven Lessons from the Life of Robert S. McNamara, The', '211.76', 'Gigaclub', 'Hungarian', 'Documentary|War', 2009, 855, 'Vannie Gounard', 100);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor, quant) values (18, 'Wrong Is Right (a.k.a. The Man With the Deadly Lens)', '131.03', 'Skynoodle', 'Lao', 'Drama|Thriller', 1996, 906, 'Lily Grishakin', 100);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor, quant) values (19, 'Target', '105.08', 'Tagopia', 'Azeri', 'Action|Drama|Thriller', 1994, 632, 'Chrysler Passion', 100);
-insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor, quant) values (20, 'Stewart Lee: If You Prefer a Milder Comedian, Please Ask for One', '181.38', 'Jabbersphere', 'West Frisian', 'Comedy', 1997, 699, 'Corrie Athelstan', 100);
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (1, 'Brain Dead', '104.36', 'Oyondu', 'Hungarian', 'Horror|Sci-Fi', 1995, 990, 'Lesley Ferraro');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (2, 'In a Town This Size', '213.40', 'Rooxo', 'Polish', 'Documentary', 2007, 601, 'Rosie Klimsch');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (3, 'Three Faces East', '37.38', 'Tagcat', 'Kurdish', 'Drama|Mystery|War', 1999, 788, 'Inness Balaam');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (4, 'Mystery of the Wax Museum', '190.22', 'Twitterbeat', 'Gujarati', 'Horror', 2012, 184, 'Fitz Heel');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (5, 'Slipping-Down Life, A', '36.24', 'Babblestorm', 'German', 'Drama|Romance', 1998, 607, 'Pierette Dossantos');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (6, 'Soldier''s Daughter Never Cries, A', '144.36', 'Quinu', 'Romanian', 'Drama', 2006, 864, 'Marlon Varrow');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (7, 'Chris Rock: Bring the Pain', '222.64', 'Youbridge', 'Icelandic', 'Comedy', 1994, 924, 'Leandra Darracott');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (8, 'Murders in the Zoo', '49.92', 'Izio', 'Yiddish', 'Crime|Horror|Mystery', 2010, 415, 'Leola Tuftin');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (9, 'Cuenca Crime, The (Crimen de Cuenca, El)', '136.68', 'Wordpedia', 'Lithuanian', 'Drama', 2010, 285, 'Gianna Jagiela');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (10, 'Learning Curve, The', '133.88', 'Oloo', 'Marathi', 'Crime|Drama|Thriller', 1993, 414, 'Brit Wimpey');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (11, 'River, The', '117.13', 'Eazzy', 'Malayalam', 'Drama', 1995, 935, 'Dulci Mounter');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (12, 'Illusion Of Blood', '174.47', 'Meedoo', 'Haitian Creole', 'Fantasy|Horror', 1995, 903, 'Nance Nys');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (13, 'Leprechaun: Origins', '65.54', 'Vipe', 'Northern Sotho', 'Horror', 2012, 412, 'Pieter Fayerman');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (15, 'Dark Star', '206.21', 'Wikivu', 'Montenegrin', 'Comedy|Sci-Fi|Thriller', 1955, 854, 'Agnella McMillam');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (16, 'Devil and Daniel Webster, The (All That Money Can Buy)', '127.06', 'Skimia', 'Portuguese', 'Drama|Fantasy', 1996, 141, 'Reinaldo Sprigin');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (17, 'Fog of War: Eleven Lessons from the Life of Robert S. McNamara, The', '211.76', 'Gigaclub', 'Hungarian', 'Documentary|War', 2009, 855, 'Vannie Gounard');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (18, 'Wrong Is Right (a.k.a. The Man With the Deadly Lens)', '131.03', 'Skynoodle', 'Lao', 'Drama|Thriller', 1996, 906, 'Lily Grishakin');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (19, 'Target', '105.08', 'Tagopia', 'Azeri', 'Action|Drama|Thriller', 1994, 632, 'Chrysler Passion');
+insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor) values (20, 'Stewart Lee: If You Prefer a Milder Comedian, Please Ask for One', '181.38', 'Jabbersphere', 'West Frisian', 'Comedy', 1997, 699, 'Corrie Athelstan');
 
 insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (1, '7/6/2022', '286.43', '235.93', 5, 1);
 insert into historicoPrecos (idhistoricoPrecos, dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) values (2, '4/15/2022', '156.30', '295.98', 17, 2);

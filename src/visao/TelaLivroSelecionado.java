@@ -38,7 +38,6 @@ public class TelaLivroSelecionado extends JFrame {
 	private Livro livroSelecionado;
 	ArrayList<Livro> listaLivro = new ArrayList();
 	LivroBD bd = new LivroBD();
-	private JTextField txtQuantidade;
 
 	/**
 	 * Launch the application.
@@ -194,17 +193,6 @@ public class TelaLivroSelecionado extends JFrame {
 		txtPreco.setBounds(90, 303, 568, 20);
 		panel_1.add(txtPreco);
 		
-		JLabel lblQuantidade = new JLabel("Quantidade");
-		lblQuantidade.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
-		lblQuantidade.setBounds(41, 332, 99, 14);
-		panel_1.add(lblQuantidade);
-		
-		txtQuantidade = new JTextField();
-		txtQuantidade.setFont(new Font("Bookman Old Style", Font.PLAIN, 12));
-		txtQuantidade.setColumns(10);
-		txtQuantidade.setBounds(136, 330, 522, 20);
-		panel_1.add(txtQuantidade);
-		
 		JButton btnAlterar = new JButton("Alterar");
 		btnAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -217,7 +205,6 @@ public class TelaLivroSelecionado extends JFrame {
 				livroSelecionado.setnPaginas(Integer.parseInt(txtNumPaginas.getText()));
 				livroSelecionado.setEditora(txtEditora.getText());
 				livroSelecionado.setPreco(Float.parseFloat(txtPreco.getText()));
-				livroSelecionado.setQuant(Integer.parseInt(txtQuantidade.getText()));
 				
 				bd.alterarLivro(livroSelecionado);
 				listaLivro = bd.mostrarLivro();
@@ -257,7 +244,6 @@ public class TelaLivroSelecionado extends JFrame {
 		txtNumPaginas.setText(String.valueOf(livroSelecionado.getnPaginas()));
 		txtEditora.setText(livroSelecionado.getEditora());
 		txtPreco.setText(String.valueOf(livroSelecionado.getPreco()));
-		txtQuantidade.setText(String.valueOf(livroSelecionado.getQuant()));
 	}
 
 	protected void limparCampos(){
@@ -269,6 +255,5 @@ public class TelaLivroSelecionado extends JFrame {
 		txtNumPaginas.setText("");
 		txtAutor.setText("");
 		txtPreco.setText("");
-		txtQuantidade.setText("");
 	}
 }

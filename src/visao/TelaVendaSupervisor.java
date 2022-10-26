@@ -236,17 +236,8 @@ public class TelaVendaSupervisor extends JFrame {
 					Venda vendaCadastrada = vbd.pesquisarUltimaVenda();
 					
 					Livro livro = lbd.mostrarLivroPesquisaId(idlivro);
-					
 					LivroVendido lv = new LivroVendido(quant, preco, livro, vendaCadastrada);
-					int quantLivro = livro.getQuant();
-					if(quantLivro >= quant) {
-					quantLivro -= quant;
-					livro.setQuant(quantLivro);
-					lbd.alterarLivro(livro);
-					} else {
-						JOptionPane.showMessageDialog(null, "Insira uma quantidade válida.");
-						return;						
-					}
+					
 					LivroVendidoBD lvbd = new LivroVendidoBD();
 					lvbd.cadastrarLivroVendido(lv);
 					

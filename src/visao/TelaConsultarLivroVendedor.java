@@ -97,12 +97,12 @@ public class TelaConsultarLivroVendedor extends JFrame {
 				new Object[][] {
 				},
 				new String[] {
-					"T\u00EDtulo", "Autor", "G\u00EAnero", "Idioma", "Ano", "N\u00B0 P\u00E1ginas", "Editora", "Pre\u00E7o", "Quantidade"
+					"T\u00EDtulo", "Autor", "G\u00EAnero", "Idioma", "Ano", "N\u00B0 P\u00E1ginas", "Editora", "Pre\u00E7o"
 				}
 			);
 			for (int i=0; i < listaLivro.size(); i++) {
 				Livro l = listaLivro.get(i);
-				model.addRow(new Object[] {l.getTitulo(), l.getAutor(), l.getGenero(), l.getIdioma(), l.getAno(), l.getnPaginas(), l.getEditora(), l.getPreco(), l.getQuant() });
+				model.addRow(new Object[] {l.getTitulo(), l.getAutor(), l.getGenero(), l.getIdioma(), l.getAno(), l.getnPaginas(), l.getEditora(), l.getPreco() });
 			}
 			table.setModel(model);
 		table.setFont(new Font("Bookman Old Style", Font.PLAIN, 11));
