@@ -9,7 +9,9 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 
+import controle.HistoricoPrecosBD;
 import controle.LivroBD;
+import modelo.HistoricoPrecos;
 import modelo.Livro;
 
 import javax.swing.JLabel;
@@ -20,6 +22,7 @@ import javax.swing.JButton;
 import java.awt.SystemColor;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Dimension;
@@ -39,6 +42,7 @@ public class TelaLivroSelecionado extends JFrame {
 	ArrayList<Livro> listaLivro = new ArrayList();
 	LivroBD bd = new LivroBD();
 	private JTextField txtQuantidade;
+	HistoricoPrecosBD hpbd = new HistoricoPrecosBD();
 
 	/**
 	 * Launch the application.
@@ -208,7 +212,9 @@ public class TelaLivroSelecionado extends JFrame {
 		JButton btnAlterar = new JButton("Alterar");
 		btnAlterar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				HistoricoPrecos hp = new HistoricoPrecos();
+				hp.setLivro(livroSelecionado);
+				hp.setPrecoAnterior(livroSelecionado.getPreco());
 				livroSelecionado.setTitulo(txtTitulo.getText());
 				livroSelecionado.setAutor(txtAutor.getText());
 				livroSelecionado.setGenero(txtGenero.getText());
@@ -218,7 +224,11 @@ public class TelaLivroSelecionado extends JFrame {
 				livroSelecionado.setEditora(txtEditora.getText());
 				livroSelecionado.setPreco(Float.parseFloat(txtPreco.getText()));
 				livroSelecionado.setQuant(Integer.parseInt(txtQuantidade.getText()));
-				
+				hp.setPrecoAlterado(livroSelecionado.getPreco());
+				LocalDate data = LocalDate.now();
+				String dataS = String.valueOf(data);
+				hp.setDataAlteracao(dataS);
+				hpbd.cadastrarHistorico(hp);
 				bd.alterarLivro(livroSelecionado);
 				listaLivro = bd.mostrarLivro();
 				JOptionPane.showMessageDialog(null, "Os Dados do Livro foram Alterados");

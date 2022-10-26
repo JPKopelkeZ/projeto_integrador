@@ -16,15 +16,12 @@ public class HistoricoPrecosBD {
 			Connection bd = ConnectionBD.conectar();
 			Livro livro = hp.getLivro();
 			String livroID = String.valueOf(livro.getCodigo());
-			
-			Funcionario supervisor = hp.getSupervisor();
-			String supervisorID = String.valueOf(supervisor.getCodigo());
-			PreparedStatement ps = bd.prepareStatement("INSERT INTO historicoPrecos(dataAlteracao, precoAlterado, precoAnterior, livro_idlivro, funcionario_idfuncionario) VALUES (?, ?, ?, ?, ?)");
+
+			PreparedStatement ps = bd.prepareStatement("INSERT INTO historicoPrecos(dataAlteracao, precoAlterado, precoAnterior, livro_idlivro) VALUES (?, ?, ?, ?)");
 			ps.setString(1, hp.getDataAlteracao());
 			ps.setString(2, String.valueOf(hp.getPrecoAlterado()));
 			ps.setString(3, String.valueOf(hp.getPrecoAnterior()));
 			ps.setString(4, livroID);
-			ps.setString(5, supervisorID);
 			ps.execute();
 			
 			ConnectionBD.fechar();
@@ -38,7 +35,7 @@ public class HistoricoPrecosBD {
 		try {
 			ArrayList<HistoricoPrecos> pesquisa = new ArrayList<>();
 			Connection bd = ConnectionBD.conectar();
-			PreparedStatement ps = bd.prepareStatement("SELECT * FROM historicoPrecos INNER JOIN livro ON livro.idlivro = historicoPrecos.livro_idlivro INNER JOIN funcionario ON funcionario.idfuncionario = historicoPrecos.funcionario_idfuncionario");
+			PreparedStatement ps = bd.prepareStatement("SELECT * FROM historicoPrecos INNER JOIN livro ON livro.idlivro = historicoPrecos.livro_idlivro");
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				String idS = rs.getString("historicoPrecos.idhistoricoPrecos");
@@ -58,18 +55,10 @@ public class HistoricoPrecosBD {
 				livro.setnPaginas(Integer.valueOf(rs.getString("livro.numeroPaginas")));
 				livro.setAutor(rs.getString("livro.autor"));
 				
-				Funcionario func = new Funcionario();
-				func.setCodigo(Integer.valueOf(rs.getString("funcionario.idfuncionario")));
-				func.setNome(rs.getString("funcionario.nomefuncionario"));
-				func.setCpf(rs.getString("funcionario.cpf"));
-				func.setFuncao(rs.getString("funcionario.funcao"));
-				func.setSalario(Float.parseFloat(rs.getString("funcionario.salario")));
-				func.setTelefone(rs.getString("funcionario.telefone"));
-				
 				float precoAlteradoF = Float.parseFloat(precoAlterado);
 				float precoAnteriorF = Float.parseFloat(precoAnterior);
 				
-				HistoricoPrecos hp = new HistoricoPrecos(id, livro, func, dataAlt, precoAlteradoF, precoAnteriorF);
+				HistoricoPrecos hp = new HistoricoPrecos(id, livro, dataAlt, precoAlteradoF, precoAnteriorF);
 				pesquisa.add(hp);
 			}
 			ConnectionBD.fechar();
