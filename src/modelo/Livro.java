@@ -47,6 +47,22 @@ public class Livro {
 		this.autor = autor;
 		this.quant = quant;
 	}
+	
+	public Livro(int codigo, String titulo, String editora, int ano, String idioma, String genero,
+			int nPaginas, String autor, int quant, float preco) {
+		super();
+		this.codigo = codigo;
+		this.editora = editora;
+		this.ano = ano;
+		this.titulo = titulo;
+		this.idioma = idioma;
+		this.genero = genero;
+		this.nPaginas = nPaginas;
+		this.autor = autor;
+		this.quant = quant;
+		this.preco = preco;
+	}
+
 
 	public float getPreco() {
 		return preco;

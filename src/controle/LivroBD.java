@@ -55,10 +55,11 @@ public class LivroBD {
 		Connection bd = ConnectionBD.conectar();
 		PreparedStatement ps;
 		try {
-			ps = bd.prepareStatement("UPDATE livro SET titulo = ?, ano = ?, editora = ?, genero = ?, idioma = ?, numeroPaginas = ?, quant = ? where idlivro = ?");
+			ps = bd.prepareStatement("UPDATE livro SET titulo = ?, ano = ?, editora = ?, genero = ?, idioma = ?, numeroPaginas = ?, quant = ?, preco = ? where idlivro = ?");
 			String ano = String.valueOf(livro.getAno());
 			String numeroPag = String.valueOf(livro.getnPaginas());
 			String quant = String.valueOf(livro.getQuant());
+			String preco = String.valueOf(livro.getPreco());
 			ps.setString(1, livro.getTitulo());
 			ps.setString(2, ano);
 			ps.setString(3, livro.getEditora());
@@ -66,7 +67,8 @@ public class LivroBD {
 			ps.setString(5, livro.getIdioma());
 			ps.setString(6, numeroPag);
 			ps.setString(7, quant);
-			ps.setString(8, idS);
+			ps.setString(8, preco);
+			ps.setString(9, idS);
 			ps.execute();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -173,8 +175,10 @@ public class LivroBD {
 			String idioma = rs.getString("idioma");
 			String autor = rs.getString("autor");
 			String quantS = rs.getString("quant");
+			String precoS = rs.getString("preco");
+			float preco = Float.parseFloat(precoS);
 			int quant = Integer.valueOf(quantS);
-			Livro livro = new Livro(id, tituloS, editora, ano, idioma, genero, nPag, autor, quant);
+			Livro livro = new Livro(id, tituloS, editora, ano, idioma, genero, nPag, autor, quant, preco);
 			pesquisa.add(livro);
 		}
 
