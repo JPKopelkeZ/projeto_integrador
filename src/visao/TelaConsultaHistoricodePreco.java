@@ -14,7 +14,13 @@ import java.awt.SystemColor;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import controle.HistoricoPrecosBD;
+import modelo.HistoricoPrecos;
+import modelo.Livro;
+
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Dimension;
 
@@ -22,6 +28,8 @@ public class TelaConsultaHistoricodePreco extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
+	ArrayList<HistoricoPrecos> listaHistorico = new ArrayList<>();
+	HistoricoPrecosBD bd = new HistoricoPrecosBD();
 
 	/**
 	 * Launch the application.
@@ -45,6 +53,7 @@ public class TelaConsultaHistoricodePreco extends JFrame {
 	public TelaConsultaHistoricodePreco() {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
+		listaHistorico = bd.mostrarHistorico();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 962, 609);
 		contentPane = new JPanel();
@@ -89,13 +98,23 @@ public class TelaConsultaHistoricodePreco extends JFrame {
 		contentPane_1.add(scrollPane);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
+		DefaultTableModel model = new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
-				"Nome", "N.Supervisor", "D.Altera\u00E7\u00E3o", "P.Altera\u00E7\u00E3o", "P.Anterior"
+				"Nome", "D.Altera\u00E7\u00E3o", "P.Altera\u00E7\u00E3o", "P.Anterior"
 			}
-		));
+		);
+		for (int i = 0; i < listaHistorico.size(); i++) {
+			HistoricoPrecos hp = listaHistorico.get(i);
+			Livro l = hp.getLivro();
+			String data = hp.getDataAlteracao();
+			float alt = hp.getPrecoAlterado();
+			float ant = hp.getPrecoAnterior();
+			model.addRow(new Object[] {l.getTitulo(), data, alt, ant});
+			
+		}
+		table.setModel(model);
 		scrollPane.setViewportView(table);
 	}
 
