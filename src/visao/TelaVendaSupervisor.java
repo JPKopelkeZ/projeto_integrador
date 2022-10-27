@@ -237,6 +237,8 @@ public class TelaVendaSupervisor extends JFrame {
 					
 					Livro livro = lbd.mostrarLivroPesquisaId(idlivro);
 					
+					preco *= quant;
+					
 					LivroVendido lv = new LivroVendido(quant, preco, livro, vendaCadastrada);
 					int quantLivro = livro.getQuant();
 					if(quantLivro >= quant) {
