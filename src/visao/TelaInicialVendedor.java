@@ -183,21 +183,6 @@ public class TelaInicialVendedor extends JFrame {
 		lblNomeEmpresa.setBounds(26, 11, 223, 32);
 		panel.add(lblNomeEmpresa);
 		
-		JLabel lblNome = new JLabel("Nome:");
-		lblNome.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
-		lblNome.setBounds(17, 43, 46, 14);
-		panel.add(lblNome);
-		
-		JLabel lblNomeFunc = new JLabel("-");
-		lblNomeFunc.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
-		lblNomeFunc.setBounds(73, 43, 46, 14);
-		panel.add(lblNomeFunc);
-		
-		JLabel lblFuncVendedor = new JLabel("Função: Vendedor");
-		lblFuncVendedor.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
-		lblFuncVendedor.setBounds(17, 54, 180, 19);
-		panel.add(lblFuncVendedor);
-		
 		JButton btnSair_1 = new JButton("Sair");
 		btnSair_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -241,6 +226,11 @@ public class TelaInicialVendedor extends JFrame {
 		btnPesquisar.setBounds(775, 19, 89, 23);
 		panel.add(btnPesquisar);
 		
+		JLabel lblFunoVendedor = new JLabel("Função: Vendedor");
+		lblFunoVendedor.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		lblFunoVendedor.setBounds(26, 53, 165, 24);
+		panel.add(lblFunoVendedor);
+		
 		JScrollPane scrollPainelResultado = new JScrollPane();
 		scrollPainelResultado.setBorder(new LineBorder(new Color(0, 0, 0)));
 		scrollPainelResultado.setBackground(new Color(153, 204, 255));
@@ -268,4 +258,5 @@ public class TelaInicialVendedor extends JFrame {
 		btnSair.setBackground(new Color(0, 0, 0));
 		btnSair.setFont(new Font("Bookman Old Style", Font.PLAIN, 11));
 	}
-}}
+}	
+}

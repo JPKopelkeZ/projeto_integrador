@@ -236,14 +236,9 @@ public class TelaInicialSupervisor extends JFrame {
 		panel.add(txtPesquisarProdutos);
 		txtPesquisarProdutos.setColumns(10);
 		
-		JLabel lblNome = new JLabel("Nome:");
-		lblNome.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
-		lblNome.setBounds(20, 53, 57, 14);
-		panel.add(lblNome);
-		
 		JLabel lblFuncao = new JLabel("Função: Supervisor ");
 		lblFuncao.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
-		lblFuncao.setBounds(20, 68, 165, 14);
+		lblFuncao.setBounds(31, 58, 165, 24);
 		panel.add(lblFuncao);
 		
 		JButton btnSair = new JButton("Sair");
@@ -259,10 +254,6 @@ public class TelaInicialSupervisor extends JFrame {
 		btnSair.setFont(new Font("Bookman Old Style", Font.PLAIN, 12));
 		btnSair.setBounds(838, 71, 89, 23);
 		panel.add(btnSair);
-		
-		JLabel lblNomeFunc = new JLabel("-");
-		lblNomeFunc.setBounds(87, 54, 46, 14);
-		panel.add(lblNomeFunc);
 		
 		JButton btnPesquisar = new JButton("Pesquisar");
 		btnPesquisar.addActionListener(new ActionListener() {
