@@ -217,7 +217,7 @@ public class TelaVendaVendedor extends JFrame {
 					int idcliente = Integer.valueOf(ClienteID);
 					
 					String PrecoS = textPreco.getText();
-					int preco = Integer.valueOf(PrecoS);
+					float preco = Float.parseFloat(PrecoS);
 					
 					String VendedorID = textVendedor.getText();
 					int idfunc = Integer.valueOf(VendedorID);
