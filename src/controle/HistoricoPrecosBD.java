@@ -68,5 +68,52 @@ public class HistoricoPrecosBD {
 			return null;
 		}
 	}
+	
+	public HistoricoPrecos buscarHistoricoPorLivro(Livro livro) {
+		HistoricoPrecos hp = new HistoricoPrecos();
+		int id = livro.getCodigo();
+		String idS = String.valueOf(id);
+		Connection bd = ConnectionBD.conectar();
+		try {
+		PreparedStatement ps = bd.prepareStatement("SELECT * FROM historicoPrecos WHERE livro_idlivro = ?");
+		ps.setString(1, idS);
+		ResultSet rs = ps.executeQuery();
+		while(rs.next()) {
+			String idHPS = rs.getString("idhistoricoPrecos");
+			int idHP = Integer.valueOf(idHPS);
+			String data = rs.getString("dataAlteracao");
+			String pAltS = rs.getString("precoAlterado");
+			String pAntS = rs.getString("precoAnterior");
+			float pAlt = Float.parseFloat(pAltS);
+			float pAnt = Float.parseFloat(pAntS);
+			hp = new HistoricoPrecos(idHP, livro, data, pAlt, pAnt);
+		}
+		ConnectionBD.fechar();
+		return hp;
+		}catch (SQLException e) {
+			System.out.println("Ocorreu uma excessao SQL: " + e);
+			return null;
+		}
+		
+	}
+	
+	public void excluirHistorico(HistoricoPrecos hp) {
+		int id = hp.getId();
+		String idS = String.valueOf(id);
+		Connection bd = ConnectionBD.conectar();
+		PreparedStatement ps;
+		try {
+			ps = bd.prepareStatement("DELETE FROM historicoPrecos WHERE idhistoricoPrecos = ?");
+			ps.setString(1, idS);
+			ps.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Erro na exclusão do Historico: " + e);
+		}
+		
+		
+		
+		ConnectionBD.fechar();
+	}
 
 }
