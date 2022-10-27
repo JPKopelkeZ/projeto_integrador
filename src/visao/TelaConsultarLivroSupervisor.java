@@ -20,8 +20,12 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
+import controle.HistoricoPrecosBD;
 import controle.LivroBD;
+import controle.LivroVendidoBD;
+import modelo.HistoricoPrecos;
 import modelo.Livro;
+import modelo.LivroVendido;
 
 public class TelaConsultarLivroSupervisor extends JFrame {
 
@@ -29,6 +33,8 @@ public class TelaConsultarLivroSupervisor extends JFrame {
 	private JTable table;
 	ArrayList<Livro> listaLivro = new ArrayList<>();
 	LivroBD bd = new LivroBD();
+	HistoricoPrecosBD hpbd = new HistoricoPrecosBD();
+	LivroVendidoBD lvbd = new LivroVendidoBD();
 	
 
 	/**
@@ -130,13 +136,19 @@ public class TelaConsultarLivroSupervisor extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Livro livro = listaLivro.get(table.getSelectedRow());
 				if (livro != null) {
+					LivroVendido lv = lvbd.buscarLivroVendidoPorLivro(livro);
+					if(lv != null) {JOptionPane.showMessageDialog(null, "Não é possível excluir um livro já vendido.");}
+						
+					else { HistoricoPrecos hp = hpbd.buscarHistoricoPorLivro(livro);
+					if (hp != null) {hpbd.excluirHistorico(hp);}
 					bd.excluirLivro(livro);
+				
 					listaLivro.remove(livro);
 					JOptionPane.showMessageDialog(null, "Livro Excluído com sucesso");
 
 					setVisible(false);
 					TelaConsultarLivroSupervisor consultaLivroS = new TelaConsultarLivroSupervisor();
-					consultaLivroS.setVisible(true);
+					consultaLivroS.setVisible(true);}
 				}
 			}
 		});

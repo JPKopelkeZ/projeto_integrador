@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import modelo.Endereco;
 import modelo.Fornecedor;
+import modelo.HistoricoPrecos;
 import modelo.Livro;
 import modelo.LivroVendido;
 import modelo.Venda;
@@ -132,6 +133,43 @@ public class LivroVendidoBD {
 		
 		
 		ConnectionBD.fechar();
+	}
+	
+	public LivroVendido buscarLivroVendidoPorLivro(Livro livro) {
+		LivroVendido lv = null;
+		int id = livro.getCodigo();
+		String idS = String.valueOf(id);
+		Connection bd = ConnectionBD.conectar();
+		try {
+		PreparedStatement ps = bd.prepareStatement("SELECT * FROM livroVendido INNER JOIN venda ON venda.idvenda = livroVendido.venda_idvenda WHERE livro_idlivro = ? ");
+		ps.setInt(1, id);
+		System.out.println(ps);
+		System.out.println(livro.getCodigo());
+		ResultSet rs = ps.executeQuery();
+		while(rs.next()) {
+			String idLVS = rs.getString("livroVendido.idlivroVendido");
+			int idLV = Integer.valueOf(idLVS);
+			String quantidade = rs.getString("livroVendido.quantidade");
+			int quant = Integer.parseInt(quantidade);
+			String precoAtual = rs.getString("livroVendido.precoAtual");
+			float preco = Float.parseFloat(precoAtual);
+	
+			
+			Venda venda = new Venda();
+			venda.setId(Integer.valueOf(rs.getString("venda.idvenda")));
+			venda.setIdcliente(Integer.valueOf(rs.getString("venda.cliente_idcliente")));
+			venda.setIdfuncionario(Integer.valueOf(rs.getString("venda.funcionario_idfuncionario")));
+			
+			lv = new LivroVendido(idLV, quant, preco, livro, venda);
+			
+		}
+		ConnectionBD.fechar();
+		return lv;
+		}catch (SQLException e) {
+			System.out.println("Ocorreu uma excessao SQL: " + e);
+			return null;
+		}
+		
 	}
 
 
