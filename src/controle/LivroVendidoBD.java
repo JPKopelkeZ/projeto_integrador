@@ -136,13 +136,15 @@ public class LivroVendidoBD {
 	}
 	
 	public LivroVendido buscarLivroVendidoPorLivro(Livro livro) {
-		LivroVendido lv = new LivroVendido();
+		LivroVendido lv = null;
 		int id = livro.getCodigo();
 		String idS = String.valueOf(id);
 		Connection bd = ConnectionBD.conectar();
 		try {
 		PreparedStatement ps = bd.prepareStatement("SELECT * FROM livroVendido INNER JOIN venda ON venda.idvenda = livroVendido.venda_idvenda WHERE livro_idlivro = ? ");
-		ps.setString(1, idS);
+		ps.setInt(1, id);
+		System.out.println(ps);
+		System.out.println(livro.getCodigo());
 		ResultSet rs = ps.executeQuery();
 		while(rs.next()) {
 			String idLVS = rs.getString("livroVendido.idlivroVendido");
@@ -159,9 +161,6 @@ public class LivroVendidoBD {
 			venda.setIdfuncionario(Integer.valueOf(rs.getString("venda.funcionario_idfuncionario")));
 			
 			lv = new LivroVendido(idLV, quant, preco, livro, venda);
-			if (idLV == 0 && livro == null && preco == 0 && quant == 0 && venda == null) {
-				return null;
-			}
 			
 		}
 		ConnectionBD.fechar();
