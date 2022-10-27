@@ -180,7 +180,9 @@ public class LivroBD {
 			String autor = rs.getString("autor");
 			String quantS = rs.getString("quant");
 			String precoS = rs.getString("preco");
-			float preco = Float.parseFloat(precoS);
+			float preco;
+			if (precoS == null || precoS.isEmpty()) {preco = 0;}
+			else {preco = Float.parseFloat(precoS);}
 			int quant = Integer.valueOf(quantS);
 			Livro livro = new Livro(id, tituloS, editora, ano, idioma, genero, nPag, autor, quant, preco);
 			pesquisa.add(livro);

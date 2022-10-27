@@ -54,7 +54,7 @@ public class TelaConsultaHistoricodePreco extends JFrame {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
 		listaHistorico = bd.mostrarHistorico();
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 962, 609);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
