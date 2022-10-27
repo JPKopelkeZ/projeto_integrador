@@ -107,7 +107,9 @@ public class LivroBD {
 			String autor = rs.getString("autor");
 			String quantS = rs.getString("quant");
 			int quant = Integer.valueOf(quantS);
-			Livro livro = new Livro(id, tituloS, editora, ano, idioma, genero, nPag, autor, quant);
+			String precoS = rs.getString("preco");
+			float preco = Float.parseFloat(precoS);
+			Livro livro = new Livro(id, tituloS, editora, ano, idioma, genero, nPag, autor, quant, preco);
 			pesquisa.add(livro);
 		}
 
@@ -141,8 +143,10 @@ public class LivroBD {
 			String idioma = rs.getString("idioma");
 			String autor = rs.getString("autor");
 			String quantS = rs.getString("quant");
+			String precoS = rs.getString("preco");
+			float preco = Float.parseFloat(precoS);
 			int quant = Integer.valueOf(quantS);
-			livro = new Livro(id, tituloS, editora, ano, idioma, genero, nPag, autor, quant);
+			livro = new Livro(id, tituloS, editora, ano, idioma, genero, nPag, autor, quant, preco);
 		}
 
 		
