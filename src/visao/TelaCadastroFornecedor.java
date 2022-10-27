@@ -200,6 +200,7 @@ public class TelaCadastroFornecedor extends JFrame {
 		panel_1.add(btnNewButton);
 		
 		textEstado = new JTextField();
+		textEstado.setFont(new Font("Calisto MT", Font.PLAIN, 13));
 		textEstado.setColumns(10);
 		textEstado.setBounds(115, 281, 470, 30);
 		panel_1.add(textEstado);

@@ -221,6 +221,7 @@ public class TelaCadastroCliente extends JFrame {
 		panel_1.add(btnNewButton);
 		
 		textEstado = new JTextField();
+		textEstado.setFont(new Font("Calisto MT", Font.PLAIN, 13));
 		textEstado.setBounds(115, 329, 470, 30);
 		panel_1.add(textEstado);
 		textEstado.setColumns(10);

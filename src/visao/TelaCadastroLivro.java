@@ -242,6 +242,7 @@ public class TelaCadastroLivro extends JFrame {
 		txtIdiomaPesquisa.setText("");
 		txtPaginaPesquisa.setText("");
 		txtPesquisaAutor.setText("");
+		txtQuantidade.setText("");
 		
 		
 		
