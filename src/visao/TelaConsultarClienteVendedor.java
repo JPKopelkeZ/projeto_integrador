@@ -19,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
 import controle.ClienteBD;
 import modelo.Cliente;
 import modelo.Endereco;
+import modelo.Usuario;
 
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -34,23 +35,11 @@ public class TelaConsultarClienteVendedor extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaConsultarClienteVendedor frame = new TelaConsultarClienteVendedor();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public TelaConsultarClienteVendedor() {
+	public TelaConsultarClienteVendedor(Usuario usuario) {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
 		listaClientes = bd.mostrarCliente();
@@ -79,7 +68,7 @@ public class TelaConsultarClienteVendedor extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaInicialVendedor telaVendedor = new TelaInicialVendedor();
+				TelaInicialVendedor telaVendedor = new TelaInicialVendedor(usuario);
 				telaVendedor.setVisible(true);
 			}
 		});

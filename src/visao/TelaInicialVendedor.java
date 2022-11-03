@@ -21,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 
 import controle.LivroBD;
 import modelo.Livro;
+import modelo.Usuario;
 
 import javax.swing.JScrollPane;
 import java.awt.SystemColor;
@@ -44,23 +45,12 @@ public class TelaInicialVendedor extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaInicialVendedor frame = new TelaInicialVendedor();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
 	 */
-	public TelaInicialVendedor() {
+	public TelaInicialVendedor(Usuario usuario) {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
 		listaLivro = bd.mostrarLivro();
@@ -78,7 +68,7 @@ public class TelaInicialVendedor extends JFrame {
 		JMenuItem mntNovaVendaV = new JMenuItem("Venda");
 		mntNovaVendaV.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaVendaVendedor TelaVendaVendedor = new TelaVendaVendedor();
+				TelaVendaVendedor TelaVendaVendedor = new TelaVendaVendedor(usuario);
 				TelaVendaVendedor.setVisible(true);
 			}
 			
@@ -96,7 +86,7 @@ public class TelaInicialVendedor extends JFrame {
 		mntConsultarClienteV.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaConsultarClienteVendedor consultaClienteV = new TelaConsultarClienteVendedor();
+				TelaConsultarClienteVendedor consultaClienteV = new TelaConsultarClienteVendedor(usuario);
 				consultaClienteV.setVisible(true);
 			}
 		});
@@ -108,7 +98,7 @@ public class TelaInicialVendedor extends JFrame {
 		mntConsultarFornecedorV.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaConsultarFornecedorVendedor consultaFornecedorV = new TelaConsultarFornecedorVendedor();
+				TelaConsultarFornecedorVendedor consultaFornecedorV = new TelaConsultarFornecedorVendedor(usuario);
 				consultaFornecedorV.setVisible(true);
 			}
 		});
@@ -119,7 +109,7 @@ public class TelaInicialVendedor extends JFrame {
 		mntConsultarFuncionarioV.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaConsultarFuncionarioVendedor consultaFuncionarioV = new TelaConsultarFuncionarioVendedor();
+				TelaConsultarFuncionarioVendedor consultaFuncionarioV = new TelaConsultarFuncionarioVendedor(usuario);
 				consultaFuncionarioV.setVisible(true);
 			}
 		});
@@ -130,7 +120,7 @@ public class TelaInicialVendedor extends JFrame {
 		mntConsultarLivroV.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaConsultarLivroVendedor consultaLivroV = new TelaConsultarLivroVendedor();
+				TelaConsultarLivroVendedor consultaLivroV = new TelaConsultarLivroVendedor(usuario);
 				consultaLivroV.setVisible(true);
 			}
 		});
@@ -141,7 +131,7 @@ public class TelaInicialVendedor extends JFrame {
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaConsultarVendaVendedor consultaVendaV =  new TelaConsultarVendaVendedor();
+				TelaConsultarVendaVendedor consultaVendaV =  new TelaConsultarVendaVendedor(usuario);
 				consultaVendaV.setVisible(true);
 			}
 		});

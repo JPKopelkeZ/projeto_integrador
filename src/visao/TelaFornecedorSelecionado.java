@@ -17,6 +17,7 @@ import modelo.Endereco;
 import modelo.Fornecedor;
 import modelo.Funcionario;
 import modelo.Livro;
+import modelo.Usuario;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -47,23 +48,12 @@ public class TelaFornecedorSelecionado extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaFornecedorSelecionado frame = new TelaFornecedorSelecionado();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
 	 */
-	public TelaFornecedorSelecionado() {
+	public TelaFornecedorSelecionado(Usuario usuario) {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
 		listaFornecedor = bd.mostrarFornecedor();
@@ -98,7 +88,7 @@ public class TelaFornecedorSelecionado extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaConsultarFornecedorSupervisor consultaLivroS = new TelaConsultarFornecedorSupervisor();
+				TelaConsultarFornecedorSupervisor consultaLivroS = new TelaConsultarFornecedorSupervisor(usuario);
 				consultaLivroS.setVisible(true);
 			}
 		});
@@ -216,7 +206,7 @@ public class TelaFornecedorSelecionado extends JFrame {
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaInicialSupervisor telaSupervisor = new TelaInicialSupervisor();
+				TelaInicialSupervisor telaSupervisor = new TelaInicialSupervisor(usuario);
 				telaSupervisor.setVisible(true);
 			}
 		});

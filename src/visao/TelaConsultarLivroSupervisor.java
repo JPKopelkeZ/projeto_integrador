@@ -26,6 +26,7 @@ import controle.LivroVendidoBD;
 import modelo.HistoricoPrecos;
 import modelo.Livro;
 import modelo.LivroVendido;
+import modelo.Usuario;
 
 public class TelaConsultarLivroSupervisor extends JFrame {
 
@@ -40,23 +41,12 @@ public class TelaConsultarLivroSupervisor extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaConsultarLivroSupervisor frame = new TelaConsultarLivroSupervisor();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
 	 */
-	public TelaConsultarLivroSupervisor() {
+	public TelaConsultarLivroSupervisor(Usuario usuario) {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
 		listaLivro = bd.mostrarLivro();
@@ -85,7 +75,7 @@ public class TelaConsultarLivroSupervisor extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaInicialSupervisor telaSupervisor = new TelaInicialSupervisor();
+				TelaInicialSupervisor telaSupervisor = new TelaInicialSupervisor(usuario);
 				telaSupervisor.setVisible(true);
 			}
 		});
@@ -119,7 +109,7 @@ public class TelaConsultarLivroSupervisor extends JFrame {
 		JButton btnSelecionar = new JButton("Selecionar");
 		btnSelecionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaLivroSelecionado tls = new TelaLivroSelecionado();
+				TelaLivroSelecionado tls = new TelaLivroSelecionado(usuario);
 				tls.selecionarColuna(listaLivro.get(table.getSelectedRow()));
 				tls.setVisible(true);
 				dispose();
@@ -147,7 +137,7 @@ public class TelaConsultarLivroSupervisor extends JFrame {
 					JOptionPane.showMessageDialog(null, "Livro Excluído com sucesso");
 
 					setVisible(false);
-					TelaConsultarLivroSupervisor consultaLivroS = new TelaConsultarLivroSupervisor();
+					TelaConsultarLivroSupervisor consultaLivroS = new TelaConsultarLivroSupervisor(usuario);
 					consultaLivroS.setVisible(true);}
 				}
 			}

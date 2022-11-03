@@ -28,6 +28,7 @@ import modelo.Cliente;
 import modelo.Funcionario;
 import modelo.Livro;
 import modelo.LivroVendido;
+import modelo.Usuario;
 import modelo.Venda;
 
 public class TelaConsultarVendaSupervisor extends JFrame {
@@ -43,23 +44,12 @@ public class TelaConsultarVendaSupervisor extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaConsultarVendaSupervisor frame = new TelaConsultarVendaSupervisor();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
 	 */
-	public TelaConsultarVendaSupervisor() {
+	public TelaConsultarVendaSupervisor(Usuario usuario) {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
 		listaVenda = bd.mostrarLivrosVendidos();
@@ -88,7 +78,7 @@ public class TelaConsultarVendaSupervisor extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaInicialSupervisor inicialS = new TelaInicialSupervisor();
+				TelaInicialSupervisor inicialS = new TelaInicialSupervisor(usuario);
 				inicialS.setVisible(true);
 			}
 		});
@@ -130,7 +120,7 @@ public class TelaConsultarVendaSupervisor extends JFrame {
 		JButton btnSelecionar = new JButton("Selecionar");
 		btnSelecionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaVendaSelecionada tvs = new TelaVendaSelecionada();
+				TelaVendaSelecionada tvs = new TelaVendaSelecionada(usuario);
 				// tls.selecionarColuna(listaLivro.get(table.getSelectedRow()));
 				tvs.selecionarColuna(listaVenda.get(table.getSelectedRow()));
 				tvs.setVisible(true);
@@ -156,7 +146,7 @@ public class TelaConsultarVendaSupervisor extends JFrame {
 					JOptionPane.showMessageDialog(null, "Livro Excluído com sucesso");
 
 					setVisible(false);
-					TelaConsultarVendaSupervisor consultaVenda = new TelaConsultarVendaSupervisor();
+					TelaConsultarVendaSupervisor consultaVenda = new TelaConsultarVendaSupervisor(usuario);
 					consultaVenda.setVisible(true);
 				}
 			}

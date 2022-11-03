@@ -23,6 +23,7 @@ import controle.FornecedorBD;
 import modelo.Cliente;
 import modelo.Endereco;
 import modelo.Fornecedor;
+import modelo.Usuario;
 
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -39,23 +40,11 @@ public class TelaConsultarFornecedorSupervisor extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaConsultarFornecedorSupervisor frame = new TelaConsultarFornecedorSupervisor();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public TelaConsultarFornecedorSupervisor() {
+	public TelaConsultarFornecedorSupervisor(Usuario usuario) {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
 		listaFornecedor = bd.mostrarFornecedor();
@@ -84,7 +73,7 @@ public class TelaConsultarFornecedorSupervisor extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaInicialSupervisor telaSupervisor = new TelaInicialSupervisor();
+				TelaInicialSupervisor telaSupervisor = new TelaInicialSupervisor(usuario);
 				telaSupervisor.setVisible(true);
 			}
 		});
@@ -122,7 +111,7 @@ public class TelaConsultarFornecedorSupervisor extends JFrame {
 		JButton btnSelecionar = new JButton("Selecionar");
 		btnSelecionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaFornecedorSelecionado tcs = new TelaFornecedorSelecionado();
+				TelaFornecedorSelecionado tcs = new TelaFornecedorSelecionado(usuario);
 			    tcs.selecionarColuna(listaFornecedor.get(table.getSelectedRow()));
 			    tcs.setVisible(true);
 			    dispose();
@@ -147,7 +136,7 @@ public class TelaConsultarFornecedorSupervisor extends JFrame {
 					JOptionPane.showMessageDialog(null, "Fornecedor excluído com sucesso!");
 					
 					setVisible(false);
-					TelaConsultarFornecedorSupervisor consultaFornecedor = new TelaConsultarFornecedorSupervisor();
+					TelaConsultarFornecedorSupervisor consultaFornecedor = new TelaConsultarFornecedorSupervisor(usuario);
 					consultaFornecedor.setVisible(true);
 				}
 					

@@ -12,6 +12,7 @@ import controle.EnderecoBD;
 import controle.FornecedorBD;
 import modelo.Endereco;
 import modelo.Fornecedor;
+import modelo.Usuario;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -36,23 +37,12 @@ public class TelaCadastroFornecedor extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaCadastroFornecedor frame = new TelaCadastroFornecedor();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
 	 */
-	public TelaCadastroFornecedor() {
+	public TelaCadastroFornecedor(Usuario usuario) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 963, 603);
 		contentPane = new JPanel();
@@ -84,7 +74,7 @@ public class TelaCadastroFornecedor extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaInicialSupervisor telaSupervisor = new TelaInicialSupervisor();
+				TelaInicialSupervisor telaSupervisor = new TelaInicialSupervisor(usuario);
 				telaSupervisor.setVisible(true);
 			}
 			});

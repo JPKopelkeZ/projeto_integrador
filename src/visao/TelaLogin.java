@@ -99,12 +99,12 @@ public class TelaLogin extends JFrame {
 					if (usuario != null) {
 						char tipo = usuario.getTipoUsuario();
 						if(tipo == 'V') {
-						TelaInicialVendedor telaInicial = new TelaInicialVendedor();
+						TelaInicialVendedor telaInicial = new TelaInicialVendedor(usuario);
 						telaInicial.setVisible(true);
 						frame.dispose();
 						}
 						if(tipo == 'S') {
-						TelaInicialSupervisor telaInicial = new TelaInicialSupervisor();
+						TelaInicialSupervisor telaInicial = new TelaInicialSupervisor(usuario);
 						telaInicial.setVisible(true);
 						frame.dispose();
 						}

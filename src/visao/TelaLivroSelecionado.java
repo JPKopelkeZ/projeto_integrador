@@ -13,6 +13,7 @@ import controle.HistoricoPrecosBD;
 import controle.LivroBD;
 import modelo.HistoricoPrecos;
 import modelo.Livro;
+import modelo.Usuario;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -47,23 +48,12 @@ public class TelaLivroSelecionado extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaLivroSelecionado frame = new TelaLivroSelecionado();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
 	 */
-	public TelaLivroSelecionado() {
+	public TelaLivroSelecionado(Usuario usuario) {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
 		listaLivro = bd.mostrarLivro();
@@ -91,7 +81,7 @@ public class TelaLivroSelecionado extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaConsultarLivroSupervisor consultaLivroS = new TelaConsultarLivroSupervisor();
+				TelaConsultarLivroSupervisor consultaLivroS = new TelaConsultarLivroSupervisor(usuario);
 				consultaLivroS.setVisible(true);
 			}
 		});
@@ -245,7 +235,7 @@ public class TelaLivroSelecionado extends JFrame {
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaInicialSupervisor telaSupervisor = new TelaInicialSupervisor();
+				TelaInicialSupervisor telaSupervisor = new TelaInicialSupervisor(usuario);
 				telaSupervisor.setVisible(true);
 			}
 		});

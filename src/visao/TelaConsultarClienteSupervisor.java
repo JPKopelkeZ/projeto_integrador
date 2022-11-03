@@ -21,6 +21,7 @@ import controle.ClienteBD;
 import controle.EnderecoBD;
 import modelo.Cliente;
 import modelo.Endereco;
+import modelo.Usuario;
 
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
@@ -38,23 +39,12 @@ public class TelaConsultarClienteSupervisor extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaConsultarClienteSupervisor frame = new TelaConsultarClienteSupervisor();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
 	 */
-	public TelaConsultarClienteSupervisor() {
+	public TelaConsultarClienteSupervisor(Usuario usuario) {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
 		listaClientes = bd.mostrarCliente();
@@ -83,7 +73,7 @@ public class TelaConsultarClienteSupervisor extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaInicialSupervisor telaSupervisor = new TelaInicialSupervisor();
+				TelaInicialSupervisor telaSupervisor = new TelaInicialSupervisor(usuario);
 				telaSupervisor.setVisible(true);
 			}
 		});
@@ -121,7 +111,7 @@ public class TelaConsultarClienteSupervisor extends JFrame {
 		JButton btnSelecionar = new JButton("Selecionar");
 		btnSelecionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaClienteSelecionado tcs = new TelaClienteSelecionado();
+				TelaClienteSelecionado tcs = new TelaClienteSelecionado(usuario);
 			    tcs.selecionarColuna(listaClientes.get(table.getSelectedRow()));
 			    tcs.setVisible(true);
 			    dispose();
@@ -145,7 +135,7 @@ public class TelaConsultarClienteSupervisor extends JFrame {
 					JOptionPane.showMessageDialog(null, "Cliente excluído com sucesso!");
 					
 					setVisible(false);
-					TelaConsultarClienteSupervisor consultaCliente = new TelaConsultarClienteSupervisor();
+					TelaConsultarClienteSupervisor consultaCliente = new TelaConsultarClienteSupervisor(usuario);
 					consultaCliente.setVisible(true);
 				}
 			}

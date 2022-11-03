@@ -16,6 +16,7 @@ import controle.FornecedorBD;
 import modelo.Cliente;
 import modelo.Endereco;
 import modelo.Fornecedor;
+import modelo.Usuario;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -47,23 +48,11 @@ public class TelaClienteSelecionado extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaClienteSelecionado frame = new TelaClienteSelecionado();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public TelaClienteSelecionado() {
+	public TelaClienteSelecionado(Usuario usuario) {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -97,7 +86,7 @@ public class TelaClienteSelecionado extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-			TelaConsultarClienteSupervisor TelaConsultarClienteSupervisor = new TelaConsultarClienteSupervisor();
+			TelaConsultarClienteSupervisor TelaConsultarClienteSupervisor = new TelaConsultarClienteSupervisor(usuario);
 			TelaConsultarClienteSupervisor.setVisible(true);
 				
 			}
@@ -229,7 +218,7 @@ public class TelaClienteSelecionado extends JFrame {
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaInicialSupervisor telaSupervisor = new TelaInicialSupervisor();
+				TelaInicialSupervisor telaSupervisor = new TelaInicialSupervisor(usuario);
 				telaSupervisor.setVisible(true);
 			}
 		});

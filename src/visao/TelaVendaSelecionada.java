@@ -14,6 +14,7 @@ import controle.LivroVendidoBD;
 import controle.VendaBD;
 import modelo.Livro;
 import modelo.LivroVendido;
+import modelo.Usuario;
 import modelo.Venda;
 
 import javax.swing.JLabel;
@@ -46,23 +47,12 @@ public class TelaVendaSelecionada extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaVendaSelecionada frame = new TelaVendaSelecionada();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
 	 */
-	public TelaVendaSelecionada() {
+	public TelaVendaSelecionada(Usuario usuario) {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
 		listaLivroVendido = lvbd.mostrarLivrosVendidos();
@@ -91,7 +81,7 @@ public class TelaVendaSelecionada extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaConsultarVendaSupervisor consultaVendaS = new TelaConsultarVendaSupervisor();
+				TelaConsultarVendaSupervisor consultaVendaS = new TelaConsultarVendaSupervisor(usuario);
 				consultaVendaS.setVisible(true);
 			}
 		});
@@ -200,7 +190,7 @@ public class TelaVendaSelecionada extends JFrame {
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaInicialSupervisor telaSupervisor = new TelaInicialSupervisor();
+				TelaInicialSupervisor telaSupervisor = new TelaInicialSupervisor(usuario);
 				telaSupervisor.setVisible(true);
 			}
 		});
