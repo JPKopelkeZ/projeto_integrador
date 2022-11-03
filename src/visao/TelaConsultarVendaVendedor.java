@@ -22,6 +22,7 @@ import modelo.Cliente;
 import modelo.Funcionario;
 import modelo.Livro;
 import modelo.LivroVendido;
+import modelo.Usuario;
 import modelo.Venda;
 
 import java.awt.event.ActionListener;
@@ -41,23 +42,11 @@ public class TelaConsultarVendaVendedor extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaConsultarVendaVendedor frame = new TelaConsultarVendaVendedor();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public TelaConsultarVendaVendedor() {
+	public TelaConsultarVendaVendedor(Usuario usuario) {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
 		listaVenda = bd.mostrarLivrosVendidos();
@@ -86,7 +75,7 @@ public class TelaConsultarVendaVendedor extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaInicialVendedor inicialV = new TelaInicialVendedor();
+				TelaInicialVendedor inicialV = new TelaInicialVendedor(usuario);
 				inicialV.setVisible(true);
 			}
 		});

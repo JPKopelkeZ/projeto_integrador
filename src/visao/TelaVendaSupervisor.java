@@ -17,6 +17,7 @@ import modelo.Cliente;
 import modelo.Funcionario;
 import modelo.Livro;
 import modelo.LivroVendido;
+import modelo.Usuario;
 import modelo.Venda;
 
 import javax.swing.JLabel;
@@ -46,23 +47,12 @@ public class TelaVendaSupervisor extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaVendaSupervisor frame = new TelaVendaSupervisor();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
 	 */
-	public TelaVendaSupervisor() {
+	public TelaVendaSupervisor(Usuario usuario) {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -131,7 +121,7 @@ public class TelaVendaSupervisor extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaInicialSupervisor telaSupervisor = new TelaInicialSupervisor();
+				TelaInicialSupervisor telaSupervisor = new TelaInicialSupervisor(usuario);
 				telaSupervisor.setVisible(true);
 			}
 		});

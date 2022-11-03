@@ -41,23 +41,12 @@ public class TelaFuncionarioSelecionado extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaFuncionarioSelecionado frame = new TelaFuncionarioSelecionado();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
 	 */
-	public TelaFuncionarioSelecionado() {
+	public TelaFuncionarioSelecionado(Usuario usuario) {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
 		listaFuncionario = bd.mostrarFuncionario();
@@ -86,7 +75,7 @@ public class TelaFuncionarioSelecionado extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaConsultarFuncionarioSupervisor consultaFuncS = new TelaConsultarFuncionarioSupervisor();
+				TelaConsultarFuncionarioSupervisor consultaFuncS = new TelaConsultarFuncionarioSupervisor(usuario);
 				consultaFuncS.setVisible(true);
 			}
 		});
@@ -187,7 +176,7 @@ public class TelaFuncionarioSelecionado extends JFrame {
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaInicialSupervisor inicialS = new TelaInicialSupervisor();
+				TelaInicialSupervisor inicialS = new TelaInicialSupervisor(usuario);
 				inicialS.setVisible(true);
 				
 				

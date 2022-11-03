@@ -18,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 
 import controle.LivroBD;
 import modelo.Livro;
+import modelo.Usuario;
 
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -34,23 +35,11 @@ public class TelaConsultarLivroVendedor extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaConsultarLivroVendedor frame = new TelaConsultarLivroVendedor();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public TelaConsultarLivroVendedor() {
+	public TelaConsultarLivroVendedor(Usuario usuario) {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
 		listaLivro = bd.mostrarLivro();
@@ -78,7 +67,7 @@ public class TelaConsultarLivroVendedor extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaInicialVendedor telaVendedor = new TelaInicialVendedor();
+				TelaInicialVendedor telaVendedor = new TelaInicialVendedor(usuario);
 				telaVendedor.setVisible(true);
 			}
 		});

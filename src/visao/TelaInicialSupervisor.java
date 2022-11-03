@@ -28,6 +28,7 @@ import javax.swing.table.DefaultTableModel;
 
 import controle.LivroBD;
 import modelo.Livro;
+import modelo.Usuario;
 
 public class TelaInicialSupervisor extends JFrame {
 
@@ -41,23 +42,11 @@ public class TelaInicialSupervisor extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaInicialSupervisor frame = new TelaInicialSupervisor();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public TelaInicialSupervisor() {
+	public TelaInicialSupervisor(Usuario usuario) {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
 		listaLivro = bd.mostrarLivro();
@@ -77,7 +66,7 @@ public class TelaInicialSupervisor extends JFrame {
 		mnCadastroCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaCadastroCliente cadastroCliente = new TelaCadastroCliente();
+				TelaCadastroCliente cadastroCliente = new TelaCadastroCliente(usuario);
 				cadastroCliente.setVisible(true);
 			}
 		});
@@ -88,7 +77,7 @@ public class TelaInicialSupervisor extends JFrame {
 		mntCadastroFornecedor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaCadastroFornecedor TelaCadastroFornecedor = new TelaCadastroFornecedor();
+				TelaCadastroFornecedor TelaCadastroFornecedor = new TelaCadastroFornecedor(usuario);
 				TelaCadastroFornecedor.setVisible(true);
 			}
 		});
@@ -99,7 +88,7 @@ public class TelaInicialSupervisor extends JFrame {
 		mntCadastroFuncionario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaCadastroFuncionario TelaCadastroFuncionario = new TelaCadastroFuncionario();
+				TelaCadastroFuncionario TelaCadastroFuncionario = new TelaCadastroFuncionario(usuario);
 				TelaCadastroFuncionario.setVisible(true);
 			}
 		});
@@ -110,7 +99,7 @@ public class TelaInicialSupervisor extends JFrame {
 		mntCadastroLivro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaCadastroLivro cadastroLivro = new TelaCadastroLivro();
+				TelaCadastroLivro cadastroLivro = new TelaCadastroLivro(usuario);
 				cadastroLivro.setVisible(true);
 			}
 		});
@@ -131,7 +120,7 @@ public class TelaInicialSupervisor extends JFrame {
 		mntNovaVendaS.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaVendaSupervisor TelaVendaSupervisor = new TelaVendaSupervisor();
+				TelaVendaSupervisor TelaVendaSupervisor = new TelaVendaSupervisor(usuario);
 				TelaVendaSupervisor.setVisible(true);
 			}
 			
@@ -150,7 +139,7 @@ public class TelaInicialSupervisor extends JFrame {
 		mnConsultarClienteS.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaConsultarClienteSupervisor consultaClienteS = new TelaConsultarClienteSupervisor();
+				TelaConsultarClienteSupervisor consultaClienteS = new TelaConsultarClienteSupervisor(usuario);
 				consultaClienteS.setVisible(true);
 			}
 		});
@@ -161,7 +150,7 @@ public class TelaInicialSupervisor extends JFrame {
 		mnConsultarFornecedorS.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaConsultarFornecedorSupervisor consultaFornecedorS = new TelaConsultarFornecedorSupervisor();
+				TelaConsultarFornecedorSupervisor consultaFornecedorS = new TelaConsultarFornecedorSupervisor(usuario);
 				consultaFornecedorS.setVisible(true);
 			}
 		});
@@ -172,7 +161,7 @@ public class TelaInicialSupervisor extends JFrame {
 		mntConsultarFuncionarioS.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaConsultarFuncionarioSupervisor consultaFuncionarioS = new TelaConsultarFuncionarioSupervisor();
+				TelaConsultarFuncionarioSupervisor consultaFuncionarioS = new TelaConsultarFuncionarioSupervisor(usuario);
 				consultaFuncionarioS.setVisible(true);
 			}
 		});
@@ -184,7 +173,7 @@ public class TelaInicialSupervisor extends JFrame {
 		mntConsultarLivroS.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaConsultarLivroSupervisor consultaLivroS = new TelaConsultarLivroSupervisor();
+				TelaConsultarLivroSupervisor consultaLivroS = new TelaConsultarLivroSupervisor(usuario);
 				consultaLivroS.setVisible(true);
 			}
 		});
@@ -195,7 +184,7 @@ public class TelaInicialSupervisor extends JFrame {
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaConsultarVendaSupervisor consultaVendaS = new TelaConsultarVendaSupervisor();
+				TelaConsultarVendaSupervisor consultaVendaS = new TelaConsultarVendaSupervisor(usuario);
 				consultaVendaS.setVisible(true);
 			}
 		});

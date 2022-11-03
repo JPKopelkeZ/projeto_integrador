@@ -10,6 +10,7 @@ import javax.swing.border.LineBorder;
 
 import controle.LivroBD;
 import modelo.Livro;
+import modelo.Usuario;
 
 import javax.swing.JTextField;
 import java.awt.SystemColor;
@@ -36,23 +37,12 @@ public class TelaCadastroLivro extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaCadastroLivro frame = new TelaCadastroLivro();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
 	 */
-	public TelaCadastroLivro() {
+	public TelaCadastroLivro(Usuario usuario) {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -80,7 +70,7 @@ public class TelaCadastroLivro extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaInicialSupervisor telaSupervisor = new TelaInicialSupervisor();
+				TelaInicialSupervisor telaSupervisor = new TelaInicialSupervisor(usuario);
 				telaSupervisor.setVisible(true);
 			}
 		});

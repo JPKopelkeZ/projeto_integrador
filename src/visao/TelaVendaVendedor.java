@@ -13,6 +13,7 @@ import controle.LivroVendidoBD;
 import controle.VendaBD;
 import modelo.Livro;
 import modelo.LivroVendido;
+import modelo.Usuario;
 import modelo.Venda;
 
 import javax.swing.JLabel;
@@ -42,23 +43,12 @@ public class TelaVendaVendedor extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaVendaVendedor frame = new TelaVendaVendedor();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
 	 */
-	public TelaVendaVendedor() {
+	public TelaVendaVendedor(Usuario usuario) {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -127,7 +117,7 @@ public class TelaVendaVendedor extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaInicialVendedor TelaVendedor = new TelaInicialVendedor();
+				TelaInicialVendedor TelaVendedor = new TelaInicialVendedor(usuario);
 				TelaVendedor.setVisible(true);
 			}
 			

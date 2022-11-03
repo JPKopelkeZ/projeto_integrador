@@ -22,6 +22,7 @@ import controle.FuncionarioBD;
 import modelo.Cliente;
 import modelo.Endereco;
 import modelo.Funcionario;
+import modelo.Usuario;
 
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -37,23 +38,12 @@ public class TelaConsultarFuncionarioSupervisor extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaConsultarFuncionarioSupervisor frame = new TelaConsultarFuncionarioSupervisor();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
 	 */
-	public TelaConsultarFuncionarioSupervisor() {
+	public TelaConsultarFuncionarioSupervisor(Usuario usuario) {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
 		listaFuncionarios = bd.mostrarFuncionario();
@@ -82,7 +72,7 @@ public class TelaConsultarFuncionarioSupervisor extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaInicialSupervisor telaSupervisor = new TelaInicialSupervisor();
+				TelaInicialSupervisor telaSupervisor = new TelaInicialSupervisor(usuario);
 				telaSupervisor.setVisible(true);
 			}
 		});
@@ -115,7 +105,7 @@ public class TelaConsultarFuncionarioSupervisor extends JFrame {
 		JButton btnSelecionar = new JButton("Selecionar");
 		btnSelecionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaFuncionarioSelecionado tcs = new TelaFuncionarioSelecionado();
+				TelaFuncionarioSelecionado tcs = new TelaFuncionarioSelecionado(usuario);
 			    tcs.selecionarColuna(listaFuncionarios.get(table.getSelectedRow()));
 			    tcs.setVisible(true);
 			    dispose();
