@@ -26,7 +26,9 @@ import java.awt.Dimension;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import controle.FuncionarioBD;
 import controle.LivroBD;
+import modelo.Funcionario;
 import modelo.Livro;
 import modelo.Usuario;
 
@@ -38,6 +40,7 @@ public class TelaInicialSupervisor extends JFrame {
 	ArrayList<Livro> listaLivro = new ArrayList<Livro>();
 	LivroBD bd = new LivroBD();
 	DefaultTableModel model;
+	FuncionarioBD fbd = new FuncionarioBD();
 
 	/**
 	 * Launch the application.
@@ -47,6 +50,8 @@ public class TelaInicialSupervisor extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaInicialSupervisor(Usuario usuario) {
+		int funcId = usuario.getId_funcionario();
+		Funcionario funcionario = fbd.pesquisaFuncionarioID(funcId);
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
 		listaLivro = bd.mostrarLivro();
@@ -227,7 +232,7 @@ public class TelaInicialSupervisor extends JFrame {
 		
 		JLabel lblFuncao = new JLabel("Função: Supervisor ");
 		lblFuncao.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
-		lblFuncao.setBounds(31, 58, 165, 24);
+		lblFuncao.setBounds(31, 70, 165, 24);
 		panel.add(lblFuncao);
 		
 		JButton btnSair = new JButton("Sair");
@@ -274,6 +279,17 @@ public class TelaInicialSupervisor extends JFrame {
 		btnPesquisar.setFont(new Font("Bookman Old Style", Font.PLAIN, 11));
 		btnPesquisar.setBounds(775, 21, 89, 23);
 		panel.add(btnPesquisar);
+		
+		JLabel lblNS = new JLabel("Nome:");
+		lblNS.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		lblNS.setBounds(31, 58, 46, 14);
+		panel.add(lblNS);
+		
+		JLabel lblNomeSupervisor = new JLabel("");
+		lblNomeSupervisor.setText(funcionario.getNome());
+		lblNomeSupervisor.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		lblNomeSupervisor.setBounds(83, 59, 158, 14);
+		panel.add(lblNomeSupervisor);
 		
 		JScrollPane scrollPainelResultado = new JScrollPane();
 		scrollPainelResultado.setViewportBorder(new LineBorder(new Color(0, 0, 0)));

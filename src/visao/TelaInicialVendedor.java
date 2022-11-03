@@ -19,7 +19,9 @@ import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
+import controle.FuncionarioBD;
 import controle.LivroBD;
+import modelo.Funcionario;
 import modelo.Livro;
 import modelo.Usuario;
 
@@ -41,6 +43,7 @@ public class TelaInicialVendedor extends JFrame {
 	ArrayList<Livro> listaLivro = new ArrayList<Livro>();
 	LivroBD bd = new LivroBD();
 	DefaultTableModel model;
+	FuncionarioBD fbd = new FuncionarioBD();
 
 	/**
 	 * Launch the application.
@@ -51,6 +54,8 @@ public class TelaInicialVendedor extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaInicialVendedor(Usuario usuario) {
+		int funcId = usuario.getId_funcionario();
+		Funcionario funcionario = fbd.pesquisaFuncionarioID(funcId);
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
 		listaLivro = bd.mostrarLivro();
@@ -218,8 +223,19 @@ public class TelaInicialVendedor extends JFrame {
 		
 		JLabel lblFunoVendedor = new JLabel("Função: Vendedor");
 		lblFunoVendedor.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
-		lblFunoVendedor.setBounds(26, 53, 165, 24);
+		lblFunoVendedor.setBounds(26, 70, 165, 24);
 		panel.add(lblFunoVendedor);
+		
+		JLabel lblNV = new JLabel("Nome:");
+		lblNV.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		lblNV.setBounds(25, 54, 46, 14);
+		panel.add(lblNV);
+		
+		JLabel lblNomeVendedor = new JLabel("-");
+		lblNomeVendedor.setText(funcionario.getNome());
+		lblNomeVendedor.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		lblNomeVendedor.setBounds(71, 50, 158, 23);
+		panel.add(lblNomeVendedor);
 		
 		JScrollPane scrollPainelResultado = new JScrollPane();
 		scrollPainelResultado.setBorder(new LineBorder(new Color(0, 0, 0)));

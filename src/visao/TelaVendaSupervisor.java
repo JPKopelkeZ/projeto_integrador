@@ -42,6 +42,7 @@ public class TelaVendaSupervisor extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
+	FuncionarioBD fbd = new FuncionarioBD();
 
 	/**
 	 * Launch the application.
@@ -52,6 +53,8 @@ public class TelaVendaSupervisor extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaVendaSupervisor(Usuario usuario) {
+		int funcId = usuario.getId_funcionario();
+		Funcionario funcionario = fbd.pesquisaFuncionarioID(funcId);
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -112,7 +115,7 @@ public class TelaVendaSupervisor extends JFrame {
 		
 		JLabel lblCliente = new JLabel("Cliente:");
 		lblCliente.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
-		lblCliente.setBounds(41, 66, 87, 14);
+		lblCliente.setBounds(41, 52, 87, 14);
 		panel_1.add(lblCliente);
 		
 		JLabel lblTotalvenda = new JLabel("Total:");
@@ -122,17 +125,13 @@ public class TelaVendaSupervisor extends JFrame {
 		
 		JLabel lblSupervisor = new JLabel("Supervisor:");
 		lblSupervisor.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
-		lblSupervisor.setBounds(363, 61, 102, 24);
+		lblSupervisor.setBounds(363, 47, 102, 24);
 		panel_1.add(lblSupervisor);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBackground(SystemColor.menu);
-		comboBox.setBounds(113, 64, 214, 22);
-		panel_1.add(comboBox);
-		
 		JLabel lblNomeSupervisor = new JLabel("-");
+		lblNomeSupervisor.setText(funcionario.getNome());
 		lblNomeSupervisor.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
-		lblNomeSupervisor.setBounds(475, 63, 283, 24);
+		lblNomeSupervisor.setBounds(475, 47, 283, 24);
 		panel_1.add(lblNomeSupervisor);
 		
 		JButton btnNewButton_1 = new JButton("Selecionar");
@@ -140,7 +139,7 @@ public class TelaVendaSupervisor extends JFrame {
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaSelecionarLivroVendidoS livroVendS = new TelaSelecionarLivroVendidoS();
+				TelaSelecionarLivroVendidoS livroVendS = new TelaSelecionarLivroVendidoS(usuario);
 				livroVendS.setVisible(true);
 			}
 		});
@@ -250,6 +249,29 @@ public class TelaVendaSupervisor extends JFrame {
 		btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton_3.setBounds(697, 181, 44, 26);
 		panel_1.add(btnNewButton_3);
+		
+		JButton btnNewButton_1_1 = new JButton("Selecionar");
+		btnNewButton_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				TelaSelecionarCliente tsc = new TelaSelecionarCliente(usuario);
+				tsc.setVisible(true);
+			}
+		});
+		btnNewButton_1_1.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
+		btnNewButton_1_1.setBackground(SystemColor.menu);
+		btnNewButton_1_1.setBounds(109, 50, 122, 23);
+		panel_1.add(btnNewButton_1_1);
+		
+		JLabel lblNome = new JLabel("Nome:  ");
+		lblNome.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
+		lblNome.setBounds(41, 78, 60, 24);
+		panel_1.add(lblNome);
+		
+		JLabel lblNomeCliente = new JLabel((String) null);
+		lblNomeCliente.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
+		lblNomeCliente.setBounds(107, 77, 283, 24);
+		panel_1.add(lblNomeCliente);
 		
 
 
