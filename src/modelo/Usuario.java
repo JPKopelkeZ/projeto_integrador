@@ -16,9 +16,26 @@ public class Usuario {
 		this.email = email;
 		this.senha = senha;
 	}
+	
+	public Usuario(int id, String email, String senha, char tipoUsuario, int id_funcionario) {
+		super();
+		this.id = id;
+		this.email = email;
+		this.senha = senha;
+		this.tipoUsuario = tipoUsuario;
+		this.id_funcionario = id_funcionario;
+	}
+	
+	
 
-	
-	
+	public Usuario(String email, String senha, char tipoUsuario, int id_funcionario) {
+		super();
+		this.email = email;
+		this.senha = senha;
+		this.tipoUsuario = tipoUsuario;
+		this.id_funcionario = id_funcionario;
+	}
+
 	public int getId_funcionario() {
 		return id_funcionario;
 	}
