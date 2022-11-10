@@ -111,6 +111,18 @@ public class TelaInicialSupervisor extends JFrame {
 		mntCadastroLivro.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
 		mnCadastro.add(mntCadastroLivro);
 		
+		JMenuItem mntCadastroUsuario = new JMenuItem("Usuário");
+		mntCadastroUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				TelaCadastroUsuario cadastroUsuario = new TelaCadastroUsuario(usuario);
+				cadastroUsuario.setVisible(true);
+			}
+		});
+		mntCadastroUsuario.setForeground(Color.BLACK);
+		mntCadastroUsuario.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mnCadastro.add(mntCadastroUsuario);
+		
 		
 		JMenu mnNovaS = new JMenu("+ Nova");
 		mnNovaS.addActionListener(new ActionListener() {
@@ -311,4 +323,5 @@ public class TelaInicialSupervisor extends JFrame {
 			model.addRow(new Object[] {l.getCodigo(), l.getTitulo(), l.getAutor(), l.getGenero(), l.getIdioma(), l.getAno(), l.getnPaginas(), l.getEditora(), l.getPreco()});
 		scrollPainelResultado.setViewportView(table);
 	}
-}}
+}	
+}

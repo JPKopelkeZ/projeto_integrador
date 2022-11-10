@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
 import controle.FuncionarioBD;
 import modelo.Cliente;
 import modelo.Funcionario;
+import modelo.Usuario;
 
 import javax.swing.JButton;
 import java.awt.SystemColor;
@@ -31,26 +32,7 @@ public class TelaConsultaFuncionario extends JFrame {
 	ArrayList<Funcionario> listaFuncionario = new ArrayList<Funcionario>();
 	FuncionarioBD bd = new FuncionarioBD();
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaConsultaFuncionario frame = new TelaConsultaFuncionario();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public TelaConsultaFuncionario() {
+	public TelaConsultaFuncionario(Usuario usuario, TelaCadastroUsuario tcu) {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
 		listaFuncionario = bd.mostrarFuncionario();
@@ -79,6 +61,7 @@ public class TelaConsultaFuncionario extends JFrame {
 		JButton btnVoltar = new JButton(" Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				tcu.setVisible(true);
 				dispose();
 			}
 		});
@@ -96,17 +79,31 @@ public class TelaConsultaFuncionario extends JFrame {
 			new Object[][] {
 			},
 			new String[] {
-				"ID", "Nome"
+				"ID", "Nome", "Função"
 			}
 		);
 		for (int i = 0; i < listaFuncionario.size(); i++) {
 			Funcionario f = listaFuncionario.get(i);
 			int id = f.getCodigo();
 			String nome = f.getNome();
-			model.addRow(new Object[] {id, nome});
+			String funcao = f.getFuncao();
+			model.addRow(new Object[] {id, nome, funcao});
 		}
 		table.setModel(model);
 		scrollPane.setViewportView(table);
+		
+		JButton btnSelecionar = new JButton("Selecionar");
+		btnSelecionar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			tcu.selecionarFuncionario(listaFuncionario.get(table.getSelectedRow()));
+			tcu.setVisible(true);
+			dispose();
+			}
+		});
+		btnSelecionar.setBackground(SystemColor.menu);
+		btnSelecionar.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
+		btnSelecionar.setBounds(806, 524, 131, 23);
+		contentPane.add(btnSelecionar);
 	}
 
 }
