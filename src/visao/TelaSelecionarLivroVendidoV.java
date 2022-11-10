@@ -29,7 +29,7 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class TelaSelecionarLivroVendidoS extends JFrame {
+public class TelaSelecionarLivroVendidoV extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
@@ -47,7 +47,7 @@ public class TelaSelecionarLivroVendidoS extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaSelecionarLivroVendidoS(Usuario usuario, TelaVendaSupervisor tvs) {
+	public TelaSelecionarLivroVendidoV(Usuario usuario, TelaVendaVendedor tvv) {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
 		listaLivro = bd.mostrarLivro();
@@ -76,7 +76,7 @@ public class TelaSelecionarLivroVendidoS extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				tvs.setVisible(true);
+				tvv.setVisible(true);
 			}
 		});
 		btnVoltar.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
@@ -135,8 +135,8 @@ public class TelaSelecionarLivroVendidoS extends JFrame {
 				if(quant > livro.getQuant()){
 						JOptionPane.showMessageDialog(null, "Insira uma quantidade válida.");
 				}
-				tvs.selecionarLivro(livro, quant);
-				tvs.setVisible(true);
+				tvv.selecionarLivro(livro, quant);
+				tvv.setVisible(true);
 				dispose();
 
 			}

@@ -7,37 +7,32 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
-import java.awt.Dimension;
 import java.awt.Color;
+import java.awt.Dimension;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
-import controle.HistoricoPrecosBD;
-import controle.LivroBD;
-import controle.LivroVendidoBD;
-import modelo.Livro;
+import controle.ClienteBD;
+import controle.EnderecoBD;
+import modelo.Cliente;
+import modelo.Endereco;
 import modelo.Usuario;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.SystemColor;
 import java.util.ArrayList;
-import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class TelaSelecionarLivroVendidoS extends JFrame {
+public class TelaSelecionarClienteS extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
-	ArrayList<Livro> listaLivro = new ArrayList<>();
-	LivroBD bd = new LivroBD();
-	HistoricoPrecosBD hpbd = new HistoricoPrecosBD();
-	LivroVendidoBD lvbd = new LivroVendidoBD();
-	private JTextField txtQuantVendida;
+	ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
+	ClienteBD bd = new ClienteBD();
+	EnderecoBD ebd = new EnderecoBD();
 
 	/**
 	 * Launch the application.
@@ -47,10 +42,10 @@ public class TelaSelecionarLivroVendidoS extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaSelecionarLivroVendidoS(Usuario usuario, TelaVendaSupervisor tvs) {
+	public TelaSelecionarClienteS(Usuario usuario, TelaVendaSupervisor tvs) {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
-		listaLivro = bd.mostrarLivro();
+		listaClientes = bd.mostrarCliente();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 963, 603);
 		contentPane = new JPanel();
@@ -85,66 +80,43 @@ public class TelaSelecionarLivroVendidoS extends JFrame {
 		panel.add(btnVoltar);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 123, 927, 362);
+		scrollPane.setBounds(10, 124, 927, 385);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
-		
 		
 		DefaultTableModel model = new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
-				"T\u00EDtulo", "Autor", "G\u00EAnero", "Idioma", "Ano", "N\u00B0 P\u00E1ginas", "Editora", "Pre\u00E7o", "Quantidade"
+				"Nome", "CPF", "Rua", "Bairro", "Cidade", "Estado", "Telefone"
 			}
 		);
-		for (int i=0; i < listaLivro.size(); i++) {
-			Livro l = listaLivro.get(i);
-			model.addRow(new Object[] {l.getTitulo(), l.getAutor(), l.getGenero(), l.getIdioma(), l.getAno(), l.getnPaginas(), l.getEditora(), l.getPreco(), l.getQuant() });
+		for (int i = 0; i < listaClientes.size(); i++) {
+			Cliente c = listaClientes.get(i);
+			Endereco e = c.getEndereco();
+			String rua = e.getRua();
+			String bairro = e.getBairro();
+			String cidade = e.getCidade();
+			String estado = e.getEstado();
+			model.addRow(new Object[] {c.getNome(), c.getCpf(), rua, bairro, cidade, estado, c.getTelefone()});
 		}
 		table.setModel(model);
 		table.setFont(new Font("Bookman Old Style", Font.PLAIN, 11));
 		scrollPane.setViewportView(table);
 		
-		JLabel lblQuantVendida = new JLabel("Quantidade Vendida: ");
-		lblQuantVendida.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
-		lblQuantVendida.setBounds(10, 513, 191, 22);
-		contentPane.add(lblQuantVendida);
-		
-		txtQuantVendida = new JTextField();
-		txtQuantVendida.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
-		txtQuantVendida.setBounds(187, 515, 86, 22);
-		contentPane.add(txtQuantVendida);
-		txtQuantVendida.setColumns(10);
-		
 		JButton btnNewButton = new JButton("Selecionar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Livro livro = listaLivro.get(table.getSelectedRow());
-				if(txtQuantVendida.equals("")){
-					JOptionPane.showMessageDialog(null, "Insira uma quantidade válida.");
-			
-				}
-				int quant;
-				try {
-					quant = Integer.valueOf(txtQuantVendida.getText());
-				} catch (Exception e2) {
-					JOptionPane.showMessageDialog(null, "Insira uma quantidade válida.");
-					return;
-				}
-				if(quant > livro.getQuant()){
-						JOptionPane.showMessageDialog(null, "Insira uma quantidade válida.");
-				}
-				tvs.selecionarLivro(livro, quant);
+				tvs.selecionarCliente(listaClientes.get(table.getSelectedRow()));
 				tvs.setVisible(true);
 				dispose();
-
 			}
 		});
-		btnNewButton.setBackground(SystemColor.menu);
 		btnNewButton.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
-		btnNewButton.setBounds(817, 515, 120, 23);
+		btnNewButton.setBackground(SystemColor.menu);
+		btnNewButton.setBounds(817, 530, 120, 23);
 		contentPane.add(btnNewButton);
-		
 	}
+
 }
