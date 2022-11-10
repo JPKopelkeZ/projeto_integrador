@@ -152,6 +152,17 @@ public class TelaInicialVendedor extends JFrame {
 		});
 		mntmNewMenuItem_1.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
 		mnConsultarV.add(mntmNewMenuItem_1);
+		
+		JMenuItem mntmUsuario = new JMenuItem("Usuário");
+		mntmUsuario.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mntmUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				TelaConsultaUsuarioVendedor consultaVendaV = new TelaConsultaUsuarioVendedor(usuario);
+				consultaVendaV.setVisible(true);
+			}
+		});
+		mnConsultarV.add(mntmUsuario);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(153, 204, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
