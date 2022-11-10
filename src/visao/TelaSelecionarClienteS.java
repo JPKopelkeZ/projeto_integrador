@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class TelaSelecionarCliente extends JFrame {
+public class TelaSelecionarClienteS extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
@@ -42,7 +42,7 @@ public class TelaSelecionarCliente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaSelecionarCliente(Usuario usuario) {
+	public TelaSelecionarClienteS(Usuario usuario, TelaVendaSupervisor tvs) {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
 		listaClientes = bd.mostrarCliente();
@@ -71,7 +71,6 @@ public class TelaSelecionarCliente extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaVendaSupervisor tvs = new TelaVendaSupervisor(usuario);
 				tvs.setVisible(true);
 			}
 		});
@@ -109,6 +108,9 @@ public class TelaSelecionarCliente extends JFrame {
 		JButton btnNewButton = new JButton("Selecionar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				tvs.selecionarCliente(listaClientes.get(table.getSelectedRow()));
+				tvs.setVisible(true);
+				dispose();
 			}
 		});
 		btnNewButton.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));

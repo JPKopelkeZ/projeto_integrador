@@ -28,6 +28,7 @@ import javax.swing.JButton;
 import java.awt.SystemColor;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -43,6 +44,13 @@ public class TelaVendaSupervisor extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	FuncionarioBD fbd = new FuncionarioBD();
+	private Cliente cliente;
+	private ArrayList<Livro> listaLivro = new ArrayList<>();
+	LivroBD bd = new LivroBD();
+	JLabel lblNomeCliente;
+	DefaultTableModel model;
+	private float total = 0;
+	JLabel lblNewLabel;
 
 	/**
 	 * Launch the application.
@@ -136,10 +144,12 @@ public class TelaVendaSupervisor extends JFrame {
 		
 		JButton btnNewButton_1 = new JButton("Selecionar");
 		btnNewButton_1.setBackground(SystemColor.menu);
+		TelaVendaSupervisor estaTela = this;
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
 				setVisible(false);
-				TelaSelecionarLivroVendidoS livroVendS = new TelaSelecionarLivroVendidoS(usuario);
+				TelaSelecionarLivroVendidoS livroVendS = new TelaSelecionarLivroVendidoS(usuario, estaTela);
 				livroVendS.setVisible(true);
 			}
 		});
@@ -152,22 +162,33 @@ public class TelaVendaSupervisor extends JFrame {
 		panel_1.add(scrollPane);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"ID", "T\u00EDtulo", "Quantidade", "Pre\u00E7o"
-			}
-		));
+		model = new DefaultTableModel(
+				new Object[][] {
+				},
+				new String[] {"ID", "T\u00EDtulo", "Quantidade", "Pre\u00E7o"
+				}
+		);
+		table.setModel(model);
 		table.setFont(new Font("Bookman Old Style", Font.PLAIN, 11));
 		scrollPane.setViewportView(table);
 		
-		JLabel lblNewLabel = new JLabel("-");
+		lblNewLabel = new JLabel("-");
 		lblNewLabel.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
 		lblNewLabel.setBounds(568, 302, 87, 21);
 		panel_1.add(lblNewLabel);
 		
 		JButton btnNewButton_2 = new JButton("Calcular");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				for (int i = 0; i < table.getRowCount(); i++) {
+					int quant = Integer.valueOf(table.getValueAt(i, 2).toString());
+					float preco = Float.parseFloat(table.getValueAt(i, 3).toString());
+					total += quant*preco;
+				}
+				String totalS = String.valueOf(total);
+				lblNewLabel.setText(totalS);
+			}
+		});
 		btnNewButton_2.setBackground(SystemColor.menu);
 		btnNewButton_2.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
 		btnNewButton_2.setBounds(657, 302, 101, 23);
@@ -190,50 +211,37 @@ public class TelaVendaSupervisor extends JFrame {
 		panel_1.add(btnFinalizar);
 		btnFinalizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (textLivro.getText().equals("")||textCliente.getText().equals("") || textPreco.getText().equals("")||textFormaPagamento.getText().equals("")||textSupervisor.getText().equals("")||textQuantidade.getText().equals("")) {
+				if (cliente.equals(null) || listaLivro.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Favor, preencha todos os campos.");
 				}
 				else {
-					String LivroID = textLivro.getText();
-					int idlivro = Integer.valueOf(LivroID);
-					
-					String ClienteID = textCliente.getText();
-					int idcliente = Integer.valueOf(ClienteID);
-					
-					String PrecoS = textPreco.getText();
-					float preco = Float.parseFloat(PrecoS);
-					
-					String SupervisorID = textSupervisor.getText();
-					int idfunc = Integer.valueOf(SupervisorID);
-					
-					String Quantidade = textQuantidade.getText();
-					int quant = Integer.valueOf(Quantidade);
-					
-					LivroBD lbd = new LivroBD();
-					VendaBD vbd = new VendaBD();
-					
+					int idcliente = cliente.getCodigo();
+					int idfunc = funcionario.getCodigo();
 					Venda venda = new Venda(idcliente, idfunc);
+					VendaBD vbd = new VendaBD();
+					LivroBD lbd = new LivroBD();
 					vbd.cadastrarVenda(venda);
-					Venda vendaCadastrada = vbd.pesquisarUltimaVenda();
 					
-					Livro livro = lbd.mostrarLivroPesquisaId(idlivro);
-					
-					preco *= quant;
-					
-					LivroVendido lv = new LivroVendido(quant, preco, livro, vendaCadastrada);
-					int quantLivro = livro.getQuant();
-					if(quantLivro >= quant) {
-					quantLivro -= quant;
-					livro.setQuant(quantLivro);
-					lbd.alterarLivro(livro);
-					} else {
-						JOptionPane.showMessageDialog(null, "Insira uma quantidade válida.");
-						return;						
+					for (int i = 0; i < table.getRowCount(); i++) {
+						Livro livro = listaLivro.get(i);
+						if(total == 0) {JOptionPane.showMessageDialog(null, "Calcule o total da Venda antes de Finalizar."); return;}
+						float preco = total;
+						int quant = Integer.valueOf(table.getValueAt(i, 2).toString());
+						Venda cadastrada = vbd.pesquisarUltimaVenda();
+						LivroVendido lv = new LivroVendido(quant, preco, livro, cadastrada);
+						int quantLivro = livro.getQuant();
+						if(quantLivro >= quant) {
+							quantLivro -= quant;
+							livro.setQuant(quantLivro);
+							lbd.alterarLivro(livro);
+						} else {
+							JOptionPane.showMessageDialog(null, "Insira uma quantidade válida.");
+							return;						
+						}
+						LivroVendidoBD lvbd = new LivroVendidoBD();
+						lvbd.cadastrarLivroVendido(lv);
 					}
-					LivroVendidoBD lvbd = new LivroVendidoBD();
-					lvbd.cadastrarLivroVendido(lv);
-					
-					
+
 					JOptionPane.showMessageDialog(null, "Venda realizada com sucesso!");
 					limparCampos();
 				}
@@ -245,6 +253,13 @@ public class TelaVendaSupervisor extends JFrame {
 		btnFinalizar.setBackground(SystemColor.menu);
 		
 		JButton btnNewButton_3 = new JButton("-");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Livro livro = listaLivro.get(table.getSelectedRow());
+				model.removeRow(table.getSelectedRow());
+				listaLivro.remove(livro);
+			}
+		});
 		btnNewButton_3.setBackground(SystemColor.menu);
 		btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewButton_3.setBounds(697, 181, 44, 26);
@@ -254,7 +269,7 @@ public class TelaVendaSupervisor extends JFrame {
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaSelecionarCliente tsc = new TelaSelecionarCliente(usuario);
+				TelaSelecionarClienteS tsc = new TelaSelecionarClienteS(usuario, estaTela);
 				tsc.setVisible(true);
 			}
 		});
@@ -268,7 +283,7 @@ public class TelaVendaSupervisor extends JFrame {
 		lblNome.setBounds(41, 78, 60, 24);
 		panel_1.add(lblNome);
 		
-		JLabel lblNomeCliente = new JLabel((String) null);
+		lblNomeCliente = new JLabel((String) null);
 		lblNomeCliente.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
 		lblNomeCliente.setBounds(107, 77, 283, 24);
 		panel_1.add(lblNomeCliente);
@@ -276,13 +291,23 @@ public class TelaVendaSupervisor extends JFrame {
 
 
 	}
+	public void selecionarCliente (Cliente cliente) {
+		this.cliente = cliente;
+		lblNomeCliente.setText(cliente.getNome());
+		
+	}
+	
+	public void selecionarLivro (Livro livro, int quant) {
+		listaLivro.add(livro);
+		model.addRow(new Object[] {livro.getCodigo(), livro.getTitulo(), quant, livro.getPreco()});
+	}
+	
 	protected void limparCampos() {
 		// TODO Auto-generated method stub
-		textLivro.setText("");
-		textCliente.setText("");
-		textPreco.setText("");
-		textFormaPagamento.setText("");
-		textSupervisor.setText("");
-		textQuantidade.setText("");
+		cliente.equals(null);
+		lblNomeCliente.setText("");
+		listaLivro.clear();
+		model.setRowCount(0);
+		lblNewLabel.setText("-");
 		}
 }

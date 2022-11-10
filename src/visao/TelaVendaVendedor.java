@@ -8,9 +8,13 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 
+import controle.ClienteBD;
+import controle.FuncionarioBD;
 import controle.LivroBD;
 import controle.LivroVendidoBD;
 import controle.VendaBD;
+import modelo.Cliente;
+import modelo.Funcionario;
 import modelo.Livro;
 import modelo.LivroVendido;
 import modelo.Usuario;
@@ -24,21 +28,29 @@ import javax.swing.JButton;
 import java.awt.SystemColor;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import java.awt.Dimension;
+import javax.swing.JComboBox;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class TelaVendaVendedor extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textLivro;
-	private JTextField textCliente;
-	private JTextField textPreco;
-	private JTextField textFormaPagamento;
-	private JTextField textVendedor;
-	private JTextField textQuantidade;
+	private JTable table;
+	FuncionarioBD fbd = new FuncionarioBD();
+	private Cliente cliente;
+	private ArrayList<Livro> listaLivro = new ArrayList<>();
+	LivroBD bd = new LivroBD();
+	JLabel lblNomeCliente;
+	DefaultTableModel model;
+	private float total = 0;
+	JLabel lblNewLabel;
 
 	/**
 	 * Launch the application.
@@ -49,45 +61,12 @@ public class TelaVendaVendedor extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaVendaVendedor(Usuario usuario) {
+		int funcId = usuario.getId_funcionario();
+		Funcionario funcionario = fbd.pesquisaFuncionarioID(funcId);
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 963, 603);
-		
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-		
-		JMenu mnConsultar = new JMenu("Consultar");
-		mnConsultar.setForeground(Color.BLACK);
-		mnConsultar.setFont(new Font("Bookman Old Style", Font.BOLD, 13));
-		menuBar.add(mnConsultar);
-		
-		JMenuItem mntCliente = new JMenuItem("Cliente");
-		mntCliente.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				TelaConsultaCliente tcc = new TelaConsultaCliente();
-				tcc.setVisible(true);
-			}
-		});
-		mnConsultar.add(mntCliente);
-		
-		JMenuItem mntmFuncionario = new JMenuItem("Funcionário");
-		mntmFuncionario.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				TelaConsultaFuncionario tcc = new TelaConsultaFuncionario();
-				tcc.setVisible(true);
-			}
-		});
-		mnConsultar.add(mntmFuncionario);
-		
-		JMenuItem mntmLivro = new JMenuItem("Livro");
-		mntmLivro.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				TelaConsultaLivro tcc = new TelaConsultaLivro();
-				tcc.setVisible(true);
-			}
-		});
-		mnConsultar.add(mntmLivro);
+		setBounds(100, 100, 963, 624);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -98,7 +77,7 @@ public class TelaVendaVendedor extends JFrame {
 		contentPane_1.setLayout(null);
 		contentPane_1.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane_1.setBackground(new Color(153, 204, 255));
-		contentPane_1.setBounds(0, 0, 947, 564);
+		contentPane_1.setBounds(0, 0, 947, 585);
 		contentPane.add(contentPane_1);
 		
 		JPanel panel = new JPanel();
@@ -117,10 +96,9 @@ public class TelaVendaVendedor extends JFrame {
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
-				TelaInicialVendedor TelaVendedor = new TelaInicialVendedor(usuario);
-				TelaVendedor.setVisible(true);
+				TelaInicialVendedor telaVendedor = new TelaInicialVendedor(usuario);
+				telaVendedor.setVisible(true);
 			}
-			
 		});
 		btnVoltar.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
 		btnVoltar.setBackground(SystemColor.menu);
@@ -130,7 +108,7 @@ public class TelaVendaVendedor extends JFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_1.setBounds(75, 116, 768, 420);
+		panel_1.setBounds(94, 116, 768, 458);
 		contentPane_1.add(panel_1);
 		
 		JLabel lblNovaVenda = new JLabel("Nova Venda ");
@@ -138,148 +116,198 @@ public class TelaVendaVendedor extends JFrame {
 		lblNovaVenda.setBounds(10, 11, 179, 44);
 		panel_1.add(lblNovaVenda);
 		
-		JLabel lblLivro = new JLabel("Livro");
+		JLabel lblLivro = new JLabel("Livro:");
 		lblLivro.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
-		lblLivro.setBounds(59, 66, 87, 14);
+		lblLivro.setBounds(41, 115, 60, 14);
 		panel_1.add(lblLivro);
 		
-		textLivro = new JTextField();
-		textLivro.setFont(new Font("Calisto MT", Font.PLAIN, 13));
-		textLivro.setColumns(10);
-		textLivro.setBounds(115, 66, 470, 30);
-		panel_1.add(textLivro);
-		
-		JLabel lblCliente = new JLabel("Cliente");
+		JLabel lblCliente = new JLabel("Cliente:");
 		lblCliente.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
-		lblCliente.setBounds(42, 107, 87, 14);
+		lblCliente.setBounds(41, 52, 87, 14);
 		panel_1.add(lblCliente);
 		
-		textCliente = new JTextField();
-		textCliente.setFont(new Font("Calisto MT", Font.PLAIN, 13));
-		textCliente.setColumns(10);
-		textCliente.setBounds(115, 101, 470, 30);
-		panel_1.add(textCliente);
+		JLabel lblTotalvenda = new JLabel("Total:");
+		lblTotalvenda.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
+		lblTotalvenda.setBounds(501, 300, 60, 24);
+		panel_1.add(lblTotalvenda);
 		
-		JLabel lblPreco = new JLabel("Preço ");
-		lblPreco.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
-		lblPreco.setBounds(59, 142, 87, 24);
-		panel_1.add(lblPreco);
-		
-		textPreco = new JTextField();
-		textPreco.setFont(new Font("Calisto MT", Font.PLAIN, 13));
-		textPreco.setColumns(10);
-		textPreco.setBounds(115, 141, 470, 30);
-		panel_1.add(textPreco);
-		
-		textFormaPagamento = new JTextField();
-		textFormaPagamento.setFont(new Font("Calisto MT", Font.PLAIN, 13));
-		textFormaPagamento.setColumns(10);
-		textFormaPagamento.setBounds(208, 182, 378, 30);
-		panel_1.add(textFormaPagamento);
-		
-		JLabel lblNumeroDPagina = new JLabel("Forma de Pagamento");
-		lblNumeroDPagina.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
-		lblNumeroDPagina.setBounds(27, 183, 197, 24);
-		panel_1.add(lblNumeroDPagina);
-		
-		textVendedor = new JTextField();
-		textVendedor.setFont(new Font("Calisto MT", Font.PLAIN, 13));
-		textVendedor.setColumns(10);
-		textVendedor.setBounds(208, 223, 377, 30);
-		panel_1.add(textVendedor);
-		
-		JLabel lblVendedor = new JLabel("Vendedor");
+		JLabel lblVendedor = new JLabel("Vendedor:");
 		lblVendedor.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
-		lblVendedor.setBounds(103, 224, 144, 24);
+		lblVendedor.setBounds(363, 47, 102, 24);
 		panel_1.add(lblVendedor);
 		
+		JLabel lblNomeVendedor = new JLabel("-");
+		lblNomeVendedor.setText(funcionario.getNome());
+		lblNomeVendedor.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
+		lblNomeVendedor.setBounds(475, 47, 283, 24);
+		panel_1.add(lblNomeVendedor);
+		
+		JButton btnNewButton_1 = new JButton("Selecionar");
+		btnNewButton_1.setBackground(SystemColor.menu);
+		TelaVendaVendedor estaTela = this;
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				setVisible(false);
+				TelaSelecionarLivroVendidoV livroVendS = new TelaSelecionarLivroVendidoV(usuario, estaTela);
+				livroVendS.setVisible(true);
+			}
+		});
+		btnNewButton_1.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
+		btnNewButton_1.setBounds(91, 112, 122, 23);
+		panel_1.add(btnNewButton_1);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(41, 146, 646, 143);
+		panel_1.add(scrollPane);
+		
+		table = new JTable();
+		model = new DefaultTableModel(
+				new Object[][] {
+				},
+				new String[] {"ID", "T\u00EDtulo", "Quantidade", "Pre\u00E7o"
+				}
+		);
+		table.setModel(model);
+		table.setFont(new Font("Bookman Old Style", Font.PLAIN, 11));
+		scrollPane.setViewportView(table);
+		
+		lblNewLabel = new JLabel("-");
+		lblNewLabel.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
+		lblNewLabel.setBounds(568, 302, 87, 21);
+		panel_1.add(lblNewLabel);
+		
+		JButton btnNewButton_2 = new JButton("Calcular");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				for (int i = 0; i < table.getRowCount(); i++) {
+					int quant = Integer.valueOf(table.getValueAt(i, 2).toString());
+					float preco = Float.parseFloat(table.getValueAt(i, 3).toString());
+					total += quant*preco;
+				}
+				String totalS = String.valueOf(total);
+				lblNewLabel.setText(totalS);
+			}
+		});
+		btnNewButton_2.setBackground(SystemColor.menu);
+		btnNewButton_2.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		btnNewButton_2.setBounds(657, 302, 101, 23);
+		panel_1.add(btnNewButton_2);
+		
+		JButton btnNewButton = new JButton("Cancelar");
+		btnNewButton.setBounds(544, 423, 102, 24);
+		panel_1.add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				limparCampos();
+				}
+			
+		});
+		btnNewButton.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		btnNewButton.setBackground(SystemColor.menu);
+		
 		JButton btnFinalizar = new JButton("Finalizar");
+		btnFinalizar.setBounds(656, 423, 102, 24);
+		panel_1.add(btnFinalizar);
 		btnFinalizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (textLivro.getText().equals("")||textCliente.getText().equals("") || textPreco.getText().equals("")||textFormaPagamento.getText().equals("")||textVendedor.getText().equals("")||textQuantidade.getText().equals("")) {
+				if (cliente.equals(null) || listaLivro.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "Favor, preencha todos os campos.");
 				}
 				else {
-					String LivroID = textLivro.getText();
-					int idlivro = Integer.valueOf(LivroID);
-					
-					String ClienteID = textCliente.getText();
-					int idcliente = Integer.valueOf(ClienteID);
-					
-					String PrecoS = textPreco.getText();
-					float preco = Float.parseFloat(PrecoS);
-					
-					String VendedorID = textVendedor.getText();
-					int idfunc = Integer.valueOf(VendedorID);
-					
-					String Quantidade = textQuantidade.getText();
-					int quant = Integer.valueOf(Quantidade);
-					
-					LivroBD lbd = new LivroBD();
-					VendaBD vbd = new VendaBD();
-					
+					int idcliente = cliente.getCodigo();
+					int idfunc = funcionario.getCodigo();
 					Venda venda = new Venda(idcliente, idfunc);
+					VendaBD vbd = new VendaBD();
+					LivroBD lbd = new LivroBD();
 					vbd.cadastrarVenda(venda);
-					Venda vendaCadastrada = vbd.pesquisarUltimaVenda();
 					
-					Livro livro = lbd.mostrarLivroPesquisaId(idlivro);
-					
-					preco *= quant;
-					
-					LivroVendido lv = new LivroVendido(quant, preco, livro, vendaCadastrada);
-					int quantLivro = livro.getQuant();
-					if(quantLivro >= quant) {
-					quantLivro -= quant;
-					livro.setQuant(quantLivro);
-					lbd.alterarLivro(livro);
-					} else {
-						JOptionPane.showMessageDialog(null, "Insira uma quantidade válida.");
-						return;						
+					for (int i = 0; i < table.getRowCount(); i++) {
+						Livro livro = listaLivro.get(i);
+						if(total == 0) {JOptionPane.showMessageDialog(null, "Calcule o total da Venda antes de Finalizar."); return;}
+						float preco = total;
+						int quant = Integer.valueOf(table.getValueAt(i, 2).toString());
+						Venda cadastrada = vbd.pesquisarUltimaVenda();
+						LivroVendido lv = new LivroVendido(quant, preco, livro, cadastrada);
+						int quantLivro = livro.getQuant();
+						if(quantLivro >= quant) {
+							quantLivro -= quant;
+							livro.setQuant(quantLivro);
+							lbd.alterarLivro(livro);
+						} else {
+							JOptionPane.showMessageDialog(null, "Insira uma quantidade válida.");
+							return;						
+						}
+						LivroVendidoBD lvbd = new LivroVendidoBD();
+						lvbd.cadastrarLivroVendido(lv);
 					}
 
-					
-					LivroVendidoBD lvbd = new LivroVendidoBD();
-					lvbd.cadastrarLivroVendido(lv);
-
-					
 					JOptionPane.showMessageDialog(null, "Venda realizada com sucesso!");
 					limparCampos();
 				}
 			}
+			
 		});
-		btnFinalizar.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
-		btnFinalizar.setBackground(SystemColor.menu);
-		btnFinalizar.setBounds(643, 379, 115, 30);
-		panel_1.add(btnFinalizar);
 		
-		JButton btnNewButton = new JButton("Cancelar");
-		btnNewButton.addActionListener(new ActionListener() {
+		btnFinalizar.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		btnFinalizar.setBackground(SystemColor.menu);
+		
+		JButton btnNewButton_3 = new JButton("-");
+		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				limparCampos();
+				Livro livro = listaLivro.get(table.getSelectedRow());
+				model.removeRow(table.getSelectedRow());
+				listaLivro.remove(livro);
 			}
 		});
-		btnNewButton.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
-		btnNewButton.setBackground(SystemColor.menu);
-		btnNewButton.setBounds(523, 379, 110, 30);
-		panel_1.add(btnNewButton);
+		btnNewButton_3.setBackground(SystemColor.menu);
+		btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnNewButton_3.setBounds(697, 181, 44, 26);
+		panel_1.add(btnNewButton_3);
 		
-		textQuantidade = new JTextField();
-		textQuantidade.setColumns(10);
-		textQuantidade.setBounds(207, 264, 378, 30);
-		panel_1.add(textQuantidade);
+		JButton btnNewButton_1_1 = new JButton("Selecionar");
+		btnNewButton_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				TelaSelecionarClienteV tsc = new TelaSelecionarClienteV(usuario, estaTela);
+				tsc.setVisible(true);
+			}
+		});
+		btnNewButton_1_1.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
+		btnNewButton_1_1.setBackground(SystemColor.menu);
+		btnNewButton_1_1.setBounds(109, 50, 122, 23);
+		panel_1.add(btnNewButton_1_1);
 		
-		JLabel lblNewLabel = new JLabel("Quantidade");
-		lblNewLabel.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
-		lblNewLabel.setBounds(103, 265, 110, 24);
-		panel_1.add(lblNewLabel);
+		JLabel lblNome = new JLabel("Nome:  ");
+		lblNome.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
+		lblNome.setBounds(41, 78, 60, 24);
+		panel_1.add(lblNome);
+		
+		lblNomeCliente = new JLabel((String) null);
+		lblNomeCliente.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
+		lblNomeCliente.setBounds(107, 77, 283, 24);
+		panel_1.add(lblNomeCliente);
+		
+
+
 	}
+	public void selecionarCliente (Cliente cliente) {
+		this.cliente = cliente;
+		lblNomeCliente.setText(cliente.getNome());
+		
+	}
+	
+	public void selecionarLivro (Livro livro, int quant) {
+		listaLivro.add(livro);
+		model.addRow(new Object[] {livro.getCodigo(), livro.getTitulo(), quant, livro.getPreco()});
+	}
+	
 	protected void limparCampos() {
 		// TODO Auto-generated method stub
-		textLivro.setText("");
-		textCliente.setText("");
-		textPreco.setText("");
-		textFormaPagamento.setText("");
-		textVendedor.setText("");
-		textQuantidade.setText("");
+		cliente.equals(null);
+		lblNomeCliente.setText("");
+		listaLivro.clear();
+		model.setRowCount(0);
+		lblNewLabel.setText("-");
 		}
 }
