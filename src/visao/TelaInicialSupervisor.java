@@ -1,29 +1,25 @@
 package visao;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import java.awt.Color;
-import javax.swing.border.LineBorder;
-import java.awt.SystemColor;
-import javax.swing.JScrollPane;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JLabel;
+import java.awt.Dimension;
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.SwingConstants;
+import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.awt.event.ActionEvent;
-import javax.swing.JMenuBar;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
-import java.awt.Dimension;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controle.FuncionarioBD;
@@ -34,6 +30,10 @@ import modelo.Usuario;
 
 public class TelaInicialSupervisor extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtPesquisarProdutos;
 	private JTable table;
@@ -211,7 +211,6 @@ public class TelaInicialSupervisor extends JFrame {
 		JMenuItem mntmConsultarHistPrecos = new JMenuItem("Histórico de Preço");
 		mntmConsultarHistPrecos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
 				TelaConsultaHistoricodePreco TelaConsultaHistoricodePreco = new TelaConsultaHistoricodePreco();
 				TelaConsultaHistoricodePreco.setVisible(true);
 			}
@@ -274,8 +273,8 @@ public class TelaInicialSupervisor extends JFrame {
 		btnSair.setForeground(Color.BLACK);
 		btnSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				TelaLogin telaLogin = new TelaLogin();
+				dispose();
+				TelaLogin telaLogin = TelaLogin.getInstancia();
 				telaLogin.setVisible(true);
 			}
 		});

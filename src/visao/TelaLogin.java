@@ -1,6 +1,7 @@
 package visao;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -16,14 +17,22 @@ import javax.swing.border.LineBorder;
 
 import controle.LoginBD;
 import modelo.Usuario;
-import java.awt.Dimension;
 
 public class TelaLogin extends JFrame {
 
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtUsuario;
 	private JTextField txtSenha;
-	private static TelaLogin frame;
+	private static TelaLogin frameTelaLogin;
+
+	public static TelaLogin getInstancia() {
+		if (frameTelaLogin == null) {
+			frameTelaLogin = new TelaLogin();
+		}
+
+		return frameTelaLogin;
+	}
 
 	/**
 	 * Launch the application.
@@ -32,9 +41,9 @@ public class TelaLogin extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					frame = new TelaLogin();
-					frame.setVisible(true);
-					frame.setLocationRelativeTo(null);
+					frameTelaLogin = getInstancia();
+					frameTelaLogin.setLocationRelativeTo(null);
+					frameTelaLogin.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -45,7 +54,7 @@ public class TelaLogin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaLogin() {
+	private TelaLogin() {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -93,21 +102,22 @@ public class TelaLogin extends JFrame {
 				if (!login.isEmpty() && !senha.isEmpty()) {
 					LoginBD bd = new LoginBD();
 					Usuario usuario = bd.efetuarLogin(
-							//new Usuario(login, senha)
-							login, senha
-							);
+							// new Usuario(login, senha)
+							login, senha);
 					if (usuario != null) {
 						char tipo = usuario.getTipoUsuario();
-						if(tipo == 'V') {
-						TelaInicialVendedor telaInicial = new TelaInicialVendedor(usuario);
-						telaInicial.setVisible(true);
-						frame.dispose();
+						if (tipo == 'V') {
+							TelaInicialVendedor telaInicial = new TelaInicialVendedor(usuario);
+							telaInicial.setVisible(true);
+							frameTelaLogin.dispose();
+						} else if (tipo == 'S') {
+							TelaInicialSupervisor telaInicial = new TelaInicialSupervisor(usuario);
+							telaInicial.setVisible(true);
+							frameTelaLogin.dispose();
 						}
-						if(tipo == 'S') {
-						TelaInicialSupervisor telaInicial = new TelaInicialSupervisor(usuario);
-						telaInicial.setVisible(true);
-						frame.dispose();
-						}
+
+						txtUsuario.setText(null);
+						txtSenha.setText(null);
 					} else {
 						System.out.println("Usuario não encontrado");
 					}
