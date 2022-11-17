@@ -17,6 +17,8 @@ import javax.swing.border.LineBorder;
 
 import controle.LoginBD;
 import modelo.Usuario;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class TelaLogin extends JFrame {
 
@@ -88,6 +90,40 @@ public class TelaLogin extends JFrame {
 		txtUsuario.setColumns(10);
 
 		txtSenha = new JTextField();
+		txtSenha.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+					String login = txtUsuario.getText();
+					String senha = txtSenha.getText();
+
+					if (!login.isEmpty() && !senha.isEmpty()) {
+						LoginBD bd = new LoginBD();
+						Usuario usuario = bd.efetuarLogin(
+								// new Usuario(login, senha)
+								login, senha);
+						if (usuario != null) {
+							char tipo = usuario.getTipoUsuario();
+							if (tipo == 'V') {
+								TelaInicialVendedor telaInicial = new TelaInicialVendedor(usuario);
+								telaInicial.setVisible(true);
+								frameTelaLogin.dispose();
+							} else if (tipo == 'S') {
+								TelaInicialSupervisor telaInicial = new TelaInicialSupervisor(usuario);
+								telaInicial.setVisible(true);
+								frameTelaLogin.dispose();
+							}
+
+							txtUsuario.setText(null);
+							txtSenha.setText(null);
+						} else {
+							System.out.println("Usuario não encontrado");
+						}
+
+					}
+				}
+			}
+		});
 		txtSenha.setFont(new Font("Wingdings", Font.PLAIN, 15));
 		txtSenha.setColumns(10);
 		txtSenha.setBounds(197, 76, 261, 29);
