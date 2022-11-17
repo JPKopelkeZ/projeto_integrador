@@ -42,7 +42,7 @@ public class TelaConsultaUsuarioSupervisor extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaConsultaUsuarioSupervisor(Usuario usuario ) {
+	public TelaConsultaUsuarioSupervisor(Usuario usuario) {
 		listaUsuario = bd.mostrarUsuarios();
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
@@ -106,7 +106,14 @@ public class TelaConsultaUsuarioSupervisor extends JFrame {
 		JButton btnSelecionar = new JButton("Selecionar");
 		btnSelecionar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				TelaUsuarioSelecionado tus = new TelaUsuarioSelecionado(usuario);
+				tus.selecionarUsuario(listaUsuario.get(table.getSelectedRow()));
+				tus.setVisible(true);
+				dispose();
+				
+				
 			}
+		
 		});
 		btnSelecionar.setForeground(Color.BLACK);
 		btnSelecionar.setFont(new Font("Bookman Old Style", Font.PLAIN, 12));

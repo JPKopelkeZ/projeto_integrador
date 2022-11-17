@@ -114,7 +114,7 @@ public class TelaClienteSelecionado extends JFrame {
 		textNome = new JTextField();
 		textNome.setFont(new Font("Bookman Old Style", Font.PLAIN, 12));
 		textNome.setColumns(10);
-		textNome.setBounds(90, 57, 568, 20);
+		textNome.setBounds(90, 49, 568, 28);
 		panel_1.add(textNome);
 		
 		JLabel lblCpf = new JLabel("CPF");
@@ -125,7 +125,7 @@ public class TelaClienteSelecionado extends JFrame {
 		textCPF = new JTextField();
 		textCPF.setFont(new Font("Bookman Old Style", Font.PLAIN, 12));
 		textCPF.setColumns(10);
-		textCPF.setBounds(90, 94, 568, 20);
+		textCPF.setBounds(90, 88, 568, 26);
 		panel_1.add(textCPF);
 		
 		JLabel lblRua = new JLabel("Rua");
@@ -136,7 +136,7 @@ public class TelaClienteSelecionado extends JFrame {
 		textRua = new JTextField();
 		textRua.setFont(new Font("Bookman Old Style", Font.PLAIN, 12));
 		textRua.setColumns(10);
-		textRua.setBounds(90, 126, 568, 20);
+		textRua.setBounds(90, 125, 568, 21);
 		panel_1.add(textRua);
 		
 		JLabel lblBairro = new JLabel("Bairro");
