@@ -132,37 +132,48 @@ public class TelaInicialVendedor extends JFrame {
 		mntConsultarLivroV.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
 		mnConsultarV.add(mntConsultarLivroV);
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Venda");
-		mntmNewMenuItem.addActionListener(new ActionListener() {
+		JMenuItem mntmConsultarVenda = new JMenuItem("Venda");
+		mntmConsultarVenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				TelaConsultarVendaVendedor consultaVendaV =  new TelaConsultarVendaVendedor(usuario);
 				consultaVendaV.setVisible(true);
 			}
 		});
-		mntmNewMenuItem.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
-		mnConsultarV.add(mntmNewMenuItem);
+		mntmConsultarVenda.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mnConsultarV.add(mntmConsultarVenda);
 		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Histórico de Preço");
-		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+		JMenuItem mntmConsultarHistPrecos = new JMenuItem("Histórico de Preço");
+		mntmConsultarHistPrecos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaConsultaHistoricodePreco TelaConsultaHistoricodePreco = new TelaConsultaHistoricodePreco();
 				TelaConsultaHistoricodePreco.setVisible(true);
 			}
 		});
-		mntmNewMenuItem_1.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
-		mnConsultarV.add(mntmNewMenuItem_1);
+		mntmConsultarHistPrecos.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mnConsultarV.add(mntmConsultarHistPrecos);
 		
-		JMenuItem mntmUsuario = new JMenuItem("Usuário");
-		mntmUsuario.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
-		mntmUsuario.addActionListener(new ActionListener() {
+		JMenuItem mntmConsultarUsuario = new JMenuItem("Usuário");
+		mntmConsultarUsuario.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mntmConsultarUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				TelaConsultaUsuarioVendedor consultaVendaV = new TelaConsultaUsuarioVendedor(usuario);
 				consultaVendaV.setVisible(true);
 			}
 		});
-		mnConsultarV.add(mntmUsuario);
+		mnConsultarV.add(mntmConsultarUsuario);
+		
+		JMenuItem mntmConsultarTopVendas = new JMenuItem("Top Vendas");
+		mntmConsultarTopVendas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				TelaTopVendasVendedor ttvv = new TelaTopVendasVendedor(usuario);
+				ttvv.setVisible(true);
+			}
+		});
+		mntmConsultarTopVendas.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mnConsultarV.add(mntmConsultarTopVendas);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(153, 204, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

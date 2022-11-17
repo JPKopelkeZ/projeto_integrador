@@ -197,36 +197,47 @@ public class TelaInicialSupervisor extends JFrame {
 		mntConsultarLivroS.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
 		mnConsultarS.add(mntConsultarLivroS);
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Venda");
-		mntmNewMenuItem.addActionListener(new ActionListener() {
+		JMenuItem mntmConsultarVenda = new JMenuItem("Venda");
+		mntmConsultarVenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				TelaConsultarVendaSupervisor consultaVendaS = new TelaConsultarVendaSupervisor(usuario);
 				consultaVendaS.setVisible(true);
 			}
 		});
-		mntmNewMenuItem.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
-		mnConsultarS.add(mntmNewMenuItem);
+		mntmConsultarVenda.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mnConsultarS.add(mntmConsultarVenda);
 		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Histórico de Preço");
-		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+		JMenuItem mntmConsultarHistPrecos = new JMenuItem("Histórico de Preço");
+		mntmConsultarHistPrecos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaConsultaHistoricodePreco TelaConsultaHistoricodePreco = new TelaConsultaHistoricodePreco();
 				TelaConsultaHistoricodePreco.setVisible(true);
 			}
 		});
-		mntmNewMenuItem_1.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
-		mnConsultarS.add(mntmNewMenuItem_1);
+		mntmConsultarHistPrecos.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mnConsultarS.add(mntmConsultarHistPrecos);
 		
-		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Usuário");
-		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+		JMenuItem mntmConsultarUsuario = new JMenuItem("Usuário");
+		mntmConsultarUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				TelaConsultaUsuarioSupervisor TelaConsultaUsuarioSupervisor = new TelaConsultaUsuarioSupervisor(usuario);
 				TelaConsultaUsuarioSupervisor.setVisible(true);
 			}
 		});
-		mntmNewMenuItem_2.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
-		mnConsultarS.add(mntmNewMenuItem_2);
+		mntmConsultarUsuario.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mnConsultarS.add(mntmConsultarUsuario);
+		
+		JMenuItem mntmConsultarTopVendas = new JMenuItem("Top Vendas");
+		mntmConsultarTopVendas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				TelaTopVendasSupervisor ttvs = new TelaTopVendasSupervisor(usuario);
+				ttvs.setVisible(true);
+			}
+		});
+		mntmConsultarTopVendas.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mnConsultarS.add(mntmConsultarTopVendas);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(153, 204, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
