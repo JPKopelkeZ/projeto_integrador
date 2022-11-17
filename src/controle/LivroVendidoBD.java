@@ -177,15 +177,14 @@ public class LivroVendidoBD {
 		try {
 			ArrayList<TopVenda> pesquisa = new ArrayList<>();
 			Connection bd = ConnectionBD.conectar();
-			PreparedStatement ps = bd.prepareStatement("SELECT titulo, editora, autor, idlivro, count(livroVendido.livro_idlivro) FROM livro INNER JOIN livroVendido ON idlivro = livro_idlivro GROUP BY livro_idlivro ORDER BY count(livroVendido.livro_idlivro) DESC LIMIT 10");
+			PreparedStatement ps = bd.prepareStatement("SELECT titulo, editora, autor, idlivro, sum(quantidade) FROM livro INNER JOIN livroVendido ON idlivro = livro_idlivro GROUP BY livro_idlivro ORDER BY sum(quantidade) DESC LIMIT 10");
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				String titulo = rs.getString("livro.titulo");
 				String editora = rs.getString("livro.editora");
 				String autor = rs.getString("livro.autor");
-				int idlivro = rs.getInt("livro.idlivro");
-				int quantVendida = rs.getInt("count(livroVendido.livro_idlivro)");
-				
+				int idlivro = rs.getInt("livro.idlivro");				
+				int quantVendida = rs.getInt("sum(quantidade)");
 				TopVenda tv = new TopVenda(titulo, editora, autor, idlivro, quantVendida);
 				pesquisa.add(tv);
 				
