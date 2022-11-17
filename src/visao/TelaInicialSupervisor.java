@@ -217,6 +217,16 @@ public class TelaInicialSupervisor extends JFrame {
 		});
 		mntmNewMenuItem_1.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
 		mnConsultarS.add(mntmNewMenuItem_1);
+		
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Usuário");
+		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TelaConsultaUsuarioSupervisor TelaConsultaUsuarioSupervisor = new TelaConsultaUsuarioSupervisor(usuario);
+				TelaConsultaUsuarioSupervisor.setVisible(true);
+			}
+		});
+		mntmNewMenuItem_2.setFont(new Font("Bookman Old Style", Font.PLAIN, 13));
+		mnConsultarS.add(mntmNewMenuItem_2);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(153, 204, 255));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

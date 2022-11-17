@@ -15,15 +15,19 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import controle.UsuarioBD;
 import modelo.Usuario;
 
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class TelaConsultaUsuarioVendedor extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
+	ArrayList<Usuario> listaUsuario = new ArrayList<Usuario>();
+	UsuarioBD bd = new UsuarioBD();
 
 	/**
 	 * Launch the application.
@@ -34,6 +38,7 @@ public class TelaConsultaUsuarioVendedor extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaConsultaUsuarioVendedor(Usuario usuario) {
+		listaUsuario = bd.mostrarUsuarios();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 963, 603);
 		contentPane = new JPanel();
@@ -80,13 +85,19 @@ public class TelaConsultaUsuarioVendedor extends JFrame {
 		contentPane_1.add(scrollPane);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Senha", "Nome de usu\u00E1rio ", "Fun\u00E7\u00E3o", "ID"
+		DefaultTableModel model = new DefaultTableModel(
+				new Object[][] {
+				},
+				new String[] {
+					"Senha", "Nome do usu\u00E1rio", "Fun\u00E7\u00E3o", "ID"
+				}
+			);
+			for (int i = 0; i < listaUsuario.size(); i++) {
+				Usuario f = listaUsuario.get(i);
+				
+				model.addRow(new Object[] {f.getSenha(), f.getEmail(), f.getTipoUsuario(), f.getId_funcionario()});
 			}
-		));
+			table.setModel(model);
 		scrollPane.setViewportView(table);
 	}
 }
