@@ -211,6 +211,7 @@ public class TelaInicialSupervisor extends JFrame {
 		JMenuItem mntmConsultarHistPrecos = new JMenuItem("Histórico de Preço");
 		mntmConsultarHistPrecos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
 				TelaConsultaHistoricodePreco TelaConsultaHistoricodePreco = new TelaConsultaHistoricodePreco();
 				TelaConsultaHistoricodePreco.setVisible(true);
 			}
@@ -221,6 +222,7 @@ public class TelaInicialSupervisor extends JFrame {
 		JMenuItem mntmConsultarUsuario = new JMenuItem("Usuário");
 		mntmConsultarUsuario.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
 				TelaConsultaUsuarioSupervisor TelaConsultaUsuarioSupervisor = new TelaConsultaUsuarioSupervisor(usuario);
 				TelaConsultaUsuarioSupervisor.setVisible(true);
 			}

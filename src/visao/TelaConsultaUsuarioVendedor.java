@@ -89,13 +89,13 @@ public class TelaConsultaUsuarioVendedor extends JFrame {
 				new Object[][] {
 				},
 				new String[] {
-					"Senha", "Nome do usu\u00E1rio", "Fun\u00E7\u00E3o", "ID"
+					"Nome do usu\u00E1rio", "Fun\u00E7\u00E3o", "ID"
 				}
 			);
 			for (int i = 0; i < listaUsuario.size(); i++) {
 				Usuario f = listaUsuario.get(i);
 				
-				model.addRow(new Object[] {f.getSenha(), f.getEmail(), f.getTipoUsuario(), f.getId_funcionario()});
+				model.addRow(new Object[] {f.getEmail(), f.getTipoUsuario(), f.getId_funcionario()});
 			}
 			table.setModel(model);
 		scrollPane.setViewportView(table);

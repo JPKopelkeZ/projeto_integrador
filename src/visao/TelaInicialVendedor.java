@@ -73,6 +73,7 @@ public class TelaInicialVendedor extends JFrame {
 		JMenuItem mntNovaVendaV = new JMenuItem("Venda");
 		mntNovaVendaV.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
 				TelaVendaVendedor TelaVendaVendedor = new TelaVendaVendedor(usuario);
 				TelaVendaVendedor.setVisible(true);
 			}
@@ -146,6 +147,7 @@ public class TelaInicialVendedor extends JFrame {
 		JMenuItem mntmConsultarHistPrecos = new JMenuItem("Histórico de Preço");
 		mntmConsultarHistPrecos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
 				TelaConsultaHistoricodePreco TelaConsultaHistoricodePreco = new TelaConsultaHistoricodePreco();
 				TelaConsultaHistoricodePreco.setVisible(true);
 			}
