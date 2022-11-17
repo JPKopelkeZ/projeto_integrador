@@ -9,51 +9,42 @@ import java.awt.Color;
 import javax.swing.border.LineBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JButton;
-import java.awt.SystemColor;
-import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import controle.ClienteBD;
-import modelo.Cliente;
+import controle.LivroBD;
+import controle.LivroVendidoBD;
+import modelo.Funcionario;
+import modelo.Livro;
+import modelo.TopVenda;
+import modelo.Usuario;
 
-import java.awt.Dimension;
+import javax.swing.JButton;
+import java.awt.SystemColor;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import java.awt.Dimension;
 
-public class TelaConsultaCliente extends JFrame {
+public class TelaTopVendasSupervisor extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
-	ArrayList<Cliente> listaClientes = new ArrayList<Cliente>();
-	ClienteBD bd = new ClienteBD(); 
+	ArrayList<TopVenda> listaLivro = new ArrayList<TopVenda>();
+	LivroVendidoBD bd = new LivroVendidoBD();
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaConsultaCliente frame = new TelaConsultaCliente();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 	/**
 	 * Create the frame.
 	 */
-	public TelaConsultaCliente() {
+	public TelaTopVendasSupervisor(Usuario usuario) {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
-		listaClientes = bd.mostrarCliente();
+		listaLivro = bd.pesquisarTOPVendas();
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 963, 603);
 		contentPane = new JPanel();
@@ -72,22 +63,24 @@ public class TelaConsultaCliente extends JFrame {
 		
 		JLabel lblNomeEmpresa = new JLabel("LIFELONG BOOKS ");
 		lblNomeEmpresa.setFont(new Font("Copperplate Gothic Light", Font.ITALIC, 20));
-		lblNomeEmpresa.setBounds(24, 11, 223, 32);
+		lblNomeEmpresa.setBounds(26, 11, 223, 32);
 		panel.add(lblNomeEmpresa);
 		
 		JButton btnVoltar = new JButton(" Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				TelaInicialSupervisor tis = new TelaInicialSupervisor(usuario);
+				tis.setVisible(true);
 				dispose();
 			}
 		});
 		btnVoltar.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
 		btnVoltar.setBackground(SystemColor.menu);
-		btnVoltar.setBounds(24, 54, 106, 32);
+		btnVoltar.setBounds(26, 54, 106, 32);
 		panel.add(btnVoltar);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 116, 927, 397);
+		scrollPane.setBounds(10, 121, 927, 397);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
@@ -95,16 +88,22 @@ public class TelaConsultaCliente extends JFrame {
 			new Object[][] {
 			},
 			new String[] {
-				"ID", "Nome"
+				"TOP 10", "Titulo", "Editora", "Autor", "ID", "Quantidade Vendida"
 			}
 		);
-		for (int i = 0; i < listaClientes.size(); i++) {
-			Cliente c = listaClientes.get(i);
-			int id = c.getCodigo();
-			String nome = c.getNome();
-			model.addRow(new Object[] {id, nome});
+		for (int i = 0; i < listaLivro.size(); i++) {
+			int n = 1;
+			TopVenda l = listaLivro.get(i);
+			String titulo = l.getTitulo();
+			String editora = l.getEditora();
+			String autor = l.getAutor();
+			int id = l.getId();
+			int quant = l.getQuantVendida();
+			n += i;
+			model.addRow(new Object[] {n, titulo, editora, autor, id, quant});
 		}
 		table.setModel(model);
 		scrollPane.setViewportView(table);
 	}
+
 }
