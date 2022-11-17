@@ -14,8 +14,11 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import controle.LivroBD;
+import controle.LivroVendidoBD;
 import modelo.Funcionario;
 import modelo.Livro;
+import modelo.TopVenda;
+import modelo.Usuario;
 
 import javax.swing.JButton;
 import java.awt.SystemColor;
@@ -24,36 +27,24 @@ import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Dimension;
 
-public class TelaConsultaLivro extends JFrame {
+public class TelaTopVendasVendedor extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
-	ArrayList<Livro> listaLivro = new ArrayList<Livro>();
-	LivroBD bd = new LivroBD();
+	ArrayList<TopVenda> listaLivro = new ArrayList<TopVenda>();
+	LivroVendidoBD bd = new LivroVendidoBD();
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					TelaConsultaLivro frame = new TelaConsultaLivro();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	
 	/**
 	 * Create the frame.
 	 */
-	public TelaConsultaLivro() {
+	public TelaTopVendasVendedor(Usuario usuario) {
 		setMaximumSize(new Dimension(963, 603));
 		setResizable(false);
-		listaLivro = bd.mostrarLivro();
+		listaLivro = bd.pesquisarTOPVendas();
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 963, 603);
 		contentPane = new JPanel();
@@ -78,6 +69,8 @@ public class TelaConsultaLivro extends JFrame {
 		JButton btnVoltar = new JButton(" Voltar");
 		btnVoltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				TelaInicialVendedor tiv = new TelaInicialVendedor(usuario);
+				tiv.setVisible(true);
 				dispose();
 			}
 		});
@@ -95,15 +88,19 @@ public class TelaConsultaLivro extends JFrame {
 			new Object[][] {
 			},
 			new String[] {
-				"ID", "Titulo", "Pre\u00E7o"
+				"TOP 10", "Titulo", "Editora", "Autor", "ID", "Quantidade Vendida"
 			}
 		);
 		for (int i = 0; i < listaLivro.size(); i++) {
-			Livro l = listaLivro.get(i);
-			int id = l.getCodigo();
+			int n = 1;
+			TopVenda l = listaLivro.get(i);
 			String titulo = l.getTitulo();
-			float preco = l.getPreco();
-			model.addRow(new Object[] {id, titulo, preco});
+			String editora = l.getEditora();
+			String autor = l.getAutor();
+			int id = l.getId();
+			int quant = l.getQuantVendida();
+			n += i;
+			model.addRow(new Object[] {n, titulo, editora, autor, id, quant});
 		}
 		table.setModel(model);
 		scrollPane.setViewportView(table);
