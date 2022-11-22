@@ -49,7 +49,7 @@ public class TelaVendaVendedor extends JFrame {
 	LivroBD bd = new LivroBD();
 	JLabel lblNomeCliente;
 	DefaultTableModel model;
-	private float total = 0;
+	private float total;
 	JLabel lblNewLabel;
 
 	/**
@@ -180,6 +180,7 @@ public class TelaVendaVendedor extends JFrame {
 		JButton btnNewButton_2 = new JButton("Calcular");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				total = 0;
 				for (int i = 0; i < table.getRowCount(); i++) {
 					int quant = Integer.valueOf(table.getValueAt(i, 2).toString());
 					float preco = Float.parseFloat(table.getValueAt(i, 3).toString());
@@ -258,6 +259,7 @@ public class TelaVendaVendedor extends JFrame {
 				Livro livro = listaLivro.get(table.getSelectedRow());
 				model.removeRow(table.getSelectedRow());
 				listaLivro.remove(livro);
+				total = 0;
 			}
 		});
 		btnNewButton_3.setBackground(SystemColor.menu);

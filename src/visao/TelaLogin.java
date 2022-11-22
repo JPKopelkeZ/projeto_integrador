@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
@@ -25,7 +26,7 @@ public class TelaLogin extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtUsuario;
-	private JTextField txtSenha;
+	private JPasswordField txtSenha;
 	private static TelaLogin frameTelaLogin;
 
 	public static TelaLogin getInstancia() {
@@ -89,7 +90,8 @@ public class TelaLogin extends JFrame {
 		panel.add(txtUsuario);
 		txtUsuario.setColumns(10);
 
-		txtSenha = new JTextField();
+		txtSenha = new JPasswordField();
+		txtSenha.setFont(new Font("Dialog", Font.PLAIN, 15));
 		txtSenha.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -124,7 +126,6 @@ public class TelaLogin extends JFrame {
 				}
 			}
 		});
-		txtSenha.setFont(new Font("Wingdings", Font.PLAIN, 15));
 		txtSenha.setColumns(10);
 		txtSenha.setBounds(197, 76, 261, 29);
 		panel.add(txtSenha);
