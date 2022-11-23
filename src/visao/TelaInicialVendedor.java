@@ -27,6 +27,8 @@ import controle.LivroBD;
 import modelo.Funcionario;
 import modelo.Livro;
 import modelo.Usuario;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class TelaInicialVendedor extends JFrame {
 
@@ -184,6 +186,34 @@ public class TelaInicialVendedor extends JFrame {
 		panel.setLayout(null);
 
 		txtPesquisarProduto = new JTextField();
+		txtPesquisarProduto.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+					if (txtPesquisarProduto.getText().equals("")) {
+						model.setRowCount(0);
+						listaLivro = bd.mostrarLivro();
+						for (int i = 0; i < listaLivro.size(); i++) {
+							Livro l = listaLivro.get(i);
+
+							model.addRow(new Object[] { l.getCodigo(), l.getTitulo(), l.getAutor(), l.getGenero(),
+									l.getIdioma(), l.getAno(), l.getnPaginas(), l.getEditora(), l.getPreco() });
+
+						}
+					} else {
+						model.setRowCount(0);
+						listaLivro = bd.mostrarLivroPesquisa(txtPesquisarProduto.getText());
+						for (int i = 0; i < listaLivro.size(); i++) {
+							Livro l = listaLivro.get(i);
+
+							model.addRow(new Object[] { l.getCodigo(), l.getTitulo(), l.getAutor(), l.getGenero(),
+									l.getIdioma(), l.getAno(), l.getnPaginas(), l.getEditora(), l.getPreco() });
+
+						}
+					}
+				}
+			}
+		});
 		txtPesquisarProduto.setForeground(Color.BLACK);
 		txtPesquisarProduto.setBackground(SystemColor.menu);
 		txtPesquisarProduto.setFont(new Font("Calisto MT", Font.PLAIN, 15));
