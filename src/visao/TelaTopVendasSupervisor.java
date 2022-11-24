@@ -66,18 +66,16 @@ public class TelaTopVendasSupervisor extends JFrame {
 		lblNomeEmpresa.setBounds(26, 11, 223, 32);
 		panel.add(lblNomeEmpresa);
 		
-		JButton btnVoltar = new JButton(" Voltar");
-		btnVoltar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				TelaInicialSupervisor tis = new TelaInicialSupervisor(usuario);
-				tis.setVisible(true);
-				dispose();
-			}
-		});
-		btnVoltar.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
-		btnVoltar.setBackground(SystemColor.menu);
-		btnVoltar.setBounds(26, 54, 106, 32);
-		panel.add(btnVoltar);
+		JButton btnVoltar_1 = new JButton(" Voltar");
+		btnVoltar_1.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
+		btnVoltar_1.setBackground(SystemColor.menu);
+		btnVoltar_1.setBounds(831, 60, 106, 32);
+		panel.add(btnVoltar_1);
+		
+		JLabel lblNewLabel = new JLabel("Top Vendas S");
+		lblNewLabel.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 18));
+		lblNewLabel.setBounds(22, 52, 317, 14);
+		panel.add(lblNewLabel);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 121, 927, 397);

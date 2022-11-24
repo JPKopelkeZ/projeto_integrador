@@ -72,17 +72,16 @@ public class TelaSelecionarLivroVendidoS extends JFrame {
 		lblNomeEmpresa.setBounds(24, 11, 223, 32);
 		panel.add(lblNomeEmpresa);
 		
-		JButton btnVoltar = new JButton(" Voltar");
-		btnVoltar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				tvs.setVisible(true);
-			}
-		});
-		btnVoltar.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
-		btnVoltar.setBackground(SystemColor.menu);
-		btnVoltar.setBounds(10, 62, 106, 32);
-		panel.add(btnVoltar);
+		JButton btnVoltar_1 = new JButton(" Voltar");
+		btnVoltar_1.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
+		btnVoltar_1.setBackground(SystemColor.menu);
+		btnVoltar_1.setBounds(831, 62, 106, 32);
+		panel.add(btnVoltar_1);
+		
+		JLabel lblNewLabel = new JLabel("Selecionar Livro Vendido S");
+		lblNewLabel.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 18));
+		lblNewLabel.setBounds(22, 52, 330, 14);
+		panel.add(lblNewLabel);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 123, 927, 362);
@@ -134,6 +133,7 @@ public class TelaSelecionarLivroVendidoS extends JFrame {
 				}
 				if(quant > livro.getQuant()){
 						JOptionPane.showMessageDialog(null, "Insira uma quantidade válida.");
+						return; 
 				}
 				tvs.selecionarLivro(livro, quant);
 				tvs.setVisible(true);

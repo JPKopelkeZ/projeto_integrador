@@ -68,28 +68,21 @@ public class TelaUsuarioSelecionado extends JFrame {
 		lblNomeEmpresa.setBounds(26, 11, 223, 32);
 		panel.add(lblNomeEmpresa);
 		
-		JButton btnVoltar = new JButton(" Voltar");
-		btnVoltar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				TelaConsultaUsuarioSupervisor TelaConsultaUsuarioSupervisor = new TelaConsultaUsuarioSupervisor(usuario);
-				TelaConsultaUsuarioSupervisor.setVisible(true);
-			}
-		});
-		btnVoltar.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
-		btnVoltar.setBackground(SystemColor.menu);
-		btnVoltar.setBounds(26, 54, 106, 32);
-		panel.add(btnVoltar);
+		JButton btnVoltar_1 = new JButton(" Voltar");
+		btnVoltar_1.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
+		btnVoltar_1.setBackground(SystemColor.menu);
+		btnVoltar_1.setBounds(831, 60, 106, 32);
+		panel.add(btnVoltar_1);
+		
+		JLabel lblUsuario = new JLabel("Usuário");
+		lblUsuario.setBounds(22, 52, 131, 33);
+		panel.add(lblUsuario);
+		lblUsuario.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 18));
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(90, 167, 794, 261);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
-		
-		JLabel lblUsuario = new JLabel("Usuário");
-		lblUsuario.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 18));
-		lblUsuario.setBounds(32, 13, 131, 33);
-		panel_1.add(lblUsuario);
 		
 		JLabel lblSenha = new JLabel("Senha");
 		lblSenha.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));

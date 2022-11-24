@@ -74,8 +74,13 @@ public class TelaConsultarFornecedorVendedor extends JFrame {
 		});
 		btnVoltar_1.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
 		btnVoltar_1.setBackground(SystemColor.menu);
-		btnVoltar_1.setBounds(10, 62, 106, 32);
+		btnVoltar_1.setBounds(831, 62, 106, 32);
 		panel_1.add(btnVoltar_1);
+		
+		JLabel lblNewLabel = new JLabel("Consultar Fornecedor V");
+		lblNewLabel.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 18));
+		lblNewLabel.setBounds(22, 52, 258, 14);
+		panel_1.add(lblNewLabel);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 116, 927, 397);

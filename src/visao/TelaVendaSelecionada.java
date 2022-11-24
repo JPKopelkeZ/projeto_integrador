@@ -77,28 +77,21 @@ public class TelaVendaSelecionada extends JFrame {
 		lblNomeEmpresa.setBounds(24, 11, 223, 32);
 		panel.add(lblNomeEmpresa);
 		
-		JButton btnVoltar = new JButton(" Voltar");
-		btnVoltar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				TelaConsultarVendaSupervisor consultaVendaS = new TelaConsultarVendaSupervisor(usuario);
-				consultaVendaS.setVisible(true);
-			}
-		});
-		btnVoltar.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
-		btnVoltar.setBackground(SystemColor.menu);
-		btnVoltar.setBounds(10, 62, 106, 32);
-		panel.add(btnVoltar);
+		JButton btnVoltar_1 = new JButton(" Voltar");
+		btnVoltar_1.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
+		btnVoltar_1.setBackground(SystemColor.menu);
+		btnVoltar_1.setBounds(831, 62, 106, 32);
+		panel.add(btnVoltar_1);
+		
+		JLabel lblVenda = new JLabel("Venda");
+		lblVenda.setBounds(22, 52, 75, 16);
+		panel.add(lblVenda);
+		lblVenda.setFont(new Font("Bookman Old Style", Font.BOLD, 18));
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
 		panel_1.setBounds(95, 133, 745, 381);
 		contentPane.add(panel_1);
-		
-		JLabel lblVenda = new JLabel("Venda");
-		lblVenda.setFont(new Font("Bookman Old Style", Font.BOLD, 18));
-		lblVenda.setBounds(20, 22, 75, 16);
-		panel_1.add(lblVenda);
 		
 		JLabel lblLivro = new JLabel("Livro");
 		lblLivro.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));

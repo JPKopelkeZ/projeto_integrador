@@ -65,7 +65,7 @@ public class TelaConsultarFuncionarioSupervisor extends JFrame {
 		
 		JLabel lblNomeEmpresa = new JLabel("LIFELONG BOOKS ");
 		lblNomeEmpresa.setFont(new Font("Copperplate Gothic Light", Font.ITALIC, 20));
-		lblNomeEmpresa.setBounds(24, 11, 223, 32);
+		lblNomeEmpresa.setBounds(22, 9, 223, 32);
 		panel.add(lblNomeEmpresa);
 		
 		JButton btnVoltar = new JButton(" Voltar");
@@ -78,8 +78,13 @@ public class TelaConsultarFuncionarioSupervisor extends JFrame {
 		});
 		btnVoltar.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
 		btnVoltar.setBackground(SystemColor.menu);
-		btnVoltar.setBounds(10, 62, 106, 32);
+		btnVoltar.setBounds(831, 62, 106, 32);
 		panel.add(btnVoltar);
+		
+		JLabel lblNewLabel = new JLabel("Consultar funcionário S");
+		lblNewLabel.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 18));
+		lblNewLabel.setBounds(22, 52, 255, 14);
+		panel.add(lblNewLabel);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 116, 927, 397);

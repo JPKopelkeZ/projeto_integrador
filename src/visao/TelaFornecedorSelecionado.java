@@ -94,18 +94,18 @@ public class TelaFornecedorSelecionado extends JFrame {
 		});
 		btnVoltar.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
 		btnVoltar.setBackground(SystemColor.menu);
-		btnVoltar.setBounds(10, 62, 106, 32);
+		btnVoltar.setBounds(831, 62, 106, 32);
 		panel.add(btnVoltar);
+		
+		JLabel lblFornecedor = new JLabel("Fornecedor");
+		lblFornecedor.setBounds(22, 52, 120, 16);
+		panel.add(lblFornecedor);
+		lblFornecedor.setFont(new Font("Bookman Old Style", Font.BOLD, 18));
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
 		panel_1.setBounds(96, 116, 745, 381);
 		contentPane_1.add(panel_1);
-		
-		JLabel lblFornecedor = new JLabel("Fornecedor");
-		lblFornecedor.setFont(new Font("Bookman Old Style", Font.BOLD, 18));
-		lblFornecedor.setBounds(20, 22, 120, 16);
-		panel_1.add(lblFornecedor);
 		
 		JLabel lblNome = new JLabel("Nome");
 		lblNome.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));

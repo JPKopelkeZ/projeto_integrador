@@ -80,19 +80,19 @@ public class TelaCadastroFornecedor extends JFrame {
 			});
 		btnVoltar.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
 		btnVoltar.setBackground(SystemColor.menu);
-		btnVoltar.setBounds(10, 62, 106, 32);
+		btnVoltar.setBounds(831, 62, 106, 32);
 		panel.add(btnVoltar);
+		
+		JLabel lblCadastrarFornecedor = new JLabel("Cadastrar Fornecedor ");
+		lblCadastrarFornecedor.setBounds(22, 52, 246, 24);
+		panel.add(lblCadastrarFornecedor);
+		lblCadastrarFornecedor.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 18));
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_1.setBounds(70, 116, 768, 437);
 		contentPane_1.add(panel_1);
-		
-		JLabel lblCadastrarFornecedor = new JLabel("Cadastrar Fornecedor ");
-		lblCadastrarFornecedor.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 18));
-		lblCadastrarFornecedor.setBounds(10, 11, 246, 14);
-		panel_1.add(lblCadastrarFornecedor);
 		
 		JLabel lblNome = new JLabel("Nome");
 		lblNome.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));

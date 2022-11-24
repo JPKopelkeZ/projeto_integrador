@@ -73,19 +73,19 @@ public class TelaCadastroUsuario extends JFrame {
 		});
 		btnVoltar.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
 		btnVoltar.setBackground(SystemColor.menu);
-		btnVoltar.setBounds(10, 62, 106, 32);
+		btnVoltar.setBounds(831, 62, 106, 32);
 		panel.add(btnVoltar);
+		
+		JLabel lblCadastrarUsurio = new JLabel("Cadastrar Usuário");
+		lblCadastrarUsurio.setBounds(22, 52, 246, 22);
+		panel.add(lblCadastrarUsurio);
+		lblCadastrarUsurio.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 18));
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_1.setBounds(90, 116, 768, 437);
+		panel_1.setBounds(85, 116, 768, 437);
 		contentPane.add(panel_1);
-		
-		JLabel lblCadastrarUsurio = new JLabel("Cadastrar Usuário");
-		lblCadastrarUsurio.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 18));
-		lblCadastrarUsurio.setBounds(10, 36, 246, 14);
-		panel_1.add(lblCadastrarUsurio);
 		
 		JLabel lblNomeDeUsurio = new JLabel("Nome de usuário");
 		lblNomeDeUsurio.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));

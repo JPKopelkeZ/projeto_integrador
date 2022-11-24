@@ -75,19 +75,19 @@ public class TelaCadastroCliente extends JFrame {
 		});
 		btnVoltar.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
 		btnVoltar.setBackground(SystemColor.menu);
-		btnVoltar.setBounds(10, 62, 106, 32);
+		btnVoltar.setBounds(831, 62, 106, 32);
 		panel.add(btnVoltar);
+		
+		JLabel lblCadastrarClientes_1 = new JLabel("Cadastrar Clientes");
+		lblCadastrarClientes_1.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 18));
+		lblCadastrarClientes_1.setBounds(22, 52, 246, 22);
+		panel.add(lblCadastrarClientes_1);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_1.setBounds(70, 116, 768, 437);
 		contentPane.add(panel_1);
-		
-		JLabel lblCadastrarClientes = new JLabel("Cadastrar Clientes");
-		lblCadastrarClientes.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 18));
-		lblCadastrarClientes.setBounds(10, 11, 246, 14);
-		panel_1.add(lblCadastrarClientes);
 		
 		JLabel lblNome = new JLabel("Nome");
 		lblNome.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));

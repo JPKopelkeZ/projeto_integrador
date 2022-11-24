@@ -93,18 +93,18 @@ public class TelaClienteSelecionado extends JFrame {
 		});
 		btnVoltar.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
 		btnVoltar.setBackground(SystemColor.menu);
-		btnVoltar.setBounds(10, 62, 106, 32);
+		btnVoltar.setBounds(831, 62, 106, 32);
 		panel.add(btnVoltar);
+		
+		JLabel lblCliente = new JLabel("Cliente");
+		lblCliente.setBounds(22, 52, 75, 22);
+		panel.add(lblCliente);
+		lblCliente.setFont(new Font("Bookman Old Style", Font.BOLD, 18));
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
 		panel_1.setBounds(99, 137, 745, 381);
 		contentPane_1.add(panel_1);
-		
-		JLabel lblCliente = new JLabel("Cliente");
-		lblCliente.setFont(new Font("Bookman Old Style", Font.BOLD, 18));
-		lblCliente.setBounds(20, 22, 75, 16);
-		panel_1.add(lblCliente);
 		
 		JLabel lblNome = new JLabel("Nome");
 		lblNome.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));

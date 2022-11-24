@@ -76,19 +76,19 @@ public class TelaCadastroLivro extends JFrame {
 		});
 		btnVoltar.setBackground(new Color(240, 240, 240));
 		btnVoltar.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
-		btnVoltar.setBounds(10, 62, 106, 32);
+		btnVoltar.setBounds(831, 62, 106, 32);
 		panel.add(btnVoltar);
+		
+		JLabel lblCadastrar = new JLabel("Cadastrar Livros");
+		lblCadastrar.setBounds(22, 52, 179, 24);
+		panel.add(lblCadastrar);
+		lblCadastrar.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 18));
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel_1.setBounds(75, 116, 768, 437);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
-		
-		JLabel lblCadastrar = new JLabel("Cadastrar Livros");
-		lblCadastrar.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 18));
-		lblCadastrar.setBounds(10, 11, 179, 14);
-		panel_1.add(lblCadastrar);
 		
 		JLabel lblTitulo = new JLabel("Título ");
 		lblTitulo.setFont(new Font("Bookman Old Style", Font.PLAIN, 16));
