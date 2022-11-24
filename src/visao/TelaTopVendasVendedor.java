@@ -67,6 +67,13 @@ public class TelaTopVendasVendedor extends JFrame {
 		panel.add(lblNomeEmpresa);
 		
 		JButton btnVoltar_1 = new JButton(" Voltar");
+		btnVoltar_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				TelaInicialVendedor telaVendedor = new TelaInicialVendedor(usuario);
+				telaVendedor.setVisible(true);
+			}
+		});
 		btnVoltar_1.setFont(new Font("Bookman Old Style", Font.PLAIN, 14));
 		btnVoltar_1.setBackground(SystemColor.menu);
 		btnVoltar_1.setBounds(831, 60, 106, 32);
