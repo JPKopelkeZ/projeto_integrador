@@ -81,7 +81,7 @@ public class TelaTopVendasSupervisor extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("Top Vendas S");
 		lblNewLabel.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 18));
-		lblNewLabel.setBounds(22, 52, 317, 14);
+		lblNewLabel.setBounds(22, 52, 317, 22);
 		panel.add(lblNewLabel);
 		
 		JScrollPane scrollPane = new JScrollPane();

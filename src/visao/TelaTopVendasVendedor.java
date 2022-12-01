@@ -79,9 +79,9 @@ public class TelaTopVendasVendedor extends JFrame {
 		btnVoltar_1.setBounds(831, 60, 106, 32);
 		panel.add(btnVoltar_1);
 		
-		JLabel lblNewLabel = new JLabel("Tela Vendas V");
+		JLabel lblNewLabel = new JLabel("Top Vendas V");
 		lblNewLabel.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 18));
-		lblNewLabel.setBounds(22, 52, 258, 14);
+		lblNewLabel.setBounds(22, 52, 258, 22);
 		panel.add(lblNewLabel);
 		
 		JScrollPane scrollPane = new JScrollPane();
