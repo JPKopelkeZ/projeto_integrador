@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -119,7 +120,7 @@ public class TelaLogin extends JFrame {
 							txtUsuario.setText(null);
 							txtSenha.setText(null);
 						} else {
-							System.out.println("Usuario não encontrado");
+							JOptionPane.showMessageDialog(null, "Usuário e(ou) Senha são inválidos.");
 						}
 
 					}
@@ -156,7 +157,7 @@ public class TelaLogin extends JFrame {
 						txtUsuario.setText(null);
 						txtSenha.setText(null);
 					} else {
-						System.out.println("Usuario não encontrado");
+						JOptionPane.showMessageDialog(null, "Usuário e(ou) Senha são inválidos.");
 					}
 
 				}
