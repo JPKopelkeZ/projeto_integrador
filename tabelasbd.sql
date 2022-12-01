@@ -228,54 +228,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`fornecedor` (
 ENGINE = InnoDB;
 
 
--- -----------------------------------------------------
--- Table `mydb`.`compra`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`compra` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`compra` (
-  `idcompra` INT NOT NULL AUTO_INCREMENT,
-  `quantidade` INT NULL,
-  `funcionario_idfuncionario` INT NOT NULL,
-  PRIMARY KEY (`idcompra`),
-
-  UNIQUE INDEX `idcompra_UNIQUE` (`idcompra` ASC) ,
-  INDEX `fk_compra_funcionario1_idx` (`funcionario_idfuncionario` ASC) ,
-
-  CONSTRAINT `fk_compra_funcionario1`
-    FOREIGN KEY (`funcionario_idfuncionario`)
-    REFERENCES `mydb`.`funcionario` (`idfuncionario`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
-
-
--- -----------------------------------------------------
--- Table `mydb`.`fornecedor_has_compra`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`fornecedor_has_compra` ;
-
-CREATE TABLE IF NOT EXISTS `mydb`.`fornecedor_has_compra` (
-  `fornecedor_idfornecedor` INT NOT NULL,
-  `compra_idcompra` INT NOT NULL,
-  PRIMARY KEY (`fornecedor_idfornecedor`, `compra_idcompra`),
-
-  INDEX `fk_fornecedor_has_compra_compra1_idx` (`compra_idcompra` ASC) ,
-  INDEX `fk_fornecedor_has_compra_fornecedor1_idx` (`fornecedor_idfornecedor` ASC) ,
-
-  CONSTRAINT `fk_fornecedor_has_compra_fornecedor1`
-    FOREIGN KEY (`fornecedor_idfornecedor`)
-    REFERENCES `mydb`.`fornecedor` (`idfornecedor`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_fornecedor_has_compra_compra1`
-    FOREIGN KEY (`compra_idcompra`)
-    REFERENCES `mydb`.`compra` (`idcompra`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
 
 
 
@@ -323,28 +276,7 @@ insert into funcionario (idfuncionario, nomefuncionario, funcao, cpf, salario, t
 insert into funcionario (idfuncionario, nomefuncionario, funcao, cpf, salario, telefone) values (3, 'Godiva Cursons', 'Supervisor', '984.927.440-90', '4988.99', '(508) 5781186');
 insert into funcionario (idfuncionario, nomefuncionario, funcao, cpf, salario, telefone) values (4, 'Ebony Pannett', 'Vendedor', '354.535.930-16', '4437.39', '(715) 3102658');
 
-insert into compra (idcompra, quantidade, funcionario_idfuncionario) values (1, 11, 1);
-insert into compra (idcompra, quantidade, funcionario_idfuncionario) values (2, 22, 2);
-insert into compra (idcompra, quantidade, funcionario_idfuncionario) values (3, 30, 3);
-insert into compra (idcompra, quantidade, funcionario_idfuncionario) values (4, 83, 4);
-insert into compra (idcompra, quantidade, funcionario_idfuncionario) values (5, 37, 1);
-insert into compra (idcompra, quantidade, funcionario_idfuncionario) values (6, 40, 2);
-insert into compra (idcompra, quantidade, funcionario_idfuncionario) values (7, 77, 3);
-insert into compra (idcompra, quantidade, funcionario_idfuncionario) values (8, 40, 4);
-insert into compra (idcompra, quantidade, funcionario_idfuncionario) values (9, 16, 1);
-insert into compra (idcompra, quantidade, funcionario_idfuncionario) values (10, 12, 2);
 
-
-insert into fornecedor_has_compra (fornecedor_idfornecedor, compra_idcompra) values (3, 1);
-insert into fornecedor_has_compra (fornecedor_idfornecedor, compra_idcompra) values (1, 2);
-insert into fornecedor_has_compra (fornecedor_idfornecedor, compra_idcompra) values (4, 3);
-insert into fornecedor_has_compra (fornecedor_idfornecedor, compra_idcompra) values (2, 4);
-insert into fornecedor_has_compra (fornecedor_idfornecedor, compra_idcompra) values (2, 5);
-insert into fornecedor_has_compra (fornecedor_idfornecedor, compra_idcompra) values (3, 6);
-insert into fornecedor_has_compra (fornecedor_idfornecedor, compra_idcompra) values (1, 7);
-insert into fornecedor_has_compra (fornecedor_idfornecedor, compra_idcompra) values (4, 8);
-insert into fornecedor_has_compra (fornecedor_idfornecedor, compra_idcompra) values (1, 9);
-insert into fornecedor_has_compra (fornecedor_idfornecedor, compra_idcompra) values (2, 10);
 
 insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor, quant) values (1, 'Brain Dead', '104.36', 'Oyondu', 'Hungarian', 'Horror|Sci-Fi', 1995, 990, 'Lesley Ferraro', 100);
 insert into livro (idlivro, titulo, preco, editora, idioma, genero, ano, numeroPaginas, autor, quant) values (2, 'In a Town This Size', '213.40', 'Rooxo', 'Polish', 'Documentary', 2007, 601, 'Rosie Klimsch', 100);
